@@ -2,12 +2,12 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { cookies } from 'next/headers'
 
+
 export const authOptions = {
     providers: [
         CredentialsProvider({
             async authorize(credentials, req) {
                 const { email, password } = credentials;
-
                 const signInResponse = await fetch(process.env.BACKEND_SIGN_IN_URL, {
                     method: "POST",
                     credentials: "include",
@@ -29,7 +29,7 @@ export const authOptions = {
                         name: "accessToken",
                         value: accessTokenMatch[1],
                         httpOnly: true,
-                        maxAge: 60 * 30, // 30 minutes
+                        maxAge: process.env.ACCESS_TOKEN_LIFETIME, // seconds
                         path: "/"
                     })
                 }
@@ -40,7 +40,7 @@ export const authOptions = {
                         name: "refreshToken",
                         value: refreshTokenMatch[1],
                         httpOnly: true,
-                        maxAge: 60 * 60 * 24 * 30, // 30 days
+                        maxAge: process.env.REFRESH_TOKEN_LIFETIME, // seconds
                         path: "/"
                     })
                 }
