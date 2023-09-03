@@ -1,0 +1,104 @@
+/* ===== Colors ===== */
+:root {
+    --green-1: #98DBC6;
+    --green-2: #2ac885;
+    --gray-1: #2E3440;
+    --gray-2: #efefef;
+    --white-1: #f9f9f9;
+    --red-1: #FFA07A;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+::selection {
+    background-color: var(--green-1);
+    color: var(--gray-1);
+}
+
+/* ===== Global ===== */
+html,
+body {
+    height: 100%;
+    font-size: 15px;
+    color: var(--gray-1);
+}
+
+body {
+    background-color: var(--white-1);
+}
+
+a {
+    text-decoration: none;
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border-style: none;
+    border-color: var(--gray-1);
+    border-width: 1px;
+    background-color: var(--gray-2);
+}
+
+input:-internal-autofill-selected {
+    background-color: var(--gray-2)!important;
+}
+
+:focus-visible {
+    outline-color: var(--green-1);
+}
+
+.form-title {
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin-bottom: 5px;
+}
+
+.btn {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    border-style: none;
+    border-radius: 5px;
+    background-color: var(--green-1);
+}
+
+.auth-options {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.auth-options > .text {
+    margin-right: 5px;
+}
+
+.auth-options > .link {
+    color: var(--green-2);
+    font-weight: bold;
+}
+
+/* ===== Sign up ===== */
+[class^="sign"] {
+    height: 100%;
+}
+
+[class^="sign"] > .form {
+    width: 23%;
+}
+
+body > [class^="sign"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
