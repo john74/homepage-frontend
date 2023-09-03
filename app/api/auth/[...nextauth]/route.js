@@ -29,7 +29,7 @@ export const authOptions = {
                         name: "accessToken",
                         value: accessTokenMatch[1],
                         httpOnly: true,
-                        maxAge: process.env.ACCESS_TOKEN_LIFETIME, // seconds
+                        maxAge: parseInt(process.env.ACCESS_TOKEN_LIFETIME), // seconds
                         path: "/"
                     })
                 }
@@ -40,7 +40,7 @@ export const authOptions = {
                         name: "refreshToken",
                         value: refreshTokenMatch[1],
                         httpOnly: true,
-                        maxAge: process.env.REFRESH_TOKEN_LIFETIME, // seconds
+                        maxAge: parseInt(process.env.REFRESH_TOKEN_LIFETIME), // seconds
                         path: "/"
                     })
                 }
