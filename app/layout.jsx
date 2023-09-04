@@ -8,11 +8,11 @@ const poppins = Poppins({
 });
 
 
-const RootLayout = ({ children, session }) => {
+const RootLayout = ({ children}) => {
     return (
         <html lang="en">
             <body className={poppins.className} suppressHydrationWarning={true}>
-                <Provider session={session}>
+                <Provider>
                     {children}
                 </Provider>
             </body>
