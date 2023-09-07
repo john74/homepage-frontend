@@ -39,7 +39,7 @@ export async function middleware(request, event) {
             res.cookies.set({
                 name: "accessToken",
                 value: data.access,
-                maxAge: 10, // 10 seconds
+                maxAge: parseInt(process.env.ACCESS_TOKEN_LIFETIME), // seconds
                 httpOnly: true,
                 path: "/"
             });
