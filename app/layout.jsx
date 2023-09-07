@@ -2,6 +2,7 @@ import '@styles/main.css';
 import { Poppins } from 'next/font/google';
 import Provider from '@components/Provider';
 
+
 const poppins = Poppins({
     subsets: ['latin'],
     weight: ['100', '400']
