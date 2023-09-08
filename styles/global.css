@@ -102,3 +102,8 @@ body > [class^="sign"] {
     align-items: center;
     justify-content: center;
 }
+
+/* ===== Main ===== */
+#main {
+    height: 100%;
+}
