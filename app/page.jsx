@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { getData } from "@lib";
 
-import { Sidebar } from "@components";
+import { LeftSidebar } from "@components";
 
 
 const HomePage = async () => {
@@ -15,7 +15,7 @@ const HomePage = async () => {
 
 
     return (
-        <div>HOME PAGE</div>
+        <LeftSidebar shortcuts={shortcuts}/>
     )
 }
 
