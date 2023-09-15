@@ -4,6 +4,7 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 import { getData } from "@lib";
 
 import { LeftSidebar } from "@components";
+import { WebSearch } from "@components";
 
 
 const HomePage = async () => {
@@ -15,7 +16,14 @@ const HomePage = async () => {
 
 
     return (
-        <LeftSidebar shortcuts={shortcuts}/>
+        <div id="home">
+            <div id="left">
+                <LeftSidebar shortcuts={shortcuts}/>
+            </div>
+            <div id="right">
+                <WebSearch searchEngines={searchEngines}/>
+            </div>
+        </div>
     )
 }
 
