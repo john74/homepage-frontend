@@ -1,4 +1,4 @@
-import '@styles/global.css';
+import '@styles/Global.css';
 import { Poppins } from 'next/font/google';
 import Provider from '@components/Provider';
 
