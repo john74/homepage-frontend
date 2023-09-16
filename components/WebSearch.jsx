@@ -63,9 +63,9 @@ function WebSearch({searchEngines}) {
                         </p>
                         <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                     </div>
-                    <div className={`${styles.nonDefaultEngines} ${isMenuOpen ? styles.open : ''}`} onClick={handleSearchEngineClick}>
+                    <ul className={`${styles.nonDefaultEngines} ${isMenuOpen ? styles.open : ''}`} onClick={handleSearchEngineClick}>
                     {nonDefaultEngines.map(engine => (
-                        <p
+                        <li
                         className={styles.engine}
                         key={engine.id}
                         data-id={engine.id}
@@ -75,9 +75,9 @@ function WebSearch({searchEngines}) {
                         data-name-attribute={engine.name_attribute}
                         >
                         {engine.name}
-                        </p>
+                        </li>
                     ))}
-                    </div>
+                    </ul>
                 </div>
                 <input type="search" name={defaultEngine.name_attribute} id={defaultEngine.id} />
             </form>
