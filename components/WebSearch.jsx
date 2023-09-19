@@ -8,7 +8,7 @@ import { useMenuToggle } from '@hooks';
 
 
 function WebSearch({searchEngines}) {
-    const { isMenuOpen, toggleMenu } = useMenuToggle();
+    const { openMenuId, toggleMenu } = useMenuToggle();
 
     let {
         selectedEngine,
@@ -49,7 +49,7 @@ function WebSearch({searchEngines}) {
     return (
         <div className={styles.webSearch}>
             <form action={defaultEngine.url} method={defaultEngine.method}>
-                <div className={styles.searchEngines} onClick={toggleMenu}>
+                <div className={styles.searchEngines} onClick={() => toggleMenu(defaultEngine.id)}>
                     <div className={styles.defaultEngine}>
                         <p
                         key={defaultEngine.id}
@@ -63,7 +63,7 @@ function WebSearch({searchEngines}) {
                         </p>
                         <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                     </div>
-                    <ul className={`${styles.nonDefaultEngines} ${isMenuOpen ? styles.open : ''}`} onClick={handleSearchEngineClick}>
+                    <ul className={`${styles.nonDefaultEngines} ${openMenuId ? styles.open : ''}`} onClick={handleSearchEngineClick}>
                     {nonDefaultEngines.map(engine => (
                         <li
                         className={styles.engine}
