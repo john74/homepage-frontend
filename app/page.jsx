@@ -24,7 +24,7 @@ const HomePage = async () => {
             </div>
             <div id="right">
                 <WebSearch searchEngines={searchEngines}/>
-                <Bookmarks groupedBookmarkCategories={groupedBookmarkCategories} bookmarks={bookmarks}/>
+                <Bookmarks groupedBookmarkCategories={groupedBookmarkCategories} bookmarksData={bookmarks}/>
             </div>
         </div>
     )
