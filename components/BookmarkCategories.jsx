@@ -7,7 +7,7 @@ import { useBookmarkForm } from '@hooks';
 import { useState } from 'react';
 
 
-function Bookmarks({groupedBookmarkCategories, bookmarksData}) {
+function BookmarkCategories({ groupedBookmarkCategories, bookmarksData }) {
     const [bookmarks, setBookmarks] = useState(bookmarksData);
     const { openMenuId, toggleMenu } = useMenuToggle();
     const { isFormVisible, toggleFormVisibility} = useBookmarkForm();
@@ -66,4 +66,4 @@ function Bookmarks({groupedBookmarkCategories, bookmarksData}) {
     )
 }
 
-export default Bookmarks
+export default BookmarkCategories

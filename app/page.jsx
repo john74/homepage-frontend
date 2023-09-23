@@ -6,7 +6,7 @@ import { groupData } from "@lib";
 
 import { LeftSidebar } from "@components";
 import { WebSearch } from "@components";
-import { Bookmarks } from "@components";
+import { BookmarkCategories } from "@components";
 
 
 const HomePage = async () => {
@@ -24,7 +24,7 @@ const HomePage = async () => {
             </div>
             <div id="right">
                 <WebSearch searchEngines={searchEngines}/>
-                <Bookmarks groupedBookmarkCategories={groupedBookmarkCategories} bookmarksData={bookmarks}/>
+                <BookmarkCategories groupedBookmarkCategories={groupedBookmarkCategories} bookmarksData={bookmarks}/>
             </div>
         </div>
     )
