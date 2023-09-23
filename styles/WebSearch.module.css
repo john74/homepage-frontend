@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     position: relative;
+    z-index: 10;
 }
 
 .enginesSelect {
@@ -23,6 +24,7 @@
     display: flex;
     flex-direction: column;
     background-color: #efefef;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     row-gap: 5px;
     position: absolute;
     top: 40px;
