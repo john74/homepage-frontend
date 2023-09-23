@@ -1,13 +1,20 @@
 "use client";
 
 import styles from '../styles/Bookmarks.module.css';
+import AddBookmarkForm from './AddBookmarkForm';
 import { useMenuToggle } from '@hooks';
+import { useBookmarkForm } from '@hooks';
+import { useState } from 'react';
 
 
-function Bookmarks({groupedBookmarkCategories, bookmarks}) {
+function Bookmarks({groupedBookmarkCategories, bookmarksData}) {
+    const [bookmarks, setBookmarks] = useState(bookmarksData);
     const { openMenuId, toggleMenu } = useMenuToggle();
+    const { isFormVisible, toggleFormVisibility} = useBookmarkForm();
 
     return (
+        <>
+        {isFormVisible && <AddBookmarkForm categoryId={openMenuId} setBookmarks={setBookmarks} existingBookmarks={bookmarks} />}
         <div className={styles.bookmarkCategories}>
             <div className={styles.wrapper}>
             {groupedBookmarkCategories.map((categoryGroup, index) => (
@@ -22,7 +29,7 @@ function Bookmarks({groupedBookmarkCategories, bookmarks}) {
                             </div>
 
                             <ul className={`${styles.actions} ${openMenuId == category.id ? styles.open : ''}`}>
-                                <li key={category.id + 'add'} className={styles.action}>
+                                <li key={category.id + 'add'} className={styles.action} onClick={toggleFormVisibility}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                                     <span className={styles.add}>Add bookmark</span>
                                 </li>
@@ -55,6 +62,7 @@ function Bookmarks({groupedBookmarkCategories, bookmarks}) {
             ))}
             </div>
         </div>
+        </>
     )
 }
 
