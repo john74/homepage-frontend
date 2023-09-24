@@ -1,0 +1,51 @@
+.bookmarks {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    height: 100%;
+    padding: 4px;
+    overflow-x: hidden;
+    background-color: #f9f9f9;
+}
+
+.bookmarks > :nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+.bookmark {
+    padding: 2px;
+}
+
+.bookmark > a {
+    display: flex;
+    color: #2E3440;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.bookmark > a:hover {
+    color: #2ac885;
+}
+
+  /* Chrome, Edge and Safari */
+  .bookmarks::-webkit-scrollbar {
+    height: 10px;
+    width: 2px;
+  }
+  .bookmarks::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: transparent;
+  }
+
+  .bookmarks:hover::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #efefef;
+  }
+
+  .bookmarks::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+  }
+
+  .bookmarks:hover::-webkit-scrollbar-thumb {
+    background-color: #2E3440;
+  }

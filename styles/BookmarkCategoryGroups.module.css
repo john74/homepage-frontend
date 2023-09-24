@@ -1,0 +1,83 @@
+.bookmarkCategoryGroups {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%;
+    width: 100%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 38px;
+    width: 80%;
+    max-height: 270px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 2%;
+}
+
+/* Firefox */
+.wrapper:hover {
+    scrollbar-width: thin;
+    scrollbar-color: #efefef;
+  }
+
+  /* Chrome, Edge and Safari */
+  .wrapper::-webkit-scrollbar {
+    height: 10px;
+    width: 2px;
+  }
+
+  .wrapper::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: transparent;
+  }
+
+  .wrapper:hover::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #efefef;
+  }
+
+  .wrapper::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+  }
+
+  .wrapper:hover::-webkit-scrollbar-thumb {
+    background-color: #2E3440;
+  }
+
+
+  /* Define the filling animation */
+@keyframes fillAnimation {
+    0% {
+      stroke-dashoffset: 48;
+      fill: transparent;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      fill: red; /* Change this to your desired fill color */
+    }
+  }
+
+  /* Define the emptying animation */
+  @keyframes emptyAnimation {
+    0% {
+      stroke-dashoffset: 0;
+      fill: red; /* Change this to your desired fill color */
+    }
+    100% {
+      stroke-dashoffset: 48;
+      fill: transparent;
+    }
+  }
+
+  /* Apply the animation to the SVG when it has the 'filling' class */
+  .markedForDeletion > svg path {
+    animation: fillAnimation 2s ease forwards;
+  }
+
+  /* Apply the animation to the SVG when it has the 'markedForDeletion' class */
+  .markedForDeletion > svg path {
+    animation: emptyAnimation 5s ease forwards;
+  }

@@ -1,0 +1,10 @@
+.bookmarkCategoryGroup {
+    display: flex;
+    justify-content: stretch;
+    min-height: 270px;
+    max-height: 270px;
+}
+
+.bookmarkCategoryGroup > :not(:first-child) {
+    margin-left: 3%;
+}
