@@ -6,7 +6,7 @@ import { groupData } from "@lib";
 
 import { LeftSidebar } from "@components";
 import { WebSearch } from "@components";
-import { BookmarkCategories } from "@components";
+import { BookmarkCategoryGroups } from "@components";
 
 
 const HomePage = async () => {
@@ -15,7 +15,7 @@ const HomePage = async () => {
     const bookmarkCategories = await getData(process.env.BACKEND_BOOKMARK_CATEGORIES_URL, session);
     const bookmarks = await getData(process.env.BACKEND_BOOKMARKS_URL, session);
     const searchEngines = await getData(process.env.BACKEND_SEARCH_ENGINES_URL, session);
-    let groupedBookmarkCategories = groupData(bookmarkCategories, 6);
+    let bookmarkCategoryGroups = groupData(bookmarkCategories, 6);
 
     return (
         <div id="home">
@@ -24,7 +24,7 @@ const HomePage = async () => {
             </div>
             <div id="right">
                 <WebSearch searchEngines={searchEngines}/>
-                <BookmarkCategories groupedBookmarkCategories={groupedBookmarkCategories} bookmarksData={bookmarks}/>
+                <BookmarkCategoryGroups bookmarkCategoryGroups={bookmarkCategoryGroups} bookmarksData={bookmarks}/>
             </div>
         </div>
     )
