@@ -9,6 +9,7 @@ export default function useBookmarkForm() {
 
       return {
         isFormVisible,
+        setIsFormVisible,
         toggleFormVisibility
       }
 }
