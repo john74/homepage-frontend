@@ -52,6 +52,10 @@ input[type="search"]::-webkit-search-clear-button {
     display: none;
 }
 
+[type="submit"] {
+    cursor: pointer;
+}
+
 input:-internal-autofill-selected {
     background-color: var(--gray-2)!important;
 }
