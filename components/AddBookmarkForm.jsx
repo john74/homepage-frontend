@@ -1,19 +1,23 @@
 "use client";
 
+import styles from '../styles/AddBookmarkForm.module.css';
 import { useState } from 'react';
 
-function AddBookmarkForm({categoryId, setBookmarks, existingBookmarks}) {
+
+function AddBookmarkForm({ categoryId, setBookmarks, existingBookmarks, setIsFormVisible }) {
+
     const [formData, setFormData] = useState({
         category: categoryId,
         name: "",
         url: "",
         icon_url: "",
-        is_shortcut: true,
+        is_shortcut: false,
       });
 
     const { category, name, url, icon_url, is_shortcut } = formData;
     const onChange = event => {
-        const { name, value } = event.target;
+        let { name, value, type, checked } = event.target;
+        value = type === "checkbox" ? checked : value;
         setFormData({ ...formData, [name]: value });
     }
 
@@ -41,27 +45,31 @@ function AddBookmarkForm({categoryId, setBookmarks, existingBookmarks}) {
             const updatedBookmarks = (await response.json()).bookmarks;
             setBookmarks({ ...updatedBookmarks });
         }
+        setIsFormVisible(false);
     };
 
     return (
-        <form className="" onSubmit={createBookmark}>
-            <div className="">
-                <label htmlFor="name">Name:</label>
-                <input type="text" id="name" name="name" value={name} onChange={onChange} required />
+        <form className={styles.AddBookmarkForm} onSubmit={createBookmark}>
+            <div className={styles.wrapper}>
+                <h1>Create bookmark</h1>
+                <div className={styles.field}>
+                    <label htmlFor="name">Name:</label>
+                    <input type="text" id="name" name="name" value={name} onChange={onChange} required />
+                </div>
+                <div className={styles.field}>
+                    <label htmlFor="url">Url:</label>
+                    <input type="text" id="url" name="url" value={url} onChange={onChange} required />
+                </div>
+                <div className={styles.field}>
+                    <label htmlFor="icon_url">Icon url:</label>
+                    <input type="text" id="icon_url" name="icon_url" value={icon_url} onChange={onChange} required />
+                </div>
+                <div className={`${styles.field} ${styles.row}`}>
+                    <label htmlFor="is_shortcut">Is shortcut:</label>
+                    <input type="checkbox" id="is_shortcut" name="is_shortcut" checked={is_shortcut} onChange={onChange} />
+                </div>
+                <input type="submit" value="Save" />
             </div>
-            <div className="">
-                <label htmlFor="url">Url:</label>
-                <input type="text" id="url" name="url" value={url} onChange={onChange} required />
-            </div>
-            <div className="">
-                <label htmlFor="icon_url">Icon url:</label>
-                <input type="text" id="icon_url" name="icon_url" value={icon_url} onChange={onChange} required />
-            </div>
-            <div className="">
-                <label htmlFor="is_shortcut">Is shortcut:</label>
-                <input type="checkbox" id="is_shortcut" name="is_shortcut" checked={is_shortcut} onChange={onChange} />
-            </div>
-            <input type="submit" value="Save" />
         </form>
     )
 }
