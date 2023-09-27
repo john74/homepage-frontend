@@ -11,14 +11,14 @@ import { useState } from 'react';
 
 function BookmarkCategoryGroups({ bookmarkCategoryGroups, bookmarksData }) {
     const [bookmarks, setBookmarks] = useState(bookmarksData);
-    const { openMenuId, toggleMenu, menuRef } = useMenuToggle();
+    const { lastSelectedCategoryId, openMenuId, toggleMenu, menuRef } = useMenuToggle();
     const { isFormVisible, setIsFormVisible, toggleFormVisibility} = useBookmarkForm();
 
     return (
         <>
         {isFormVisible && (
         <AddBookmarkForm
-            categoryId={openMenuId}
+            categoryId={lastSelectedCategoryId}
             setBookmarks={setBookmarks}
             existingBookmarks={bookmarks}
             setIsFormVisible={setIsFormVisible}
