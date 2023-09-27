@@ -1,12 +1,12 @@
 import styles from '../styles/BookmarkCategoryHead.module.css';
 
 
-function BookmarkCategoryHead({ category, toggleMenu }) {
+function BookmarkCategoryHead({ category, toggleMenu, menuRef }) {
 
     return (
-        <div className={styles.head}>
+        <div className={styles.head} ref={menuRef}>
             <h1 className={styles.title} style={{ backgroundColor: category.color }}>{category.name}</h1>
-            <span className={styles.menuToggler} onClick={() => toggleMenu(category.id)}>
+            <span className={styles.menuToggler} onClick={() => toggleMenu(category.id)} data-menu-toggler>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="12" r="1"/><circle cx="9" cy="5" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="19" r="1"/></svg>
             </span>
         </div>

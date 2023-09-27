@@ -8,7 +8,7 @@ import { useMenuToggle } from '@hooks';
 
 
 function WebSearch({searchEngines}) {
-    const { openMenuId, toggleMenu } = useMenuToggle();
+    const { openMenuId, toggleMenu, menuRef } = useMenuToggle();
 
     let {
         selectedEngine,
@@ -48,8 +48,8 @@ function WebSearch({searchEngines}) {
 
     return (
         <div className={styles.webSearch}>
-            <form action={defaultEngine.url} method={defaultEngine.method}>
-                <div className={styles.searchEngines} onClick={() => toggleMenu(defaultEngine.id)}>
+            <form action={defaultEngine.url} method={defaultEngine.method} ref={menuRef}>
+                <div className={styles.searchEngines} onClick={() => toggleMenu(defaultEngine.id)} data-menu-toggler>
                     <div className={styles.defaultEngine}>
                         <p
                         key={defaultEngine.id}
