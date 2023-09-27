@@ -11,12 +11,19 @@ import { useState } from 'react';
 
 function BookmarkCategoryGroups({ bookmarkCategoryGroups, bookmarksData }) {
     const [bookmarks, setBookmarks] = useState(bookmarksData);
-    const { openMenuId, toggleMenu } = useMenuToggle();
-    const { isFormVisible, toggleFormVisibility} = useBookmarkForm();
+    const { openMenuId, toggleMenu, menuRef } = useMenuToggle();
+    const { isFormVisible, setIsFormVisible, toggleFormVisibility} = useBookmarkForm();
 
     return (
         <>
-        {isFormVisible && <AddBookmarkForm categoryId={openMenuId} setBookmarks={setBookmarks} existingBookmarks={bookmarks} />}
+        {isFormVisible && (
+        <AddBookmarkForm
+            categoryId={openMenuId}
+            setBookmarks={setBookmarks}
+            existingBookmarks={bookmarks}
+            setIsFormVisible={setIsFormVisible}
+        />
+        )}
         <div className={styles.bookmarkCategoryGroups}>
             <div className={styles.wrapper}>
             {bookmarkCategoryGroups.map((categoryGroup, index) => (
@@ -26,6 +33,7 @@ function BookmarkCategoryGroups({ bookmarkCategoryGroups, bookmarksData }) {
                 bookmarks={bookmarks}
                 openMenuId={openMenuId}
                 toggleMenu={toggleMenu}
+                menuRef={menuRef}
                 toggleFormVisibility={toggleFormVisibility}
                 />
             ))}
