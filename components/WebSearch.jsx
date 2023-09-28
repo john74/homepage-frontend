@@ -3,12 +3,11 @@
 import { useEffect } from 'react';
 
 import styles from '../styles/WebSearch.module.css';
-import { useSetDefaultSearchEngine } from '@hooks';
-import { useMenuToggle } from '@hooks';
+import { useSetDefaultSearchEngine, useWebSearchMenu } from '@hooks';
 
 
-function WebSearch({searchEngines}) {
-    const { openMenuId, toggleMenu, menuRef } = useMenuToggle();
+function WebSearch({ searchEngines }) {
+    const { openMenuId, toggleMenu, menuRef } = useWebSearchMenu();
 
     let {
         selectedEngine,
@@ -47,9 +46,9 @@ function WebSearch({searchEngines}) {
     }, [selectedEngine]);
 
     return (
-        <div className={styles.webSearch}>
-            <form action={defaultEngine.url} method={defaultEngine.method} ref={menuRef}>
-                <div className={styles.searchEngines} onClick={() => toggleMenu(defaultEngine.id)} data-menu-toggler>
+        <div className={styles.webSearch} ref={menuRef}>
+            <form action={defaultEngine.url} method={defaultEngine.method}>
+                <div className={styles.searchEngines} onClick={() => toggleMenu(defaultEngine.id)}>
                     <div className={styles.defaultEngine}>
                         <p
                         key={defaultEngine.id}
