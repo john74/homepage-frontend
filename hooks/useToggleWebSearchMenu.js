@@ -18,7 +18,7 @@ import { useEffect, useRef, useState } from 'react';
  * // To toggle a menu with a specific ID:
  * toggleMenu(menuId);
  */
-export default function useWebSearchMenu() {
+export default function useToggleWebSearchMenu() {
     const [openMenuId, setOpenMenuId] = useState(null);
     const menuRef = useRef(null);
 

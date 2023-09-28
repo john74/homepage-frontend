@@ -3,11 +3,11 @@
 import { useEffect } from 'react';
 
 import styles from '../styles/WebSearch.module.css';
-import { useSetDefaultSearchEngine, useWebSearchMenu } from '@hooks';
+import { useSetDefaultSearchEngine, useToggleWebSearchMenu } from '@hooks';
 
 
 function WebSearch({ searchEngines }) {
-    const { openMenuId, toggleMenu, menuRef } = useWebSearchMenu();
+    const { openMenuId, toggleMenu, menuRef } = useToggleWebSearchMenu();
 
     let {
         selectedEngine,
