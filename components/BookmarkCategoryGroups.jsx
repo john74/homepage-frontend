@@ -4,14 +4,14 @@
 import styles from '../styles/BookmarkCategoryGroups.module.css';
 import AddBookmarkForm from './AddBookmarkForm';
 import BookmarkCategoryGroup from './BookmarkCategoryGroup';
-import { useMenuToggle } from '@hooks';
+import { useToggleBookmarkCategoryMenu } from '@hooks';
 import { useBookmarkForm } from '@hooks';
 import { useState } from 'react';
 
 
 function BookmarkCategoryGroups({ bookmarkCategoryGroups, bookmarksData }) {
     const [bookmarks, setBookmarks] = useState(bookmarksData);
-    const { lastSelectedCategoryId, openMenuId, toggleMenu, menuRef } = useMenuToggle();
+    const { lastSelectedCategoryId, openMenuId, toggleMenu, menuRef } = useToggleBookmarkCategoryMenu();
     const { isFormVisible, setIsFormVisible, toggleAddBookmarkFormVisibility} = useBookmarkForm();
 
     return (
