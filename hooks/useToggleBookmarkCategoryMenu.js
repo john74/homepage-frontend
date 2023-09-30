@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from 'react';
  *
  * @example
  * // In your component:
- * const { openMenuId, toggleMenu } = useMenuToggle();
+ * const { lastSelectedCategoryId, openMenuId, toggleMenu, menuRef } = useToggleBookmarkCategoryMenu();
  *
  * // To toggle a menu with a specific ID:
  * toggleMenu(menuId);
@@ -37,8 +37,10 @@ export default function useToggleBookmarkCategoryMenu() {
     useEffect(() => {
         // Add a click event listener to detect clicks on the menu toggler or outside the menu, and close the menu if necessary
         const closeMenuOnClick = event => {
-            // Check if the click occurred inside the menu
-            const userClickedInsideMenu = menuRef.current?.contains(event.target);
+            // Check if the closest ancestor of the event target matches the reference class
+            const referenceClass = menuRef.current?.className;
+            const targetClass = event.target?.closest(`.${referenceClass}`)?.className;
+            const userClickedInsideMenu = referenceClass === targetClass;
             if (!userClickedInsideMenu) setOpenMenuId(null);
         }
 
