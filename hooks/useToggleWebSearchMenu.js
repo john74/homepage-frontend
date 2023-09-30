@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from 'react';
  *
  * @example
  * // In your component:
- * const { openMenuId, toggleMenu } = useMenuToggle();
+ * const { openMenuId, toggleMenu, menuRef } = useToggleWebSearchMenu();
  *
  * // To toggle a menu with a specific ID:
  * toggleMenu(menuId);
@@ -28,7 +28,6 @@ export default function useToggleWebSearchMenu() {
      * @param {string} menuId - The unique ID of the menu to toggle.
      */
     const toggleMenu = (menuId) => {
-        // Store the ID of the currently selected category in a separate variable to preserve it, even when the category's menu is closed.
         setOpenMenuId(openMenuId => openMenuId === menuId ? null : menuId);
       };
 
