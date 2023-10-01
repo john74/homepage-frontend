@@ -4,12 +4,12 @@ import BookmarkCategoryBody from "./BookmarkCategoryBody";
 import BookmarkCategoryMenu from "./BookmarkCategoryMenu";
 
 
-function BookmarkCategory({ category, bookmarks, toggleMenu, openMenuId, menuRef, toggleAddBookmarkFormVisibility}) {
+function BookmarkCategory({ category, bookmarks, toggleMenu, openMenuId, menuRef, toggleAddBookmarkFormVisibility, toggleEditBookmarkCategoryFormVisibility }) {
     return (
         <div key={category.id} className={styles.bookmarkCategory}>
             <BookmarkCategoryHead category={category} toggleMenu={toggleMenu} menuRef={menuRef} />
             <BookmarkCategoryBody category={category} bookmarks={bookmarks} />
-            <BookmarkCategoryMenu category={category} openMenuId={openMenuId} toggleAddBookmarkFormVisibility={toggleAddBookmarkFormVisibility} />
+            <BookmarkCategoryMenu category={category} openMenuId={openMenuId} toggleAddBookmarkFormVisibility={toggleAddBookmarkFormVisibility} toggleEditBookmarkCategoryFormVisibility={toggleEditBookmarkCategoryFormVisibility} />
         </div>
     );
   }

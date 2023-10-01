@@ -2,7 +2,7 @@ import styles from '../styles/BookmarkCategoryGroup.module.css';
 import BookmarkCategory from "./BookmarkCategory";
 
 
-function BookmarkCategoryGroup({ categoryGroup, bookmarks, toggleMenu, openMenuId, menuRef, toggleAddBookmarkFormVisibility}) {
+function BookmarkCategoryGroup({ categoryGroup, bookmarks, toggleMenu, openMenuId, menuRef, toggleAddBookmarkFormVisibility, toggleEditBookmarkCategoryFormVisibility }) {
     return (
       <div className={styles.bookmarkCategoryGroup}>
         {categoryGroup.map(category => (
@@ -14,6 +14,7 @@ function BookmarkCategoryGroup({ categoryGroup, bookmarks, toggleMenu, openMenuI
           openMenuId={openMenuId}
           menuRef={menuRef}
           toggleAddBookmarkFormVisibility={toggleAddBookmarkFormVisibility}
+          toggleEditBookmarkCategoryFormVisibility={toggleEditBookmarkCategoryFormVisibility}
           />
         ))}
       </div>
