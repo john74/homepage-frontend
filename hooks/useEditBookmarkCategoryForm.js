@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 
 export default function useEditBookmarkCategoryForm() {
-    const [isEditCategoryBookmarkFormVisible, setIsEditCategoryBookmarkFormVisible] = useState(false);
-    const toggleEditCategoryBookmarkFormVisibility = () => {
-        setIsEditCategoryBookmarkFormVisible(!isEditCategoryBookmarkFormVisible);
+    const [isEditBookmarkCategoryFormVisible, setIsEditBookmarkCategoryFormVisible] = useState(false);
+    const toggleEditBookmarkCategoryFormVisibility = () => {
+        setIsEditBookmarkCategoryFormVisible(!isEditBookmarkCategoryFormVisible);
       };
 
     return {
-        isEditCategoryBookmarkFormVisible,
-        setIsEditCategoryBookmarkFormVisible,
-        toggleEditCategoryBookmarkFormVisibility
+        isEditBookmarkCategoryFormVisible,
+        setIsEditBookmarkCategoryFormVisible,
+        toggleEditBookmarkCategoryFormVisibility
     }
 }
