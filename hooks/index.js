@@ -4,3 +4,4 @@ export { default as useSetDefaultSearchEngine } from './useSetDefaultSearchEngin
 export { default as useToggleBookmarkCategoryMenu } from './useToggleBookmarkCategoryMenu';
 export { default as useBookmarkForm } from './useBookmarkForm';
 export { default as useToggleWebSearchMenu } from './useToggleWebSearchMenu';
+export { default as useEditBookmarkCategoryForm } from './useEditBookmarkCategoryForm';
