@@ -60,7 +60,7 @@ function BookmarkCategoryGroups({ bookmarkCategoryGroupsData, bookmarksData }) {
                 toggleAddBookmarkFormVisibility={toggleAddBookmarkFormVisibility}
                 toggleEditBookmarkCategoryFormVisibility={toggleEditBookmarkCategoryFormVisibility}
                 isBookmarkCategoryMarkedForDeletion={isBookmarkCategoryMarkedForDeletion}
-                setIsBookmarkCategoryMarkedForDeletion={setIsBookmarkCategoryMarkedForDeletion}
+                markBookmarkCategoryForDeletion={markBookmarkCategoryForDeletion}
                 />
             ))}
             </div>
