@@ -5,3 +5,4 @@ export { default as useToggleBookmarkCategoryMenu } from './useToggleBookmarkCat
 export { default as useBookmarkForm } from './useBookmarkForm';
 export { default as useToggleWebSearchMenu } from './useToggleWebSearchMenu';
 export { default as useEditBookmarkCategoryForm } from './useEditBookmarkCategoryForm';
+export { default as useDeleteBookmarkCategoryForm } from './useDeleteBookmarkCategoryForm';
