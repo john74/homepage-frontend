@@ -9,6 +9,7 @@ import { useBookmarkForm } from '@hooks';
 import { useState } from 'react';
 import { useEditBookmarkCategoryForm } from '@hooks';
 import EditBookmarkCategoryForm from './EditBookmarkCategoryForm';
+import { useMarkBookmarkCategoryForDeletion } from '@hooks';
 
 
 function BookmarkCategoryGroups({ bookmarkCategoryGroupsData, bookmarksData }) {
@@ -21,6 +22,11 @@ function BookmarkCategoryGroups({ bookmarkCategoryGroupsData, bookmarksData }) {
         setIsEditBookmarkCategoryFormVisible,
         toggleEditBookmarkCategoryFormVisibility
     } = useEditBookmarkCategoryForm();
+    const {
+        isBookmarkCategoryMarkedForDeletion,
+        setIsBookmarkCategoryMarkedForDeletion,
+        markBookmarkCategoryForDeletion
+    } = useMarkBookmarkCategoryForDeletion()
 
     return (
         <>
@@ -53,6 +59,8 @@ function BookmarkCategoryGroups({ bookmarkCategoryGroupsData, bookmarksData }) {
                 menuRef={menuRef}
                 toggleAddBookmarkFormVisibility={toggleAddBookmarkFormVisibility}
                 toggleEditBookmarkCategoryFormVisibility={toggleEditBookmarkCategoryFormVisibility}
+                isBookmarkCategoryMarkedForDeletion={isBookmarkCategoryMarkedForDeletion}
+                setIsBookmarkCategoryMarkedForDeletion={setIsBookmarkCategoryMarkedForDeletion}
                 />
             ))}
             </div>
