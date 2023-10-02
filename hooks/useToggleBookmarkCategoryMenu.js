@@ -37,6 +37,9 @@ export default function useToggleBookmarkCategoryMenu() {
     useEffect(() => {
         // Add a click event listener to detect clicks on the menu toggler or outside the menu, and close the menu if necessary
         const closeMenuOnClick = event => {
+            // Prevent closing the menu when clicking on elements with a 'data-delete-action' attribute
+            // to allow the user to select the 'Click to confirm' to proceed with deletion
+            if (event.target?.closest("[data-delete-action]")) return;
             // Check if the closest ancestor of the event target matches the reference class
             const referenceClass = menuRef.current?.className;
             const targetClass = event.target?.closest(`.${referenceClass}`)?.className;
