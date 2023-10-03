@@ -4,7 +4,7 @@ import BookmarkCategoryBody from "./BookmarkCategoryBody";
 import BookmarkCategoryMenu from "./BookmarkCategoryMenu";
 
 
-function BookmarkCategory({ category, bookmarks, toggleMenu, openMenuId, menuRef, toggleAddBookmarkFormVisibility, toggleEditBookmarkCategoryFormVisibility, isBookmarkCategoryMarkedForDeletion, markBookmarkCategoryForDeletion }) {
+function BookmarkCategory({ category, bookmarks, toggleMenu, openMenuId, menuRef, toggleAddBookmarkFormVisibility, toggleEditBookmarkCategoryFormVisibility, isBookmarkCategoryMarkedForDeletion, markBookmarkCategoryForDeletion, setBookmarkCategoryGroups }) {
     return (
         <div key={category.id} className={styles.bookmarkCategory}>
             <BookmarkCategoryHead category={category} toggleMenu={toggleMenu} menuRef={menuRef} />
@@ -16,6 +16,7 @@ function BookmarkCategory({ category, bookmarks, toggleMenu, openMenuId, menuRef
             toggleEditBookmarkCategoryFormVisibility={toggleEditBookmarkCategoryFormVisibility}
             isBookmarkCategoryMarkedForDeletion={isBookmarkCategoryMarkedForDeletion}
             markBookmarkCategoryForDeletion={markBookmarkCategoryForDeletion}
+            setBookmarkCategoryGroups={setBookmarkCategoryGroups}
             />
         </div>
     );

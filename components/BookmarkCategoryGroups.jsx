@@ -52,6 +52,7 @@ function BookmarkCategoryGroups({ bookmarkCategoryGroupsData, bookmarksData }) {
             {bookmarkCategoryGroups.map((categoryGroup, index) => (
                 <BookmarkCategoryGroup
                 key={`bookmark-category-group-${index}`}
+                setBookmarkCategoryGroups={setBookmarkCategoryGroups}
                 categoryGroup={categoryGroup}
                 bookmarks={bookmarks}
                 openMenuId={openMenuId}
