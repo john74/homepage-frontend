@@ -21,13 +21,8 @@ function BookmarkCategoryMenu(props) {
           )
 
         if (response.ok) {
-            let categories = (await response.json()).categories;
-            let groups = [];
-            for (let i = 0; i < categories.length; i += 6) {
-                let group = categories.slice(i, i + 6);
-                groups.push(group);
-            }
-            props.setBookmarkCategoryGroups(groups);
+            const grouped_categories = (await response.json()).categories;
+            props.setBookmarkCategoryGroups(grouped_categories);
         }
     }
 
