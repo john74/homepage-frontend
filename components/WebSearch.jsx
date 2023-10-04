@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 import styles from '../styles/WebSearch.module.css';
 import { useSetDefaultSearchEngine, useToggleWebSearchMenu } from '@hooks';
+import Svg from './Svg';
 
 
 function WebSearch(props) {
@@ -60,7 +61,7 @@ function WebSearch(props) {
                         >
                         {defaultEngine.name}
                         </p>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        <Svg content={<><path d="m6 9 6 6 6-6"/></>}/>
                     </div>
                     <ul className={`${styles.nonDefaultEngines} ${openMenuId ? styles.open : ''}`} onClick={handleSearchEngineClick}>
                     {nonDefaultEngines.map(engine => (
