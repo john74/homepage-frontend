@@ -12,9 +12,9 @@ import EditBookmarkCategoryForm from './EditBookmarkCategoryForm';
 import { useMarkBookmarkCategoryForDeletion } from '@hooks';
 
 
-function BookmarkCategoryGroups({ bookmarkCategoryGroupsData, bookmarksData }) {
-    const [bookmarks, setBookmarks] = useState(bookmarksData);
-    const [bookmarkCategoryGroups, setBookmarkCategoryGroups] = useState(bookmarkCategoryGroupsData);
+function BookmarkCategoryGroups(props) {
+    const [bookmarks, setBookmarks] = useState(props.bookmarks);
+    const [bookmarkCategoryGroups, setBookmarkCategoryGroups] = useState(props.bookmarkCategoryGroups);
     const { lastSelectedCategoryId, openMenuId, toggleMenu, menuRef } = useToggleBookmarkCategoryMenu();
     const { isFormVisible, setIsFormVisible, toggleAddBookmarkFormVisibility} = useBookmarkForm();
     const {
@@ -28,41 +28,32 @@ function BookmarkCategoryGroups({ bookmarkCategoryGroupsData, bookmarksData }) {
         markBookmarkCategoryForDeletion
     } = useMarkBookmarkCategoryForDeletion()
 
+    props = {
+        lastSelectedCategoryId,
+        setBookmarks,
+        bookmarks,
+        setIsFormVisible,
+        setIsEditBookmarkCategoryFormVisible,
+        setBookmarkCategoryGroups,
+        openMenuId,
+        toggleMenu,
+        menuRef,
+        toggleAddBookmarkFormVisibility,
+        toggleEditBookmarkCategoryFormVisibility,
+        isBookmarkCategoryMarkedForDeletion,
+        markBookmarkCategoryForDeletion
+    }
+
     return (
         <>
-        {isFormVisible && (
-        <AddBookmarkForm
-        categoryId={lastSelectedCategoryId}
-        setBookmarks={setBookmarks}
-        existingBookmarks={bookmarks}
-        setIsFormVisible={setIsFormVisible}
-        />
-        )}
+        {isFormVisible && ( <AddBookmarkForm {...props} /> )}
 
-        {isEditBookmarkCategoryFormVisible && (
-        <EditBookmarkCategoryForm
-        categoryId={lastSelectedCategoryId}
-        setIsEditBookmarkCategoryFormVisible={setIsEditBookmarkCategoryFormVisible}
-        setBookmarkCategoryGroups={setBookmarkCategoryGroups}
-        />
-        )}
+        {isEditBookmarkCategoryFormVisible && ( <EditBookmarkCategoryForm {...props} /> )}
 
         <div className={styles.bookmarkCategoryGroups}>
             <div className={styles.wrapper}>
             {bookmarkCategoryGroups.map((categoryGroup, index) => (
-                <BookmarkCategoryGroup
-                key={`bookmark-category-group-${index}`}
-                setBookmarkCategoryGroups={setBookmarkCategoryGroups}
-                categoryGroup={categoryGroup}
-                bookmarks={bookmarks}
-                openMenuId={openMenuId}
-                toggleMenu={toggleMenu}
-                menuRef={menuRef}
-                toggleAddBookmarkFormVisibility={toggleAddBookmarkFormVisibility}
-                toggleEditBookmarkCategoryFormVisibility={toggleEditBookmarkCategoryFormVisibility}
-                isBookmarkCategoryMarkedForDeletion={isBookmarkCategoryMarkedForDeletion}
-                markBookmarkCategoryForDeletion={markBookmarkCategoryForDeletion}
-                />
+                <BookmarkCategoryGroup key={`bookmark-category-group-${index}`} categoryGroup={categoryGroup} {...props} />
             ))}
             </div>
         </div>

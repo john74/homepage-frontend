@@ -1,11 +1,11 @@
 import styles from '../styles/LeftSidebar.module.css';
 
 
-function LeftSidebar({shortcuts}) {
+function LeftSidebar(props) {
     return (
         <div className={styles.sidebar}>
             <div className={styles.top}>
-            {shortcuts.map(shortcut => (
+            {props.shortcuts.map(shortcut => (
                     <a className={styles.shortcut} href={shortcut.url} title={shortcut.name} target="_blank">
                         <img className={styles.image} src={shortcut.icon_url} alt={shortcut.name} />
                     </a>

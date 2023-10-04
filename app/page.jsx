@@ -17,14 +17,21 @@ const HomePage = async () => {
     const searchEngines = await getData(process.env.BACKEND_SEARCH_ENGINES_URL, session);
     let bookmarkCategoryGroups = groupData(bookmarkCategories, 6);
 
+    const props = {
+        shortcuts,
+        searchEngines,
+        bookmarkCategoryGroups,
+        bookmarks
+    };
+
     return (
         <div id="home">
             <div id="left">
-                <LeftSidebar shortcuts={shortcuts}/>
+                <LeftSidebar {...props} />
             </div>
             <div id="right">
-                <WebSearch searchEngines={searchEngines}/>
-                <BookmarkCategoryGroups bookmarkCategoryGroupsData={bookmarkCategoryGroups} bookmarksData={bookmarks}/>
+                <WebSearch {...props} />
+                <BookmarkCategoryGroups {...props} />
             </div>
         </div>
     )

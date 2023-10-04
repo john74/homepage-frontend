@@ -4,10 +4,10 @@ import styles from '../styles/AddBookmarkForm.module.css';
 import { useState } from 'react';
 
 
-function AddBookmarkForm({ categoryId, setBookmarks, existingBookmarks, setIsFormVisible }) {
+function AddBookmarkForm(props) {
 
     const [formData, setFormData] = useState({
-        category: categoryId,
+        category: props.lastSelectedCategoryId,
         name: "",
         url: "",
         icon_url: "",
@@ -32,7 +32,7 @@ function AddBookmarkForm({ categoryId, setBookmarks, existingBookmarks, setIsFor
             },
             body: JSON.stringify({
                 "formData": [formData],
-                "bookmarks": existingBookmarks
+                "bookmarks": props.bookmarks
             })
         }
 
@@ -43,9 +43,9 @@ function AddBookmarkForm({ categoryId, setBookmarks, existingBookmarks, setIsFor
 
         if (response.ok) {
             const updatedBookmarks = (await response.json()).bookmarks;
-            setBookmarks({ ...updatedBookmarks });
+            props.setBookmarks({ ...updatedBookmarks });
         }
-        setIsFormVisible(false);
+        props.setIsFormVisible(false);
     };
 
     return (

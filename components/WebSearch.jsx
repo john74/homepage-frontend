@@ -6,9 +6,9 @@ import styles from '../styles/WebSearch.module.css';
 import { useSetDefaultSearchEngine, useToggleWebSearchMenu } from '@hooks';
 
 
-function WebSearch({ searchEngines }) {
+function WebSearch(props) {
     const { openMenuId, toggleMenu, menuRef } = useToggleWebSearchMenu();
-
+    const searchEngines = props.searchEngines;
     let {
         selectedEngine,
         defaultEngine,
