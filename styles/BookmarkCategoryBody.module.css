@@ -13,6 +13,9 @@
 }
 
 .bookmark {
+    position: relative;
+    display: flex;
+    align-items: center;
     padding: 2px;
 }
 
@@ -21,6 +24,7 @@
     color: #2E3440;
     font-size: 13px;
     overflow: hidden;
+    max-width: calc(100% - 30px);
 }
 
 .bookmark > a:hover {
@@ -49,3 +53,39 @@
   .bookmarks:hover::-webkit-scrollbar-thumb {
     background-color: #2E3440;
   }
+
+  .bookmark:not(:hover) > .actions {
+    display: none;
+  }
+  .bookmark:hover > .actions {
+    opacity: .2;
+  }
+
+  .bookmark > .actions:hover {
+    opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  .bookmark > .actions {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    width: 35px;
+    justify-content: space-between;
+    padding: 5px;
+    opacity: 1;
+    z-index: 10;
+    background-color: #efefef;
+    border-radius: 5px;
+}
+
+.bookmark > .actions > span {
+    display: flex;
+    cursor: pointer;
+}
+
+.bookmark > .actions svg {
+    width: 13px;
+    height: 13px;
+}
