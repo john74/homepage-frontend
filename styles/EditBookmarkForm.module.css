@@ -1,0 +1,78 @@
+.AddBookmarkForm {
+    position: absolute;
+    height: 100%;
+    width: 97%;
+    background-color: #0000004a;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    background-color: #fff;
+    padding: 10px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+    height: 43%;
+    width: 15%;
+    border-radius: 5px;
+}
+
+.field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.field.row {
+    flex-direction: row;
+}
+
+.field > [type="checkbox"] {
+    align-items: center;
+    margin-left: 5px;
+}
+
+.currentCategory {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 6px;
+    background-color: #efefef;
+    border-radius: 5px;
+}
+
+.currentCategory > svg {
+    width: 14px;
+    height: 14px;
+    margin-left: 3px;
+}
+
+.restCategories {
+    display: flex;
+    flex-direction: column;
+    background-color: #efefef;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    row-gap: 5px;
+    position: absolute;
+    top: 38px;
+    padding: 10px;
+    border-radius: 4px;
+    left: 0;
+    min-width: 100%;
+    z-index: 10;
+}
+
+.restCategories > li {
+    cursor: pointer;
+}
+
+.restCategories > li:hover {
+    color: #2ac885;
+}

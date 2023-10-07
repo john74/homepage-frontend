@@ -10,6 +10,8 @@ import { useState } from 'react';
 import { useEditBookmarkCategoryForm } from '@hooks';
 import EditBookmarkCategoryForm from './EditBookmarkCategoryForm';
 import { useMarkBookmarkCategoryForDeletion } from '@hooks';
+import { useEditBookmarkForm } from '@hooks';
+import { EditBookmarkForm } from '@components';
 
 
 function BookmarkCategoryGroups(props) {
@@ -26,9 +28,16 @@ function BookmarkCategoryGroups(props) {
         isBookmarkCategoryMarkedForDeletion,
         setIsBookmarkCategoryMarkedForDeletion,
         markBookmarkCategoryForDeletion
-    } = useMarkBookmarkCategoryForDeletion()
+    } = useMarkBookmarkCategoryForDeletion();
+    const {
+        isEditBookmarkFormVisible,
+        setIsEditBookmarkFormVisible,
+        toggleEditBookmarkFormVisibility,
+        selectedBookmarkForEditing
+    } = useEditBookmarkForm();
 
     props = {
+        bookmarkCategoryGroups,
         lastSelectedCategoryId,
         setBookmarks,
         bookmarks,
@@ -41,7 +50,10 @@ function BookmarkCategoryGroups(props) {
         toggleAddBookmarkFormVisibility,
         toggleEditBookmarkCategoryFormVisibility,
         isBookmarkCategoryMarkedForDeletion,
-        markBookmarkCategoryForDeletion
+        markBookmarkCategoryForDeletion,
+        setIsEditBookmarkFormVisible,
+        toggleEditBookmarkFormVisibility,
+        selectedBookmarkForEditing
     }
 
     return (
@@ -49,6 +61,8 @@ function BookmarkCategoryGroups(props) {
         {isFormVisible && ( <AddBookmarkForm {...props} /> )}
 
         {isEditBookmarkCategoryFormVisible && ( <EditBookmarkCategoryForm {...props} /> )}
+
+        {isEditBookmarkFormVisible && ( <EditBookmarkForm {...props} /> )}
 
         <div className={styles.bookmarkCategoryGroups}>
             <div className={styles.wrapper}>
