@@ -58,6 +58,7 @@
 }
 
 .shortcut {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,4 +68,59 @@
 .shortcut .image {
     width: 25px;
     height: 25px;
+}
+
+.shortcut:not(:hover) > .actions {
+    display: none;
+}
+
+.shortcut:hover > .actions {
+    opacity: .2;
+}
+
+.shortcut > .actions:hover {
+    opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.shortcut > .actions {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.shortcut > .actions > span {
+    display: flex;
+    cursor: pointer;
+}
+
+.shortcut > .actions svg {
+    width: 13px;
+    height: 13px;
+}
+
+.marked > svg {
+    animation: unmark 5s linear;
+}
+
+@keyframes unmark {
+    0% {
+        stroke: #ff1212;
+    }
+    20% {
+        stroke: #ff8000;
+    }
+    40% {
+        stroke: #ffbf00;
+    }
+    60% {
+        stroke: #ffc83d;
+    }
+    80% {
+        stroke: #ffd17a;
+    }
+    100% {
+        stroke: #2E3440;
+    }
 }

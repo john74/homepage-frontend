@@ -8,3 +8,4 @@ export { default as useEditBookmarkCategoryForm } from './useEditBookmarkCategor
 export { default as useMarkBookmarkCategoryForDeletion } from './useMarkBookmarkCategoryForDeletion';
 export { default as useEditBookmarkForm } from './useEditBookmarkForm';
 export { default as useMarkBookmarkForDeletion } from './useMarkBookmarkForDeletion';
+export { default as useMarkShortcutForDeletion } from './useMarkShortcutForDeletion';
