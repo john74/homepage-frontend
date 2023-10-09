@@ -89,3 +89,28 @@
     width: 13px;
     height: 13px;
 }
+
+.marked > svg {
+    animation: unmark 5s linear;
+}
+
+@keyframes unmark {
+    0% {
+        stroke: #ff1212;
+    }
+    20% {
+        stroke: #ff8000;
+    }
+    40% {
+        stroke: #ffbf00;
+    }
+    60% {
+        stroke: #ffc83d;
+    }
+    80% {
+        stroke: #ffd17a;
+    }
+    100% {
+        stroke: #2E3440;
+    }
+}

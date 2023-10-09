@@ -7,3 +7,4 @@ export { default as useToggleWebSearchMenu } from './useToggleWebSearchMenu';
 export { default as useEditBookmarkCategoryForm } from './useEditBookmarkCategoryForm';
 export { default as useMarkBookmarkCategoryForDeletion } from './useMarkBookmarkCategoryForDeletion';
 export { default as useEditBookmarkForm } from './useEditBookmarkForm';
+export { default as useMarkBookmarkForDeletion } from './useMarkBookmarkForDeletion';

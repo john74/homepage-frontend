@@ -12,6 +12,8 @@ import EditBookmarkCategoryForm from './EditBookmarkCategoryForm';
 import { useMarkBookmarkCategoryForDeletion } from '@hooks';
 import { useEditBookmarkForm } from '@hooks';
 import { EditBookmarkForm } from '@components';
+import { useMarkBookmarkForDeletion } from '@hooks';
+
 
 
 function BookmarkCategoryGroups(props) {
@@ -29,6 +31,12 @@ function BookmarkCategoryGroups(props) {
         setIsBookmarkCategoryMarkedForDeletion,
         markBookmarkCategoryForDeletion
     } = useMarkBookmarkCategoryForDeletion();
+    const {
+        isBookmarkMarkedForDeletion,
+        setIsBookmarkMarkedForDeletion,
+        markBookmarkForDeletion,
+        unmarkBookmarkForDeletion
+    } = useMarkBookmarkForDeletion();
     const {
         isEditBookmarkFormVisible,
         setIsEditBookmarkFormVisible,
@@ -53,7 +61,11 @@ function BookmarkCategoryGroups(props) {
         markBookmarkCategoryForDeletion,
         setIsEditBookmarkFormVisible,
         toggleEditBookmarkFormVisibility,
-        selectedBookmarkForEditing
+        selectedBookmarkForEditing,
+        setIsBookmarkMarkedForDeletion,
+        isBookmarkMarkedForDeletion,
+        markBookmarkForDeletion,
+        unmarkBookmarkForDeletion
     }
 
     return (
