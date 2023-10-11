@@ -14,7 +14,8 @@ function EditBookmarkForm(props) {
     };
 
     const {
-        selectedBookmarkForEditing
+        selectedBookmarkForEditing,
+        setIsEditBookmarkFormVisible
     } = props.editBookmarkFormHook;
 
     const [formData, setFormData] = useState({
@@ -75,7 +76,7 @@ function EditBookmarkForm(props) {
             const updatedBookmarks = (await response.json()).createdBookmarks;
             props.setBookmarks({ ...updatedBookmarks });
         }
-        props.setIsEditBookmarkFormVisible(false);
+        setIsEditBookmarkFormVisible(false);
     };
 
     const bookmarkCategories = {};
