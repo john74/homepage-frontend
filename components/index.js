@@ -10,4 +10,5 @@ export { default as BookmarkCategoryMenu } from './BookmarkCategoryMenu';
 export { default as AddBookmarkForm } from './AddBookmarkForm';
 export { default as EditBookmarkCategoryForm } from './EditBookmarkCategoryForm';
 export { default as EditBookmarkForm } from './EditBookmarkForm';
+export { default as HomePageContainer } from './HomePageContainer';
 export { default as Svg } from './Svg';

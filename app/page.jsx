@@ -2,10 +2,7 @@ import { getServerSession } from "next-auth";
 
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { getData } from "@lib";
-
-import { LeftSidebar } from "@components";
-import { WebSearch } from "@components";
-import { BookmarkCategoryGroups } from "@components";
+import { HomePageContainer } from "@components";
 
 
 const HomePage = async () => {
@@ -23,15 +20,9 @@ const HomePage = async () => {
     };
 
     return (
-        <div id="home">
-            <div id="left">
-                <LeftSidebar {...props} />
-            </div>
-            <div id="right">
-                <WebSearch {...props} />
-                <BookmarkCategoryGroups {...props} />
-            </div>
-        </div>
+        <>
+        <HomePageContainer {...props} />
+        </>
     )
 }
 

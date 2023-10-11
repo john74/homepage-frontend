@@ -3,19 +3,24 @@
 import { useEffect } from 'react';
 
 import styles from '../styles/WebSearch.module.css';
-import { useSetDefaultSearchEngine, useToggleWebSearchMenu } from '@hooks';
 import Svg from './Svg';
 
 
 function WebSearch(props) {
-    const { openMenuId, toggleMenu, menuRef } = useToggleWebSearchMenu();
+    const {
+        openMenuId,
+        toggleMenu,
+        menuRef
+    } = props.toggleWebSearchMenuHook;
+
     const searchEngines = props.searchEngines;
+
     let {
         selectedEngine,
         defaultEngine,
         nonDefaultEngines,
         handleSearchEngineClick,
-      } = useSetDefaultSearchEngine(searchEngines);
+      } = props.setDefaultSearchEngineHook;
 
     // Using 'selectedEngine' ensures that 'useEffect' triggers appropriately,
     // because 'selectedEngine' remains undefined until user selection, while

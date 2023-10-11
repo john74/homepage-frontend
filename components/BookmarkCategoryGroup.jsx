@@ -6,7 +6,7 @@ function BookmarkCategoryGroup(props) {
     return (
       <div className={styles.bookmarkCategoryGroup}>
         {props.categoryGroup.map(category => (
-          <BookmarkCategory key={category.id} category={category} {...props} />
+          <BookmarkCategory key={'bookmark-category-group-' + category.id} category={category} {...props} />
         ))}
       </div>
     );

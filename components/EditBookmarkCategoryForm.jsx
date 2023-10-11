@@ -5,8 +5,16 @@ import { useState } from 'react';
 
 function EditBookmarkCategoryForm(props) {
 
+    const {
+        setIsEditBookmarkCategoryFormVisible
+    } = props.editBookmarkCategoryFormHook;
+
+    const {
+        lastSelectedCategoryId
+    } = props.toggleBookmarkCategoryMenuHook;
+
     const [formData, setFormData] = useState({
-        id: props.lastSelectedCategoryId,
+        id: lastSelectedCategoryId,
         name:"",
         color:""
       });
@@ -38,7 +46,7 @@ function EditBookmarkCategoryForm(props) {
             const grouped_categories = (await response.json()).categories;
             props.setBookmarkCategoryGroups(grouped_categories);
         }
-        props.setIsEditBookmarkCategoryFormVisible(false);
+        setIsEditBookmarkCategoryFormVisible(false);
     };
 
     return (
@@ -47,7 +55,7 @@ function EditBookmarkCategoryForm(props) {
                 <h1>Edit category</h1>
                 <div className="">
                     <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" name="name" value={name} onChange={onChange} required />
+                    <input type="text" id="name" name="name" value={name} onChange={onChange} />
                 </div>
                 <div className="">
                     <label htmlFor="color">Color:</label>

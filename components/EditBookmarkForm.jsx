@@ -8,16 +8,22 @@ import Svg from './Svg';
 function EditBookmarkForm(props) {
     const [isRestCategoriesVisible, setIsRestCategoriesVisible] = useState(false);
     const menuRef = useRef(null);
+
     const toggleRestCategories = () => {
       setIsRestCategoriesVisible(!isRestCategoriesVisible);
     };
+
+    const {
+        selectedBookmarkForEditing
+    } = props.editBookmarkFormHook;
+
     const [formData, setFormData] = useState({
-        category: props.selectedBookmarkForEditing.category,
-        id: props.selectedBookmarkForEditing.id,
-        name: props.selectedBookmarkForEditing.name,
-        url: props.selectedBookmarkForEditing.url,
-        icon_url: props.selectedBookmarkForEditing.icon_url,
-        is_shortcut: props.selectedBookmarkForEditing.is_shortcut,
+        category: selectedBookmarkForEditing.category,
+        id: selectedBookmarkForEditing.id,
+        name: selectedBookmarkForEditing.name,
+        url: selectedBookmarkForEditing.url,
+        icon_url: selectedBookmarkForEditing.icon_url,
+        is_shortcut: selectedBookmarkForEditing.is_shortcut,
       });
 
       const handleCategoryClick = (newCategory) => {

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 export default function useMarkShortcutForDeletion() {
     const [isShortcutMarkedForDeletion, setIsShortcutMarkedForDeletion] = useState(null);
+
     const markShortcutForDeletion = (shortcutId) => {
         if (isShortcutMarkedForDeletion) return;
         setIsShortcutMarkedForDeletion(shortcutId);

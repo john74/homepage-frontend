@@ -3,11 +3,15 @@ import Svg from './Svg';
 
 
 function BookmarkCategoryHead(props) {
+    const {
+        menuRef,
+        toggleMenu
+    } = props.toggleBookmarkCategoryMenuHook;
 
     return (
-        <div className={styles.head} ref={props.menuRef}>
+        <div className={styles.head} ref={menuRef}>
             <h1 className={styles.title} style={{ backgroundColor: props.category.color }}>{props.category.name}</h1>
-            <span className={styles.menuToggler} onClick={() => props.toggleMenu(props.category.id)}>
+            <span className={styles.menuToggler} onClick={() => toggleMenu(props.category.id)}>
                 <Svg content={<><circle cx="9" cy="12" r="1"/><circle cx="9" cy="5" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="19" r="1"/></>}/>
             </span>
         </div>

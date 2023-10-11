@@ -1,19 +1,13 @@
-"use client";
-
 import styles from '../styles/LeftSidebar.module.css';
 import Svg from './Svg';
-import { useMarkShortcutForDeletion } from '@hooks';
-import { useState } from 'react';
 
 
 function LeftSidebar(props) {
-    const [shortcuts, setShortcuts] = useState(props.shortcuts);
     const {
         isShortcutMarkedForDeletion,
-        setIsShortcutMarkedForDeletion,
         markShortcutForDeletion,
         unmarkShortcutForDeletion
-    } = useMarkShortcutForDeletion();
+    } = props.markShortcutForDeletionHook;
 
     const handleConfirmShortcutDeletion = async (event, shortcutId) => {
         event.preventDefault();
@@ -34,13 +28,14 @@ function LeftSidebar(props) {
 
         if (response.ok) {
             const shortcuts = (await response.json()).shortcuts;
-            setShortcuts(shortcuts);
+            props.setShortcuts(shortcuts);
         }
     }
+
     return (
         <div className={styles.sidebar}>
             <ul className={styles.top}>
-            {shortcuts.map(shortcut => (
+            {props.shortcuts.map(shortcut => (
                 <li key={shortcut.id} className={styles.shortcut}>
                     <a className={styles.link} href={shortcut.url} title={shortcut.name} target="_blank">
                         <img className={styles.image} src={shortcut.icon_url} alt={shortcut.name} />
