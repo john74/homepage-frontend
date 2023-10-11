@@ -6,6 +6,7 @@ import { useState } from 'react';
 function EditBookmarkCategoryForm(props) {
 
     const {
+        selectedBookmarkCategoryForEditing,
         setIsEditBookmarkCategoryFormVisible
     } = props.editBookmarkCategoryFormHook;
 
@@ -15,8 +16,8 @@ function EditBookmarkCategoryForm(props) {
 
     const [formData, setFormData] = useState({
         id: lastSelectedCategoryId,
-        name:"",
-        color:""
+        name: selectedBookmarkCategoryForEditing.name,
+        color: selectedBookmarkCategoryForEditing.color
       });
 
     const { id, name, color } = formData;
