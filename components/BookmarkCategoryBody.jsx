@@ -31,8 +31,11 @@ function BookmarkCategoryBody(props) {
           )
 
         if (response.ok) {
-            const bookmarks = (await response.json()).bookmarks;
-            props.setBookmarks(bookmarks);
+            const response_data = await response.json();
+            const bookmarks = response_data.bookmarks;
+            const shortcuts = response_data.shortcuts;
+            props.setBookmarks({ ...bookmarks });
+            props.setShortcuts(shortcuts);
         }
     }
 
