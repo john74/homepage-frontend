@@ -18,6 +18,5 @@ export async function DELETE(request) {
     };
 
     let response = await fetch('http://127.0.0.1:8000/api/bookmarks/bulk-delete-shortcuts/', initOptions);
-    const shortcuts = (await response.json()).shortcuts;
-    return NextResponse.json({shortcuts});
+    return NextResponse.json(await response.json());
 }
