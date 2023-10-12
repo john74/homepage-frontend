@@ -38,8 +38,11 @@ function BookmarkCategoryMenu(props) {
           )
 
         if (response.ok) {
-            const grouped_categories = (await response.json()).categories;
-            props.setBookmarkCategoryGroups(grouped_categories);
+            const response_data = await response.json();
+            const categories = response_data.categories;
+            const shortcuts = response_data.shortcuts;
+            props.setBookmarkCategoryGroups(categories);
+            props.setShortcuts(shortcuts);
         }
     }
 
