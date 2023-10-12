@@ -37,10 +37,7 @@ function AddBookmarkForm(props) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                "formData": [formData],
-                "bookmarks": props.bookmarks
-            })
+            body: JSON.stringify([formData])
         }
 
         const response = await fetch(
@@ -49,8 +46,11 @@ function AddBookmarkForm(props) {
           )
 
         if (response.ok) {
-            const updatedBookmarks = (await response.json()).bookmarks;
-            props.setBookmarks({ ...updatedBookmarks });
+            const response_data = await response.json();
+            const bookmarks = response_data.bookmarks;
+            const shortcuts = response_data.shortcuts;
+            props.setBookmarks({ ...bookmarks });
+            props.setShortcuts(shortcuts);
         }
         setIsFormVisible(false);
     };
