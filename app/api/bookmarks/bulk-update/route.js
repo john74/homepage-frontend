@@ -19,6 +19,5 @@ export async function PUT(request) {
     };
 
     let response = await fetch('http://127.0.0.1:8000/api/bookmarks/bulk-update/', initOptions);
-    const createdBookmarks = (await response.json()).bookmarks;
-    return NextResponse.json({createdBookmarks});
+    return NextResponse.json(await response.json());
 }
