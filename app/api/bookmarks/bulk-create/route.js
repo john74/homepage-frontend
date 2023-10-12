@@ -8,7 +8,6 @@ export async function POST(request) {
     }
 
     const body = await request.json();
-    const formData = body.formData;
 
     const initOptions = {
         method: "POST",
@@ -16,17 +15,9 @@ export async function POST(request) {
             "Content-Type": "application/json",
             authorization: `JWT ${accessToken}`,
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(body)
     };
 
     let response = await fetch('http://127.0.0.1:8000/api/bookmarks/bulk-create/', initOptions);
-    const createdBookmarks = (await response.json()).bookmarks;
-    const bookmarks = body.bookmarks;
-    Object.keys(createdBookmarks).forEach(categoryId => {
-        let newBookmarks = createdBookmarks[categoryId];
-        newBookmarks.forEach(bookmark => {
-            bookmarks[categoryId].push(bookmark);
-        });
-    });
-    return NextResponse.json({bookmarks});
+    return NextResponse.json(await response.json());
 }
