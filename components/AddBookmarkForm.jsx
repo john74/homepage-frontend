@@ -5,9 +5,16 @@ import { useState } from 'react';
 
 
 function AddBookmarkForm(props) {
+    const {
+        setIsFormVisible
+    } = props.bookmarkFormHook;
+
+    const {
+        lastSelectedCategoryId
+    } = props.toggleBookmarkCategoryMenuHook;
 
     const [formData, setFormData] = useState({
-        category: props.lastSelectedCategoryId,
+        category: lastSelectedCategoryId,
         name: "",
         url: "",
         icon_url: "",
@@ -45,7 +52,7 @@ function AddBookmarkForm(props) {
             const updatedBookmarks = (await response.json()).bookmarks;
             props.setBookmarks({ ...updatedBookmarks });
         }
-        props.setIsFormVisible(false);
+        setIsFormVisible(false);
     };
 
     return (
