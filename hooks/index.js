@@ -5,8 +5,6 @@ export { default as useToggleBookmarkCategoryMenu } from './useToggleBookmarkCat
 export { default as useBookmarkForm } from './useBookmarkForm';
 export { default as useToggleWebSearchMenu } from './useToggleWebSearchMenu';
 export { default as useEditBookmarkCategoryForm } from './useEditBookmarkCategoryForm';
-export { default as useMarkBookmarkCategoryForDeletion } from './useMarkBookmarkCategoryForDeletion';
 export { default as useEditBookmarkForm } from './useEditBookmarkForm';
-export { default as useMarkBookmarkForDeletion } from './useMarkBookmarkForDeletion';
-export { default as useMarkShortcutForDeletion } from './useMarkShortcutForDeletion';
 export { default as useToggleGeneralMenu } from './useToggleGeneralMenu';
+export { default as useMarkForDeletion } from './useMarkForDeletion';
