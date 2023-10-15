@@ -5,12 +5,13 @@ import {
     useSetDefaultSearchEngine, useToggleWebSearchMenu,
     useToggleBookmarkCategoryMenu, useBookmarkForm,
     useEditBookmarkCategoryForm, useMarkBookmarkCategoryForDeletion,
-    useMarkBookmarkForDeletion, useEditBookmarkForm, useMarkShortcutForDeletion
+    useMarkBookmarkForDeletion, useEditBookmarkForm, useMarkShortcutForDeletion,
+    useToggleGeneralMenu
 } from '@hooks';
 
 import {
-    LeftSidebar, WebSearch,
-    BookmarkCategoryGroups
+    LeftSidebar, WebSearch, GeneralMenu,
+    BookmarkCategoryGroups, EmptyBookmarkCategories,
 } from "@components";
 
 
@@ -28,6 +29,7 @@ const HomePageContainer = (props) => {
     const toggleWebSearchMenuHook = useToggleWebSearchMenu();
     const setDefaultSearchEngineHook = useSetDefaultSearchEngine(searchEngines);
     const markBookmarkForDeletionHook = useMarkBookmarkForDeletion();
+    const toggleGeneralMenuHook = useToggleGeneralMenu();
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
@@ -36,19 +38,19 @@ const HomePageContainer = (props) => {
         toggleBookmarkCategoryMenuHook, bookmarkFormHook,
         editBookmarkCategoryFormHook, markBookmarkCategoryForDeletionHook,
         markBookmarkForDeletionHook, editBookmarkFormHook,
-        markShortcutForDeletionHook, searchEngines,
-
+        markShortcutForDeletionHook, searchEngines, toggleGeneralMenuHook,
     }
 
     return (
         <>
         <div id="home">
+            <GeneralMenu {...props} />
             <div id="left">
                 <LeftSidebar {...props} />
             </div>
             <div id="right">
                 <WebSearch {...props} />
-                <BookmarkCategoryGroups {...props} />
+                {bookmarkCategoryGroups.length ? <BookmarkCategoryGroups {...props} /> : <EmptyBookmarkCategories {...props} />}
             </div>
         </div>
         </>

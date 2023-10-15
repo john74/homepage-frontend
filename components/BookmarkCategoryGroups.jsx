@@ -1,7 +1,7 @@
 import styles from '../styles/BookmarkCategoryGroups.module.css';
 import {
     AddBookmarkForm, EditBookmarkCategoryForm,
-    EditBookmarkForm, BookmarkCategoryGroup
+    EditBookmarkForm, BookmarkCategoryGroup,
 } from '@components';
 
 
