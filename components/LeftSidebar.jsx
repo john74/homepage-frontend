@@ -13,6 +13,7 @@ function LeftSidebar(props) {
         event.preventDefault();
         event.stopPropagation();
 
+        unmark();
         const initOptions = {
             method: "DELETE",
             headers: {

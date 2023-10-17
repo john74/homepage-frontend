@@ -5,7 +5,7 @@ import Svg from './Svg';
 function BookmarkCategoryMenu(props) {
     const {
         openMenuId,
-    } = props.toggleBookmarkCategoryMenuHook;
+    } = props.toggleMenuHook;
 
     const {
         toggleAddBookmarkFormVisibility,
@@ -25,6 +25,7 @@ function BookmarkCategoryMenu(props) {
         event.preventDefault();
         event.stopPropagation();
 
+        unmark();
         const initOptions = {
             method: "DELETE",
             headers: {
@@ -63,7 +64,7 @@ function BookmarkCategoryMenu(props) {
                 <span className={styles.confirm}>Click to confirm</span>
             </li>
             ): (
-            <li key={props.category.id + 'delete'} className={styles.action} onClick={markForDeletion} data-delete-action>
+            <li key={props.category.id + 'delete'} className={styles.action} onClick={() => markForDeletion(props.category.id)} data-delete>
                 <Svg content={<><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></>}/>
                 <span className={styles.delete}>Delete category</span>
             </li>

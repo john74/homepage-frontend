@@ -2,10 +2,9 @@
 
 import { useState } from 'react';
 import {
-    useSetDefaultSearchEngine, useToggleWebSearchMenu,
-    useToggleBookmarkCategoryMenu, useBookmarkForm,
+    useSetDefaultSearchEngine, useBookmarkForm,
     useEditBookmarkCategoryForm, useEditBookmarkForm,
-    useToggleGeneralMenu, useMarkForDeletion
+    useMarkForDeletion, useToggleMenu
 } from '@hooks';
 
 import {
@@ -19,22 +18,19 @@ const HomePageContainer = (props) => {
     const [bookmarkCategoryGroups, setBookmarkCategoryGroups] = useState(props.bookmarkCategoryGroups);
     const [shortcuts, setShortcuts] = useState(props.shortcuts);
     const [searchEngines, setSearchEngines] = useState(props.searchEngines);
-    const toggleBookmarkCategoryMenuHook = useToggleBookmarkCategoryMenu();
     const bookmarkFormHook = useBookmarkForm();
     const editBookmarkCategoryFormHook = useEditBookmarkCategoryForm();
     const editBookmarkFormHook = useEditBookmarkForm();
-    const toggleWebSearchMenuHook = useToggleWebSearchMenu();
     const setDefaultSearchEngineHook = useSetDefaultSearchEngine(searchEngines);
-    const toggleGeneralMenuHook = useToggleGeneralMenu();
     const markForDeletionHook = useMarkForDeletion();
+    const toggleMenuHook = useToggleMenu();
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
         bookmarkCategoryGroups, bookmarks, shortcuts, markForDeletionHook,
-        setDefaultSearchEngineHook, toggleWebSearchMenuHook,
-        toggleBookmarkCategoryMenuHook, bookmarkFormHook,
+        setDefaultSearchEngineHook, toggleMenuHook, bookmarkFormHook,
         editBookmarkCategoryFormHook, editBookmarkFormHook,
-        searchEngines, toggleGeneralMenuHook,
+        searchEngines,
     }
 
     return (

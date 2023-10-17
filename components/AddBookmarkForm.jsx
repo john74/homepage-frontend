@@ -10,11 +10,11 @@ function AddBookmarkForm(props) {
     } = props.bookmarkFormHook;
 
     const {
-        lastSelectedCategoryId
-    } = props.toggleBookmarkCategoryMenuHook;
+        lastSelectedId
+    } = props.toggleMenuHook;
 
     const [formData, setFormData] = useState({
-        category: lastSelectedCategoryId,
+        category: lastSelectedId,
         name: "",
         url: "",
         icon_url: "",

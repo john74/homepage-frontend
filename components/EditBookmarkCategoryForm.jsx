@@ -11,11 +11,11 @@ function EditBookmarkCategoryForm(props) {
     } = props.editBookmarkCategoryFormHook;
 
     const {
-        lastSelectedCategoryId
-    } = props.toggleBookmarkCategoryMenuHook;
+        lastSelectedId
+    } = props.toggleMenuHook;
 
     const [formData, setFormData] = useState({
-        id: lastSelectedCategoryId,
+        id: lastSelectedId,
         name: selectedBookmarkCategoryForEditing.name,
         color: selectedBookmarkCategoryForEditing.color
       });

@@ -8,10 +8,9 @@ import Svg from './Svg';
 
 function WebSearch(props) {
     const {
-        openMenuId,
         toggleMenu,
-        menuRef
-    } = props.toggleWebSearchMenuHook;
+        openMenuId,
+    } = props.toggleMenuHook;
 
     const searchEngines = props.searchEngines;
 
@@ -52,9 +51,9 @@ function WebSearch(props) {
     }, [selectedEngine]);
 
     return (
-        <div className={styles.webSearch} ref={menuRef}>
+        <div className={styles.webSearch}>
             <form action={defaultEngine.url} method={defaultEngine.method}>
-                <div className={styles.searchEngines} onClick={() => toggleMenu(defaultEngine.id)}>
+                <div className={styles.searchEngines} onClick={(event) => toggleMenu(event, "webSearchMenu")}>
                     <div className={styles.defaultEngine}>
                         <p
                         key={defaultEngine.id}
@@ -68,11 +67,11 @@ function WebSearch(props) {
                         </p>
                         <Svg content={<><path d="m6 9 6 6 6-6"/></>}/>
                     </div>
-                    <ul className={`${styles.nonDefaultEngines} ${openMenuId ? styles.open : ''}`} onClick={handleSearchEngineClick}>
+                    <ul className={`${styles.nonDefaultEngines} ${openMenuId === "webSearchMenu" ? styles.open : ''}`} onClick={(event) => { event.stopPropagation(); handleSearchEngineClick(event);}}>
                     {nonDefaultEngines.map(engine => (
                         <li
                         className={styles.engine}
-                        key={engine.id}
+                        key={engine.name + engine.id}
                         data-id={engine.id}
                         data-name={engine.name}
                         data-url={engine.url}
