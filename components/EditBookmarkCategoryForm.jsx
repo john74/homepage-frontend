@@ -6,9 +6,9 @@ import { useState } from 'react';
 function EditBookmarkCategoryForm(props) {
 
     const {
-        selectedBookmarkCategoryForEditing,
-        setIsEditBookmarkCategoryFormVisible
-    } = props.editBookmarkCategoryFormHook;
+        selectedItem,
+        closeForm
+    } = props.formVisibilityHook;
 
     const {
         lastSelectedId
@@ -16,8 +16,8 @@ function EditBookmarkCategoryForm(props) {
 
     const [formData, setFormData] = useState({
         id: lastSelectedId,
-        name: selectedBookmarkCategoryForEditing.name,
-        color: selectedBookmarkCategoryForEditing.color
+        name: selectedItem.name,
+        color: selectedItem.color
       });
 
     const { id, name, color } = formData;
@@ -47,7 +47,7 @@ function EditBookmarkCategoryForm(props) {
             const grouped_categories = (await response.json()).categories;
             props.setBookmarkCategoryGroups(grouped_categories);
         }
-        setIsEditBookmarkCategoryFormVisible(false);
+        closeForm();
     };
 
     return (

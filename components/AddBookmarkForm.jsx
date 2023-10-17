@@ -6,8 +6,8 @@ import { useState } from 'react';
 
 function AddBookmarkForm(props) {
     const {
-        setIsFormVisible
-    } = props.bookmarkFormHook;
+        closeForm
+    } = props.formVisibilityHook;
 
     const {
         lastSelectedId
@@ -52,7 +52,7 @@ function AddBookmarkForm(props) {
             props.setBookmarks({ ...bookmarks });
             props.setShortcuts(shortcuts);
         }
-        setIsFormVisible(false);
+        closeForm();
     };
 
     return (

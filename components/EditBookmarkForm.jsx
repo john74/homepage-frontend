@@ -14,17 +14,17 @@ function EditBookmarkForm(props) {
     };
 
     const {
-        selectedBookmarkForEditing,
-        setIsEditBookmarkFormVisible
-    } = props.editBookmarkFormHook;
+        selectedItem,
+        closeForm
+    } = props.formVisibilityHook;
 
     const [formData, setFormData] = useState({
-        category: selectedBookmarkForEditing.category,
-        id: selectedBookmarkForEditing.id,
-        name: selectedBookmarkForEditing.name,
-        url: selectedBookmarkForEditing.url,
-        icon_url: selectedBookmarkForEditing.icon_url,
-        is_shortcut: selectedBookmarkForEditing.is_shortcut,
+        category: selectedItem.category,
+        id: selectedItem.id,
+        name: selectedItem.name,
+        url: selectedItem.url,
+        icon_url: selectedItem.icon_url,
+        is_shortcut: selectedItem.is_shortcut,
       });
 
       const handleCategoryClick = (newCategory) => {
@@ -79,7 +79,7 @@ function EditBookmarkForm(props) {
             props.setBookmarks({ ...bookmarks });
             props.setShortcuts(shortcuts);
         }
-        setIsEditBookmarkFormVisible(false);
+        closeForm();
     };
 
     const bookmarkCategories = {};

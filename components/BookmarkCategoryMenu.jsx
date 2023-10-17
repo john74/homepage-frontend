@@ -8,12 +8,8 @@ function BookmarkCategoryMenu(props) {
     } = props.toggleMenuHook;
 
     const {
-        toggleAddBookmarkFormVisibility,
-    } = props.bookmarkFormHook;
-
-    const {
-        toggleEditBookmarkCategoryFormVisibility
-    } = props.editBookmarkCategoryFormHook;
+        openForm
+    } = props.formVisibilityHook;
 
     const {
         isMarkedForDeletion,
@@ -50,11 +46,11 @@ function BookmarkCategoryMenu(props) {
 
     return (
         <ul className={`${styles.actions} ${openMenuId == props.category.id ? styles.open : ''}`}>
-            <li key={props.category.id + 'add'} className={styles.action} onClick={toggleAddBookmarkFormVisibility}>
+            <li key={props.category.id + 'add'} className={styles.action} onClick={() => openForm("addBookmarkForm")}>
                 <Svg content={<><path d="M5 12h14"/><path d="M12 5v14"/></>}/>
                 <span className={styles.add}>Add bookmark</span>
             </li>
-            <li key={props.category.id + 'edit'} className={styles.action} onClick={() => toggleEditBookmarkCategoryFormVisibility(props.category)}>
+            <li key={props.category.id + 'edit'} className={styles.action} onClick={() => openForm("editBookmarkCategoryForm", props.category)}>
                 <Svg content={<><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></>}/>
                 <span className={styles.edit}>Edit category</span>
             </li>

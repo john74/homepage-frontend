@@ -9,24 +9,16 @@ import {
 
 function BookmarkCategoryGroups(props) {
     const {
-        isFormVisible
-    } = props.bookmarkFormHook;
-
-    const {
-        isEditBookmarkCategoryFormVisible
-    } = props.editBookmarkCategoryFormHook;
-
-    const {
-        isEditBookmarkFormVisible
-    } = props.editBookmarkFormHook;
+        formName
+    } = props.formVisibilityHook;
 
     return (
         <>
-        {isFormVisible && ( <AddBookmarkForm {...props} /> )}
+        {formName == "addBookmarkForm" && ( <AddBookmarkForm {...props} /> )}
 
-        {isEditBookmarkCategoryFormVisible && ( <EditBookmarkCategoryForm {...props} /> )}
+        {formName == "editBookmarkCategoryForm" && ( <EditBookmarkCategoryForm {...props} /> )}
 
-        {isEditBookmarkFormVisible && ( <EditBookmarkForm {...props} /> )}
+        {formName == "editBookmarkForm" && ( <EditBookmarkForm {...props} /> )}
 
         <div className={styles.bookmarkCategoryGroups}>
             <div className={styles.wrapper}>

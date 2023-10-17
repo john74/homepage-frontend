@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from 'react';
+
 import {
-    useSetDefaultSearchEngine, useBookmarkForm,
-    useEditBookmarkCategoryForm, useEditBookmarkForm,
-    useMarkForDeletion, useToggleMenu
+    useSetDefaultSearchEngine, useMarkForDeletion,
+    useToggleMenu, useFormVisibility,
 } from '@hooks';
 
 import {
@@ -18,19 +18,16 @@ const HomePageContainer = (props) => {
     const [bookmarkCategoryGroups, setBookmarkCategoryGroups] = useState(props.bookmarkCategoryGroups);
     const [shortcuts, setShortcuts] = useState(props.shortcuts);
     const [searchEngines, setSearchEngines] = useState(props.searchEngines);
-    const bookmarkFormHook = useBookmarkForm();
-    const editBookmarkCategoryFormHook = useEditBookmarkCategoryForm();
-    const editBookmarkFormHook = useEditBookmarkForm();
     const setDefaultSearchEngineHook = useSetDefaultSearchEngine(searchEngines);
     const markForDeletionHook = useMarkForDeletion();
     const toggleMenuHook = useToggleMenu();
+    const formVisibilityHook = useFormVisibility();
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
-        bookmarkCategoryGroups, bookmarks, shortcuts, markForDeletionHook,
-        setDefaultSearchEngineHook, toggleMenuHook, bookmarkFormHook,
-        editBookmarkCategoryFormHook, editBookmarkFormHook,
-        searchEngines,
+        bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
+        setDefaultSearchEngineHook, toggleMenuHook, markForDeletionHook,
+        formVisibilityHook,
     }
 
     return (
