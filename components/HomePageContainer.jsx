@@ -3,8 +3,8 @@
 import { useState } from 'react';
 
 import {
-    useSetDefaultSearchEngine, useMarkForDeletion,
-    useToggleMenu, useFormVisibility,
+    useMarkForDeletion, useToggleMenu,
+    useFormVisibility,
 } from '@hooks';
 
 import {
@@ -18,7 +18,6 @@ const HomePageContainer = (props) => {
     const [bookmarkCategoryGroups, setBookmarkCategoryGroups] = useState(props.bookmarkCategoryGroups);
     const [shortcuts, setShortcuts] = useState(props.shortcuts);
     const [searchEngines, setSearchEngines] = useState(props.searchEngines);
-    const setDefaultSearchEngineHook = useSetDefaultSearchEngine(searchEngines);
     const markForDeletionHook = useMarkForDeletion();
     const toggleMenuHook = useToggleMenu();
     const formVisibilityHook = useFormVisibility();
@@ -26,8 +25,7 @@ const HomePageContainer = (props) => {
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
         bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
-        setDefaultSearchEngineHook, toggleMenuHook, markForDeletionHook,
-        formVisibilityHook,
+        toggleMenuHook, markForDeletionHook, formVisibilityHook,
     }
 
     return (

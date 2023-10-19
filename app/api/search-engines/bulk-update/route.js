@@ -19,5 +19,5 @@ export async function PUT(request) {
 
     let response = await fetch(process.env.BACKEND_SEARCH_ENGINES_UPDATE_URL, initOptions);
 
-    return Response.json(response);
+    return Response.json(await response.json());
 }
