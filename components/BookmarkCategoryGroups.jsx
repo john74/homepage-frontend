@@ -1,28 +1,14 @@
 import styles from '../styles/BookmarkCategoryGroups.module.css';
 import {
-    AddBookmarkForm, EditBookmarkCategoryForm,
-    EditBookmarkForm, BookmarkCategoryGroup,
-    EditSearchEngineForm,
+    BookmarkCategoryGroup,
 } from '@components';
 
 
 
 
 function BookmarkCategoryGroups(props) {
-    const {
-        formName
-    } = props.formVisibilityHook;
-
     return (
         <>
-        {formName == "addBookmarkForm" && ( <AddBookmarkForm {...props} /> )}
-
-        {formName == "editBookmarkCategoryForm" && ( <EditBookmarkCategoryForm {...props} /> )}
-
-        {formName == "editBookmarkForm" && ( <EditBookmarkForm {...props} /> )}
-
-        {formName == "editSearchEngineForm" && ( <EditSearchEngineForm {...props} /> )}
-
         <div className={styles.bookmarkCategoryGroups}>
             <div className={styles.wrapper}>
             {props.bookmarkCategoryGroups.map((categoryGroup, index) => (

@@ -8,7 +8,7 @@ import {
 } from '@hooks';
 
 import {
-    LeftSidebar, WebSearch, GeneralMenu,
+    LeftSidebar, WebSearch, GeneralMenu, FormsContainer,
     BookmarkCategoryGroups, EmptyBookmarkCategories,
 } from "@components";
 
@@ -33,6 +33,7 @@ const HomePageContainer = (props) => {
     return (
         <>
         <div id="home">
+            <FormsContainer {...props} />
             <GeneralMenu {...props} />
             <div id="left">
                 <LeftSidebar {...props} />
