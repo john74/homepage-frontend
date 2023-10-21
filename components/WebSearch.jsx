@@ -20,6 +20,7 @@ function WebSearch(props) {
     const {
         toggleMenu,
         openMenuId,
+        setOpenMenuId,
     } = props.toggleMenuHook;
 
     const {
@@ -77,6 +78,7 @@ function WebSearch(props) {
 
     useEffect(() => {
         if (!selectedEngine) return;
+        setOpenMenuId(null);
         updateDefaultSearchEngine();
     }, [selectedEngine]);
 
