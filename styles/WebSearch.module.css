@@ -30,7 +30,7 @@
     top: 40px;
     border-radius: 4px;
     left: 0;
-    min-width: 100%;
+    min-width: 145%;
 }
 
 .nonDefaultEngines:not(.open) {
@@ -38,13 +38,15 @@
 }
 
 .nonDefaultEngines > .engine {
+    display: flex;
+    align-items: center;
     cursor: pointer;
     border-radius: 5px;
     padding: 5px 10px;
     font-size: 13px;
 }
 
-.nonDefaultEngines > .engine:hover {
+.nonDefaultEngines > .engine:hover > span {
     color: #2ac885;
 }
 
@@ -80,4 +82,65 @@
     padding-left: 123px;
     font-size: 15px;
     letter-spacing: .4px;
+}
+
+.engine:not(:hover) > .actions {
+    display: none;
+  }
+  .engine:hover > .actions {
+    opacity: .2;
+  }
+
+  .engine > .actions:hover {
+    opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  .engine > .actions {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 5px;
+    width: 35px;
+    justify-content: space-between;
+    padding: 5px;
+    opacity: 1;
+    z-index: 9;
+    background-color: #efefef;
+    border-radius: 5px;
+}
+
+.engine > .actions > span {
+    display: flex;
+    cursor: pointer;
+}
+
+.engine > .actions svg {
+    width: 13px;
+    height: 13px;
+}
+
+.marked > svg {
+    animation: unmark 5s linear;
+}
+
+@keyframes unmark {
+    0% {
+        stroke: #ff1212;
+    }
+    20% {
+        stroke: #ff8000;
+    }
+    40% {
+        stroke: #ffbf00;
+    }
+    60% {
+        stroke: #ffc83d;
+    }
+    80% {
+        stroke: #ffd17a;
+    }
+    100% {
+        stroke: #2E3440;
+    }
 }

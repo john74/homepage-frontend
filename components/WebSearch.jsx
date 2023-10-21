@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import styles from '../styles/WebSearch.module.css';
 import Svg from './Svg';
@@ -8,14 +8,24 @@ import Svg from './Svg';
 
 function WebSearch(props) {
     const {
+        openForm
+    } = props.formVisibilityHook;
+
+    const {
+        isMarkedForDeletion,
+        markForDeletion,
+        unmark
+    } = props.markForDeletionHook;
+
+    const {
         toggleMenu,
         openMenuId,
     } = props.toggleMenuHook;
 
-    const [selectedEngine, setSelectedEngine] = useState(null);
-    const setDefaultSearchEngine = engine => {
-        setSelectedEngine({...engine});
-    }
+    const {
+        selectedEngine,
+        selectSearchEngine
+    } = props.selectSearchEngineHook;
 
     let defaultEngine = selectedEngine ?? props.searchEngines.default;
     let nonDefaultEngines = props.searchEngines.nonDefault;
@@ -41,12 +51,37 @@ function WebSearch(props) {
         }
     };
 
+    const deleteSearchEngine = async (event, engineId) => {
+        event.preventDefault();
+        event.stopPropagation();
+        unmark();
+
+        const initOptions = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({"ids": [engineId]})
+        }
+
+        const response = await fetch(
+            'http://localhost:3000/api/search-engines/bulk-delete/',
+            initOptions
+          )
+
+        if (response.ok) {
+            const searchEngines = await response.json();
+            props.setSearchEngines(searchEngines);
+        }
+    }
+
     useEffect(() => {
         if (!selectedEngine) return;
         updateDefaultSearchEngine();
     }, [selectedEngine]);
 
     return (
+        <>
         <div className={styles.webSearch}>
             <form action={defaultEngine.url} method={defaultEngine.method}>
                 <div className={styles.searchEngines} onClick={(event) => toggleMenu(event, "webSearchMenu")}>
@@ -59,12 +94,22 @@ function WebSearch(props) {
                         <li
                         key={engine.name + engine.id}
                         className={styles.engine}
-                        onClick={(event) => {
-                            event.stopPropagation();
-                            setDefaultSearchEngine(engine);
-                        }}
                         >
-                        {engine.name}
+                            <span onClick={(event) => selectSearchEngine(engine)}>{engine.name}</span>
+                            <div className={styles.actions}>
+                                <span title="Edit" onClick={() => openForm("editSearchEngineForm", engine)}>
+                                    <Svg content={<><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></>}/>
+                                </span>
+                                {isMarkedForDeletion !== engine.id ? (
+                                    <span title="Delete" onClick={(event) => { event.preventDefault(); markForDeletion(engine.id); }}>
+                                        <Svg content={<><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></>}/>
+                                    </span>
+                                ) : (
+                                    <span className={styles.marked} title="Confirm" onMouseLeave={unmark} onClick={(event) => deleteSearchEngine(event, engine.id)}>
+                                        <Svg content={<><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></>}/>
+                                    </span>
+                                )}
+                            </div>
                         </li>
                     ))}
                     </ul>
@@ -72,6 +117,7 @@ function WebSearch(props) {
                 <input type="search" name={defaultEngine.name_attribute} id={defaultEngine.id} />
             </form>
         </div>
+        </>
     )
 }
 

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import {
     useMarkForDeletion, useToggleMenu,
-    useFormVisibility,
+    useFormVisibility, useSelectSearchEngine,
 } from '@hooks';
 
 import {
@@ -21,11 +21,13 @@ const HomePageContainer = (props) => {
     const markForDeletionHook = useMarkForDeletion();
     const toggleMenuHook = useToggleMenu();
     const formVisibilityHook = useFormVisibility();
+    const selectSearchEngineHook = useSelectSearchEngine();
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
         bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
         toggleMenuHook, markForDeletionHook, formVisibilityHook,
+        selectSearchEngineHook,
     }
 
     return (

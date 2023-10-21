@@ -14,3 +14,4 @@ export { default as HomePageContainer } from './HomePageContainer';
 export { default as EmptyBookmarkCategories } from './EmptyBookmarkCategories';
 export { default as GeneralMenu } from './GeneralMenu';
 export { default as Svg } from './Svg';
+export { default as EditSearchEngineForm } from './EditSearchEngineForm';

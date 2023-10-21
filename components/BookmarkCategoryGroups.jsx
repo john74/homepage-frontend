@@ -2,6 +2,7 @@ import styles from '../styles/BookmarkCategoryGroups.module.css';
 import {
     AddBookmarkForm, EditBookmarkCategoryForm,
     EditBookmarkForm, BookmarkCategoryGroup,
+    EditSearchEngineForm,
 } from '@components';
 
 
@@ -19,6 +20,8 @@ function BookmarkCategoryGroups(props) {
         {formName == "editBookmarkCategoryForm" && ( <EditBookmarkCategoryForm {...props} /> )}
 
         {formName == "editBookmarkForm" && ( <EditBookmarkForm {...props} /> )}
+
+        {formName == "editSearchEngineForm" && ( <EditSearchEngineForm {...props} /> )}
 
         <div className={styles.bookmarkCategoryGroups}>
             <div className={styles.wrapper}>
