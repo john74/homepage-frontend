@@ -7,10 +7,11 @@ import { HomePageContainer } from "@components";
 
 const HomePage = async () => {
     let session = await getServerSession(authOptions);
-    const shortcuts = await getData(process.env.BACKEND_SHORTCUTS_URL, session);
-    const bookmarkCategoryGroups = (await getData(process.env.BACKEND_BOOKMARK_CATEGORIES_URL, session)).categories;
-    const bookmarks = (await getData(process.env.BACKEND_BOOKMARKS_URL, session)).bookmarks;
-    const searchEngines = await getData(process.env.BACKEND_SEARCH_ENGINES_URL, session);
+    const homePageData = await getData(process.env.BACKEND_HOME_URL, session);
+    const shortcuts = homePageData.shortcuts;
+    const bookmarkCategoryGroups = homePageData.categories;
+    const bookmarks = homePageData.bookmarks;
+    const searchEngines = homePageData.search_engines;
 
     const props = {
         shortcuts,
