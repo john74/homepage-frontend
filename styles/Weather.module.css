@@ -1,0 +1,142 @@
+.weather {
+    position: absolute;
+    top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: 1000;
+}
+
+.weather > .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    gap: 10px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 10px;
+}
+
+.actions > .action {
+    text-align: center;
+    cursor: pointer;
+    min-width: 81px;
+}
+
+.actions > .action:hover {
+    color: #2ac885;
+}
+
+.today {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.extraInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.extraInfo > .info {
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    gap: 5px;
+}
+
+.info > .label {
+    font-weight: bold;
+}
+
+.currentData {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.currentData > .group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.group > .weekDay,
+.group > .hour,
+.group > .degrees {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.forecast > .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    font-size: 10px;
+}
+
+.forecast > :not(:first-child) {
+    border-left: 1px solid #2e344042;
+}
+
+.forecast.weekly > .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.forecast.weekly > .item > .top,
+.forecast.weekly > .item > .bottom {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.forecast.weekly > .item > .top {
+    font-weight: bold;
+}
+
+.forecast.weekly > .item > .top > .month {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.item > .weekDay,
+.item > .hours {
+    font-weight: bold;
+}
+
+.degrees > .value {
+    font-size: 12px;
+}
+
+.weatherData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10px;
+    width: 100%;
+}

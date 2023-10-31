@@ -130,6 +130,7 @@ body > [class^="sign"] {
 }
 
 #home > #right {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;

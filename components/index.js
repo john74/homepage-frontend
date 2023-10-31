@@ -16,3 +16,4 @@ export { default as GeneralMenu } from './GeneralMenu';
 export { default as Svg } from './Svg';
 export { default as EditSearchEngineForm } from './EditSearchEngineForm';
 export { default as FormsContainer } from './FormsContainer';
+export { default as Weather } from './Weather';
