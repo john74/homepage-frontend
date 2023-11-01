@@ -127,20 +127,33 @@ function Weather(props) {
                             <div className={`${styles.forecast} ${styles.weekly}`}>
                                 {weatherData.forecasts.weekly.map((forecast, index) => (
                                     <div className={styles.item} key={`${forecast.week_day_short_name}-${index}`}>
-                                        <div className={styles.top}>
-                                            <span>{forecast.week_day_short_name}</span>
-                                            <div className={styles.month}>
-                                                <span>{forecast.month_day}</span>
-                                                <span>{forecast.month_short_name}</span>
+
+                                        <div className={styles.mainData}>
+                                            <div className={styles.top}>
+                                                <span>{forecast.week_day_short_name}</span>
+                                                <div className={styles.month}>
+                                                    <span>{forecast.month_day}</span>
+                                                    <span>{forecast.month_short_name}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className={styles.bottom}>
+                                                <div className={styles.degrees}>
+                                                    <span className={styles.value}>{`${forecast.earliest.temperature}°`}</span>
+                                                    <span className={styles.unit}>C</span>
+                                                </div>
+                                                <div className={styles.description}>{forecast.earliest.description}</div>
                                             </div>
                                         </div>
 
-                                        <div className={styles.bottom}>
-                                            <div className={styles.degrees}>
-                                                <span className={styles.value}>{`${forecast.earliest.temperature}°`}</span>
-                                                <span className={styles.unit}>C</span>
+                                        <div className={styles.restForecasts}>
+                                            {forecast.rest.map((item, index) => (
+                                            <div className={styles.itFor} key={`${forecast.week_day_short_name}-rest-${index}`}>
+                                                <div>{item.hour}</div>
+                                                <div>{item.temperature}</div>
+                                                <div>{item.description}</div>
                                             </div>
-                                            <div className={styles.description}>{forecast.earliest.description}</div>
+                                            ))}
                                         </div>
 
                                     </div>
