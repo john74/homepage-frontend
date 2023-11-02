@@ -12,10 +12,10 @@ export async function GET(request) {
         headers: {
             "Content-Type": "application/json",
             authorization: `JWT ${accessToken}`,
-        }
+        },
+        cache: 'no-store'
     };
 
     let response = await fetch(process.env.BACKEND_FRONTEND_WEATHER_URL, initOptions);
-
     return Response.json(await response.json());
 }
