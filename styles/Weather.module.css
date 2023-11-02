@@ -102,6 +102,7 @@
 
 .forecast > :not(:first-child) {
     border-left: 1px solid #2e344042;
+    padding-left: 10px;
 }
 
 .forecast.weekly > .item {
@@ -158,6 +159,7 @@
 
 .restForecasts > :not(:first-child) {
     border-left: 1px solid #efefef;
+    padding-left: 10px;
 }
 
 .itFor {
