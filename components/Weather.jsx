@@ -5,7 +5,300 @@ import { useState } from 'react';
 
 
 function Weather(props) {
-    const la = {'current': {'week_day': 'Day', 'month_day': '31', 'month': 'October', 'year': '2023', 'hours': '12', 'minutes': '00', 'city_name': 'Amsterdam', 'country_code': 'NL', 'lat': 52.4016, 'lon': 4.9328, 'temp': 12.62, 'description': 'light rain'}, 'extra_info': {'feels_like_temperature': 12.08, 'minimum_temperature': 12.62, 'maximum_temperature': 13.71, 'humidity_percentage': 82, 'wind_speed': 2.28, 'sunrise_time': {'hour': '06', 'minutes': '33'}, 'sunset_time': {'hour': '16', 'minutes': '14'}}, 'forecasts': {'hourly': [{'hours': '15', 'minutes': '00', 'temperature': 11.39, 'description': 'light rain', 'feels_like_temperature': 10.93, 'minimum_temperature': 11.05, 'maximum_temperature': 11.39, 'humidity_percentage': 90, 'wind_speed': 2.89}, {'hours': '18', 'minutes': '00', 'temperature': 10.44, 'description': 'moderate rain', 'feels_like_temperature': 9.94, 'minimum_temperature': 10.44, 'maximum_temperature': 10.44, 'humidity_percentage': 92, 'wind_speed': 1.33}, {'hours': '21', 'minutes': '00', 'temperature': 10.37, 'description': 'light rain', 'feels_like_temperature': 9.97, 'minimum_temperature': 10.37, 'maximum_temperature': 10.37, 'humidity_percentage': 96, 'wind_speed': 2.82}], 'weekly': [{'week_day_short_name': 'Wed', 'week_day_full_name': 'Wednesday', 'month_short_name': 'Nov', 'month_full_name': 'November', 'month_day': '01', 'month_digit': '11', 'earliest': {'hour': '09', 'minute': '00', 'temperature': 11.98, 'description': 'light rain', 'feels_like_temperature': 11.61, 'min_temperature': 11.98, 'max_temperature': 11.98, 'humidity_percent': 91, 'wind_speed': 5.86}, 'rest': [{'hour': '15', 'minute': '00', 'temperature': 12.07, 'description': 'light rain', 'feels_like_temperature': 11.5, 'min_temperature': 12.07, 'max_temperature': 12.07, 'humidity_percent': 83, 'wind_speed': 7.95}, {'hour': '18', 'minute': '00', 'temperature': 11.57, 'description': 'light rain', 'feels_like_temperature': 10.87, 'min_temperature': 11.57, 'max_temperature': 11.57, 'humidity_percent': 80, 'wind_speed': 8.45}, {'hour': '21', 'minute': '00', 'temperature': 10.49, 'description': 'light rain', 'feels_like_temperature': 9.71, 'min_temperature': 10.49, 'max_temperature': 10.49, 'humidity_percent': 81, 'wind_speed': 6.07}]}, {'week_day_short_name': 'Thu', 'week_day_full_name': 'Thursday', 'month_short_name': 'Nov', 'month_full_name': 'November', 'month_day': '02', 'month_digit': '11', 'earliest': {'hour': '09', 'minute': '00', 'temperature': 11.18, 'description': 'moderate rain', 'feels_like_temperature': 10.63, 'min_temperature': 11.18, 'max_temperature': 11.18, 'humidity_percent': 87, 'wind_speed': 9.39}, 'rest': [{'hour': '15', 'minute': '00', 'temperature': 10.59, 'description': 'light rain', 'feels_like_temperature': 9.43, 'min_temperature': 10.59, 'max_temperature': 10.59, 'humidity_percent': 66, 'wind_speed': 11.45}, {'hour': '18', 'minute': '00', 'temperature': 10.62, 'description': 'light rain', 'feels_like_temperature': 9.41, 'min_temperature': 10.62, 'max_temperature': 10.62, 'humidity_percent': 64, 'wind_speed': 10.37}, {'hour': '21', 'minute': '00', 'temperature': 9.85, 'description': 'overcast clouds', 'feels_like_temperature': 6.44, 'min_temperature': 9.85, 'max_temperature': 9.85, 'humidity_percent': 63, 'wind_speed': 8.15}]}, {'week_day_short_name': 'Fri', 'week_day_full_name': 'Friday', 'month_short_name': 'Nov', 'month_full_name': 'November', 'month_day': '03', 'month_digit': '11', 'earliest': {'hour': '09', 'minute': '00', 'temperature': 7.8, 'description': 'scattered clouds', 'feels_like_temperature': 4.66, 'min_temperature': 7.8, 'max_temperature': 7.8, 'humidity_percent': 81, 'wind_speed': 5.43}, 'rest': [{'hour': '15', 'minute': '00', 'temperature': 9.11, 'description': 'light rain', 'feels_like_temperature': 6.05, 'min_temperature': 9.11, 'max_temperature': 9.11, 'humidity_percent': 81, 'wind_speed': 6.19}, {'hour': '18', 'minute': '00', 'temperature': 8.38, 'description': 'light rain', 'feels_like_temperature': 4.83, 'min_temperature': 8.38, 'max_temperature': 8.38, 'humidity_percent': 92, 'wind_speed': 7.08}, {'hour': '21', 'minute': '00', 'temperature': 9.54, 'description': 'light rain', 'feels_like_temperature': 6.85, 'min_temperature': 9.54, 'max_temperature': 9.54, 'humidity_percent': 93, 'wind_speed': 5.43}]}, {'week_day_short_name': 'Sat', 'week_day_full_name': 'Saturday', 'month_short_name': 'Nov', 'month_full_name': 'November', 'month_day': '04', 'month_digit': '11', 'earliest': {'hour': '09', 'minute': '00', 'temperature': 8.36, 'description': 'overcast clouds', 'feels_like_temperature': 4.46, 'min_temperature': 8.36, 'max_temperature': 8.36, 'humidity_percent': 85, 'wind_speed': 8.3}, 'rest': [{'hour': '15', 'minute': '00', 'temperature': 10.34, 'description': 'light rain', 'feels_like_temperature': 9.7, 'min_temperature': 10.34, 'max_temperature': 10.34, 'humidity_percent': 87, 'wind_speed': 8.21}, {'hour': '18', 'minute': '00', 'temperature': 11.18, 'description': 'light rain', 'feels_like_temperature': 10.57, 'min_temperature': 11.18, 'max_temperature': 11.18, 'humidity_percent': 85, 'wind_speed': 8.35}, {'hour': '21', 'minute': '00', 'temperature': 10.41, 'description': 'light rain', 'feels_like_temperature': 9.73, 'min_temperature': 10.41, 'max_temperature': 10.41, 'humidity_percent': 85, 'wind_speed': 8.04}]}, {'week_day_short_name': 'Sun', 'week_day_full_name': 'Sunday', 'month_short_name': 'Nov', 'month_full_name': 'November', 'month_day': '05', 'month_digit': '11', 'earliest': {'hour': '09', 'minute': '00', 'temperature': 10.79, 'description': 'light rain', 'feels_like_temperature': 9.96, 'min_temperature': 10.79, 'max_temperature': 10.79, 'humidity_percent': 78, 'wind_speed': 7.19}, 'rest': []}]}}
+    const la = {
+        "units":{
+          "temperature_symbol":"°C",
+          "temperature_unit":"Celsius",
+          "speed":"m/s",
+          "humidity":"%",
+          "pressure":"hPa",
+          "visibility":"m"
+        },
+        "current":{
+          "week_day":"False",
+          "month_day":"03",
+          "month":"November",
+          "year":"2023",
+          "hours":"12",
+          "minutes":"00",
+          "city_name":"Landsmeer",
+          "country_code":"NL",
+          "lat":52.4016,
+          "lon":4.9328,
+          "temp":10.78,
+          "description":"light rain"
+        },
+        "extra_info":{
+          "feels_like_temperature":10.05,
+          "minimum_temperature":10.78,
+          "maximum_temperature":11.8,
+          "humidity_percentage":82,
+          "wind_speed":7.88,
+          "sunrise_time":{
+            "hour":"06",
+            "minutes":"39"
+          },
+          "sunset_time":{
+            "hour":"16",
+            "minutes":"08"
+          }
+        },
+        "forecasts":{
+          "hourly":[
+            {
+              "hours":"15",
+              "minutes":"00",
+              "temperature":10.81,
+              "description":"light rain",
+              "feels_like_temperature":10.04,
+              "minimum_temperature":10.81,
+              "maximum_temperature":11.08,
+              "humidity_percentage":80,
+              "wind_speed":7.5
+            },
+            {
+              "hours":"18",
+              "minutes":"00",
+              "temperature":10.13,
+              "description":"light rain",
+              "feels_like_temperature":9.37,
+              "minimum_temperature":10.13,
+              "maximum_temperature":10.13,
+              "humidity_percentage":83,
+              "wind_speed":7.53
+            },
+            {
+              "hours":"21",
+              "minutes":"00",
+              "temperature":9.18,
+              "description":"overcast clouds",
+              "feels_like_temperature":5.9,
+              "minimum_temperature":9.18,
+              "maximum_temperature":9.18,
+              "humidity_percentage":78,
+              "wind_speed":6.94
+            }
+          ],
+          "weekly":[
+            {
+              "week_day_short_name":"Sat",
+              "week_day_full_name":"Saturday",
+              "month_short_name":"Nov",
+              "month_full_name":"November",
+              "month_day":"04",
+              "month_digit":"11",
+              "earliest":{
+                "hour":"09",
+                "minute":"00",
+                "temperature":8.66,
+                "description":"overcast clouds",
+                "feels_like_temperature":5.24,
+                "min_temperature":8.66,
+                "max_temperature":8.66,
+                "humidity_percent":84,
+                "wind_speed":6.92
+              },
+              "rest":[
+                {
+                  "hour":"15",
+                  "minute":"00",
+                  "temperature":8.31,
+                  "description":"moderate rain",
+                  "feels_like_temperature":4.35,
+                  "min_temperature":8.31,
+                  "max_temperature":8.31,
+                  "humidity_percent":90,
+                  "wind_speed":8.46
+                },
+                {
+                  "hour":"18",
+                  "minute":"00",
+                  "temperature":9.52,
+                  "description":"light rain",
+                  "feels_like_temperature":6.38,
+                  "min_temperature":9.52,
+                  "max_temperature":9.52,
+                  "humidity_percent":90,
+                  "wind_speed":6.82
+                },
+                {
+                  "hour":"21",
+                  "minute":"00",
+                  "temperature":9.35,
+                  "description":"light rain",
+                  "feels_like_temperature":6.1,
+                  "min_temperature":9.35,
+                  "max_temperature":9.35,
+                  "humidity_percent":86,
+                  "wind_speed":7.01
+                }
+              ]
+            },
+            {
+              "week_day_short_name":"Sun",
+              "week_day_full_name":"Sunday",
+              "month_short_name":"Nov",
+              "month_full_name":"November",
+              "month_day":"05",
+              "month_digit":"11",
+              "earliest":{
+                "hour":"09",
+                "minute":"00",
+                "temperature":9.87,
+                "description":"overcast clouds",
+                "feels_like_temperature":7.03,
+                "min_temperature":9.87,
+                "max_temperature":9.87,
+                "humidity_percent":88,
+                "wind_speed":6.16
+              },
+              "rest":[
+                {
+                  "hour":"15",
+                  "minute":"00",
+                  "temperature":10.85,
+                  "description":"moderate rain",
+                  "feels_like_temperature":10.05,
+                  "min_temperature":10.85,
+                  "max_temperature":10.85,
+                  "humidity_percent":79,
+                  "wind_speed":8.48
+                },
+                {
+                  "hour":"18",
+                  "minute":"00",
+                  "temperature":10.42,
+                  "description":"light rain",
+                  "feels_like_temperature":9.63,
+                  "min_temperature":10.42,
+                  "max_temperature":10.42,
+                  "humidity_percent":81,
+                  "wind_speed":8.37
+                },
+                {
+                  "hour":"21",
+                  "minute":"00",
+                  "temperature":10.67,
+                  "description":"light rain",
+                  "feels_like_temperature":9.86,
+                  "min_temperature":10.67,
+                  "max_temperature":10.67,
+                  "humidity_percent":79,
+                  "wind_speed":8.49
+                }
+              ]
+            },
+            {
+              "week_day_short_name":"Mon",
+              "week_day_full_name":"Monday",
+              "month_short_name":"Nov",
+              "month_full_name":"November",
+              "month_day":"06",
+              "month_digit":"11",
+              "earliest":{
+                "hour":"09",
+                "minute":"00",
+                "temperature":10.98,
+                "description":"light rain",
+                "feels_like_temperature":10.22,
+                "min_temperature":10.98,
+                "max_temperature":10.98,
+                "humidity_percent":80,
+                "wind_speed":7.61
+              },
+              "rest":[
+                {
+                  "hour":"15",
+                  "minute":"00",
+                  "temperature":11.15,
+                  "description":"light rain",
+                  "feels_like_temperature":10.36,
+                  "min_temperature":11.15,
+                  "max_temperature":11.15,
+                  "humidity_percent":78,
+                  "wind_speed":6.5
+                },
+                {
+                  "hour":"18",
+                  "minute":"00",
+                  "temperature":9.9,
+                  "description":"light rain",
+                  "feels_like_temperature":7.38,
+                  "min_temperature":9.9,
+                  "max_temperature":9.9,
+                  "humidity_percent":83,
+                  "wind_speed":5.24
+                },
+                {
+                  "hour":"21",
+                  "minute":"00",
+                  "temperature":9.37,
+                  "description":"light rain",
+                  "feels_like_temperature":7.03,
+                  "min_temperature":9.37,
+                  "max_temperature":9.37,
+                  "humidity_percent":88,
+                  "wind_speed":4.45
+                }
+              ]
+            },
+            {
+              "week_day_short_name":"Tue",
+              "week_day_full_name":"Tuesday",
+              "month_short_name":"Nov",
+              "month_full_name":"November",
+              "month_day":"07",
+              "month_digit":"11",
+              "earliest":{
+                "hour":"09",
+                "minute":"00",
+                "temperature":10.3,
+                "description":"light rain",
+                "feels_like_temperature":9.37,
+                "min_temperature":10.3,
+                "max_temperature":10.3,
+                "humidity_percent":76,
+                "wind_speed":5.31
+              },
+              "rest":[
+                {
+                  "hour":"15",
+                  "minute":"00",
+                  "temperature":10.2,
+                  "description":"light rain",
+                  "feels_like_temperature":9.16,
+                  "min_temperature":10.2,
+                  "max_temperature":10.2,
+                  "humidity_percent":72,
+                  "wind_speed":5.06
+                },
+                {
+                  "hour":"18",
+                  "minute":"00",
+                  "temperature":8.88,
+                  "description":"broken clouds",
+                  "feels_like_temperature":7.09,
+                  "min_temperature":8.88,
+                  "max_temperature":8.88,
+                  "humidity_percent":77,
+                  "wind_speed":3.13
+                },
+                {
+                  "hour":"21",
+                  "minute":"00",
+                  "temperature":8.78,
+                  "description":"light rain",
+                  "feels_like_temperature":6.98,
+                  "min_temperature":8.78,
+                  "max_temperature":8.78,
+                  "humidity_percent":83,
+                  "wind_speed":3.11
+                }
+              ]
+            }
+          ]
+        }
+      }
 
     const [weatherData, setWeatherData] = useState(la);
     const [weeklyForecast, setWeeklyForecast] = useState(false);
@@ -59,37 +352,42 @@ function Weather(props) {
                         <div className={styles.extraInfo}>
                                 <div className={styles.info}>
                                     <span className={styles.label}>Feels like:</span>
-                                    <span className={styles.value}>19</span>
-                                </div>
-
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Wind:</span>
-                                    <span className={styles.value}>19mph</span>
-                                </div>
-
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Humidity:</span>
-                                    <span className={styles.value}>50%</span>
-                                </div>
-
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Sunrise:</span>
-                                    <span className={styles.value}>06:00</span>
-                                </div>
-
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Sunset:</span>
-                                    <span className={styles.value}>19:00</span>
+                                    <span className={styles.value}>{weatherData.extra_info.feels_like_temperature}</span>
+                                    <span className={styles.unit}>{weatherData.units.temperature_symbol}</span>
                                 </div>
 
                                 <div className={styles.info}>
                                     <span className={styles.label}>Min:</span>
-                                    <span className={styles.value}>10°</span>
+                                    <span className={styles.value}>{weatherData.extra_info.minimum_temperature}</span>
+                                    <span className={styles.unit}>{weatherData.units.temperature_symbol}</span>
                                 </div>
 
                                 <div className={styles.info}>
                                     <span className={styles.label}>Max:</span>
-                                    <span className={styles.value}>15°</span>
+                                    <span className={styles.value}>{weatherData.extra_info.maximum_temperature}</span>
+                                    <span className={styles.unit}>{weatherData.units.temperature_symbol}</span>
+                                </div>
+
+                                <div className={styles.info}>
+                                    <span className={styles.label}>Wind:</span>
+                                    <span className={styles.value}>{weatherData.extra_info.wind_speed}</span>
+                                    <span className={styles.unit}>{weatherData.units.speed}</span>
+                                </div>
+
+                                <div className={styles.info}>
+                                    <span className={styles.label}>Humidity:</span>
+                                    <span className={styles.value}>{weatherData.extra_info.humidity_percentage}</span>
+                                    <span className={styles.unit}>{weatherData.units.humidity}</span>
+                                </div>
+
+                                <div className={styles.info}>
+                                    <span className={styles.label}>Sunrise:</span>
+                                    <span className={styles.value}>{weatherData.extra_info.sunrise_time.hour}:{weatherData.extra_info.sunrise_time.minutes}</span>
+                                </div>
+
+                                <div className={styles.info}>
+                                    <span className={styles.label}>Sunset:</span>
+                                    <span className={styles.value}>{weatherData.extra_info.sunset_time.hour}:{weatherData.extra_info.sunset_time.minutes}</span>
                                 </div>
                         </div>
 
@@ -112,8 +410,8 @@ function Weather(props) {
                             </div>
 
                             <div className={`${styles.group} ${styles.temperature}`}>
-                                <span className={styles.degrees}>{weatherData.current.temp}°</span>
-                                <span className={styles.unit}>C</span>
+                                <span className={styles.degrees}>{weatherData.current.temp}</span>
+                                <span className={styles.unit}>{weatherData.units.temperature_symbol}</span>
                                 <span className={styles.description}>{weatherData.current.description}</span>
                             </div>
 
@@ -133,22 +431,29 @@ function Weather(props) {
                                                     <span>{forecast.month_day}</span>
                                                     <span>{forecast.month_short_name}</span>
                                                 </div>
+                                                <div className={styles.time}>
+                                                    <span>{forecast.earliest.hours}</span>
+                                                    <span className={styles.separator}>:</span>
+                                                    <span>{forecast.earliest.minutes}</span>
+                                                </div>
                                             </div>
 
                                             <div className={styles.bottom}>
                                                 <div className={styles.degrees}>
-                                                    <span className={styles.value}>{`${forecast.earliest.temperature}°`}</span>
-                                                    <span className={styles.unit}>C</span>
+                                                    <span className={styles.value}>{forecast.earliest.temperature}</span>
+                                                    <span className={styles.unit}>{weatherData.units.temperature_symbol}</span>
                                                 </div>
                                                 <div className={styles.description}>{forecast.earliest.description}</div>
                                             </div>
+
                                         </div>
 
                                         <div className={styles.restForecasts}>
                                             {forecast.rest.map((item, index) => (
                                             <div className={styles.itFor} key={`${forecast.week_day_short_name}-rest-${index}`}>
-                                                <div>{item.hour}</div>
+                                                <div>{`${item.hours}:${item.minutes}`}</div>
                                                 <div>{item.temperature}</div>
+                                                <div className={styles.unit}>{weatherData.units.temperature_symbol}</div>
                                                 <div>{item.description}</div>
                                             </div>
                                             ))}
@@ -164,8 +469,8 @@ function Weather(props) {
                                         <div className={styles.item} key={forecast.hours+forecast.temp}>
                                             <div className={styles.hours}>{`${forecast.hours}:${forecast.minutes}`}</div>
                                             <div className={styles.degrees}>
-                                                <span className={styles.value}>{forecast.temperature}°</span>
-                                                <span className={styles.unit}>C</span>
+                                                <span className={styles.value}>{forecast.temperature}</span>
+                                                <span className={styles.unit}>{weatherData.units.temperature_symbol}</span>
                                             </div>
                                             <div className={styles.description}>{forecast.description}</div>
                                         </div>

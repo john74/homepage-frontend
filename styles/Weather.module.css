@@ -59,8 +59,8 @@
 .extraInfo > .info {
     display: flex;
     align-items: center;
-    font-size: 11px;
-    gap: 5px;
+    font-size: 10px;
+    gap: 3px;
 }
 
 .info > .label {
