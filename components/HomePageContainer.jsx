@@ -19,6 +19,7 @@ const HomePageContainer = (props) => {
     const [bookmarkCategoryGroups, setBookmarkCategoryGroups] = useState(props.bookmarkCategoryGroups);
     const [shortcuts, setShortcuts] = useState(props.shortcuts);
     const [searchEngines, setSearchEngines] = useState(props.searchEngines);
+    const [weatherData, setWeatherData] = useState(props.weatherData);
     const markForDeletionHook = useMarkForDeletion();
     const toggleMenuHook = useToggleMenu();
     const formVisibilityHook = useFormVisibility();
@@ -26,9 +27,9 @@ const HomePageContainer = (props) => {
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
-        bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
+        setWeatherData, bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
         toggleMenuHook, markForDeletionHook, formVisibilityHook,
-        selectSearchEngineHook,
+        selectSearchEngineHook, weatherData,
     }
 
     return (

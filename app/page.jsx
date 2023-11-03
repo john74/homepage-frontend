@@ -12,12 +12,14 @@ const HomePage = async () => {
     const bookmarkCategoryGroups = homePageData.categories;
     const bookmarks = homePageData.bookmarks;
     const searchEngines = homePageData.search_engines;
+    const weatherData = homePageData.weather;
 
     const props = {
         shortcuts,
         searchEngines,
         bookmarkCategoryGroups,
-        bookmarks
+        bookmarks,
+        weatherData,
     };
 
     return (
