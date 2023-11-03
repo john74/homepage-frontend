@@ -5,9 +5,18 @@ import { useState } from 'react';
 
 
 function Weather(props) {
-
     const weatherData = props.weatherData;
-    const [weeklyForecast, setWeeklyForecast] = useState(false);
+    const [defaultForecastType, setDefaultForecastType] = useState(weatherData.default_forecast_type);
+    const toggleForecastTypes = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (defaultForecastType == "hourly") {
+            setDefaultForecastType("weekly");
+        } else {
+            setDefaultForecastType("hourly");
+        }
+    }
 
     const refreshWeatherData = async (event) => {
         event.preventDefault();
@@ -39,6 +48,7 @@ function Weather(props) {
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const currentTime = `${hours}:${minutes}`;
 
+    const isWeeklyForecastDisplayed = defaultForecastType == "weekly";
 
     return (
         <>
@@ -48,7 +58,7 @@ function Weather(props) {
 
                 <div className={styles.actions}>
                     <span className={styles.action} onClick={(event) => refreshWeatherData(event)}>Refresh data</span>
-                    <span className={styles.action} onClick={(event) => setWeeklyForecast(!weeklyForecast)}>{weeklyForecast ? 'Hourly forecast' : 'Weekly forecast'}</span>
+                    <span className={styles.action} onClick={(event) => toggleForecastTypes(event)}>{isWeeklyForecastDisplayed ? 'Hourly forecast' : 'Weekly forecast'}</span>
                 </div>
 
                 <div className={styles.weatherData}>
@@ -123,9 +133,9 @@ function Weather(props) {
 
                         </div>
 
-                        <div className={`${styles.forecasts} ${weeklyForecast ? styles.weekly : ''}`}>
+                        <div className={`${styles.forecasts} ${isWeeklyForecastDisplayed ? styles.weekly : ''}`}>
 
-                        {weeklyForecast ? (
+                        {isWeeklyForecastDisplayed ? (
                             <div className={`${styles.forecast} ${styles.weekly}`}>
                                 {weatherData.forecasts.weekly.map((forecast, index) => (
                                     <div className={styles.item} key={`${forecast.week_day_short_name}-${index}`}>
