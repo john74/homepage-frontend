@@ -1,22 +1,8 @@
-"use client";
-
 import styles from '../styles/Weather.module.css';
-import { useState } from 'react';
 
 
 function Weather(props) {
     const weatherData = props.weatherData;
-    const [defaultForecastType, setDefaultForecastType] = useState(weatherData.default_forecast_type);
-    const toggleForecastTypes = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        if (defaultForecastType == "hourly") {
-            setDefaultForecastType("weekly");
-        } else {
-            setDefaultForecastType("hourly");
-        }
-    }
 
     const refreshWeatherData = async (event) => {
         event.preventDefault();
@@ -37,10 +23,32 @@ function Weather(props) {
         }
     };
 
-    const saveForecastPreference = async (event) => {
+    const updateForecastType = async (event) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log("saveForecastPreference");
+
+        const typeSwitch = {
+            "hourly": "weekly",
+            "weekly": "hourly"
+        }
+
+        const newDefaultType = typeSwitch[props.weatherData.forecast_type];
+        const initOptions = {
+            method: "PUT",
+            cache: 'no-store',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({"forecast_type": newDefaultType}),
+        }
+
+        const response = await fetch('http://localhost:3000/api/settings/update/', initOptions);
+        if (response.ok) {
+            const responseJSON = await response.json();
+            const settings = responseJSON.settings;
+            const updatedWeatherData = { ...props.weatherData, forecast_type: settings.forecast_type };
+            props.setWeatherData(updatedWeatherData);
+        }
     };
 
     const now = new Date();
@@ -48,7 +56,7 @@ function Weather(props) {
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const currentTime = `${hours}:${minutes}`;
 
-    const isWeeklyForecastDisplayed = defaultForecastType == "weekly";
+    const isWeeklyForecastDisplayed = props.weatherData.forecast_type == "weekly";
 
     return (
         <>
@@ -58,7 +66,7 @@ function Weather(props) {
 
                 <div className={styles.actions}>
                     <span className={styles.action} onClick={(event) => refreshWeatherData(event)}>Refresh data</span>
-                    <span className={styles.action} onClick={(event) => toggleForecastTypes(event)}>{isWeeklyForecastDisplayed ? 'Hourly forecast' : 'Weekly forecast'}</span>
+                    <span className={styles.action} onClick={(event) => updateForecastType(event)}>{isWeeklyForecastDisplayed ? 'Hourly forecast' : 'Weekly forecast'}</span>
                 </div>
 
                 <div className={styles.weatherData}>
