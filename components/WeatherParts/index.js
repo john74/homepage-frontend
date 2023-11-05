@@ -5,3 +5,4 @@ export { default as Forecasts } from './Forecasts';
 export { default as WeeklyForecast } from './WeeklyForecast';
 export { default as HourlyForecast } from './HourlyForecast';
 export { default as Top } from './Top';
+export { default as Bottom } from './Bottom';

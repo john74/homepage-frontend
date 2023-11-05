@@ -1,5 +1,5 @@
 import {
-    Top,
+    Top, Bottom,
 } from './';
 
 
@@ -16,15 +16,7 @@ function WeeklyForecast(props) {
 
                 <div className={styles.mainData}>
                     <Top forecast={forecast} {...props}/>
-
-                    <div className={styles.bottom}>
-                        <div className={styles.degrees}>
-                            <span className={styles.value}>{forecast.earliest.temperature}</span>
-                            <span className={styles.unit}>{units.temperature_symbol}</span>
-                        </div>
-                        <div className={styles.description}>{forecast.earliest.description}</div>
-                    </div>
-
+                    <Bottom forecast={forecast} {...props}/>
                 </div>
 
                 <div className={styles.restForecasts}>
