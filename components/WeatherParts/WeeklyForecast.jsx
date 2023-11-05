@@ -1,3 +1,8 @@
+import {
+    Top,
+} from './';
+
+
 function WeeklyForecast(props) {
     const styles = props.styles;
     const forecasts = props.weatherData.forecasts.weekly;
@@ -10,19 +15,7 @@ function WeeklyForecast(props) {
             <div className={styles.item} key={`${forecast.week_day_short_name}-${index}`}>
 
                 <div className={styles.mainData}>
-
-                    <div className={styles.top}>
-                        <span>{forecast.week_day_short_name}</span>
-                        <div className={styles.month}>
-                            <span>{forecast.month_day}</span>
-                            <span>{forecast.month_short_name}</span>
-                        </div>
-                        <div className={styles.time}>
-                            <span>{forecast.earliest.hours}</span>
-                            <span className={styles.separator}>:</span>
-                            <span>{forecast.earliest.minutes}</span>
-                        </div>
-                    </div>
+                    <Top forecast={forecast} {...props}/>
 
                     <div className={styles.bottom}>
                         <div className={styles.degrees}>
