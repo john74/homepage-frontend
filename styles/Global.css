@@ -133,7 +133,8 @@ body > [class^="sign"] {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 97%;
     max-width: 97%;
+    row-gap: 30px;
+    margin-top: 50px;
 }

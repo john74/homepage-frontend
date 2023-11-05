@@ -11,7 +11,6 @@ function CurrentData(props) {
     return (
         <>
         <div className={styles.currentData}>
-
             <div className={`${styles.group} ${styles.date}`}>
                 <span className={styles.weekDay}>{currentData.week_day}</span>
                 <span className={styles.monthDay}>{currentData.month_day}</span>
@@ -33,7 +32,6 @@ function CurrentData(props) {
                 <span className={styles.unit}>{units.temperature_symbol}</span>
                 <span className={styles.description}>{currentData.description}</span>
             </div>
-
         </div>
         </>
     );

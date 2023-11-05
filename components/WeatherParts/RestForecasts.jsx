@@ -1,17 +1,17 @@
 function RestForecasts(props) {
     const styles = props.styles;
-    const forecast = props.forecast;
+    const forecasts = props.forecast.rest;
     const units = props.weatherData.units;
 
     return (
         <>
         <div className={styles.restForecasts}>
-        {forecast.rest.map((item, index) => (
-            <div className={styles.itFor} key={`${forecast.week_day_short_name}-rest-${index}`}>
-                <div>{`${item.hours}:${item.minutes}`}</div>
-                <div>{item.temperature}</div>
+        {forecasts.map((forecast, index) => (
+            <div className={styles.forecast} key={`rest-${index}`}>
+                <div>{`${forecast.hours}:${forecast.minutes}`}</div>
+                <div>{forecast.temperature}</div>
                 <div className={styles.unit}>{units.temperature_symbol}</div>
-                <div>{item.description}</div>
+                <div>{forecast.description}</div>
             </div>
         ))}
         </div>

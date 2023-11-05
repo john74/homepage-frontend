@@ -9,16 +9,18 @@ function WeeklyForecast(props) {
 
     return (
         <>
-        <div className={`${styles.forecast} ${styles.weekly}`}>
-        {forecasts.map((forecast, index) => (
-            <div className={styles.item} key={`${forecast.week_day_short_name}-${index}`}>
-                <div className={styles.mainData}>
+        <div className={styles.weekly}>
+        {forecasts.length ? (
+            forecasts.map((forecast, index) => (
+                <div className={styles.forecast} key={`weekly-${index}`}>
                     <Top forecast={forecast} {...props}/>
                     <Bottom forecast={forecast} {...props}/>
                     <RestForecasts forecast={forecast} {...props}/>
                 </div>
-            </div>
-        ))}
+            ))
+        ) : (
+            <p className={styles.message}>No forecasts to display</p>
+        )}
         </div>
         </>
     );

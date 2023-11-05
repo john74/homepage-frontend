@@ -5,10 +5,10 @@ function HourlyForecast(props) {
 
     return (
         <>
-        <div className={`${styles.forecast} ${styles.hourly}`}>
+        <div className={styles.hourly}>
             {forecasts.length ? (
-                forecasts.map(forecast => (
-                    <div className={styles.item} key={forecast.hours+forecast.temp}>
+                forecasts.map((forecast, index) => (
+                    <div className={styles.forecast} key={`hourly-${index}`}>
                         <div className={styles.hours}>{`${forecast.hours}:${forecast.minutes}`}</div>
                         <div className={styles.degrees}>
                             <span className={styles.value}>{forecast.temperature}</span>
@@ -18,7 +18,7 @@ function HourlyForecast(props) {
                     </div>
                 ))
             ) : (
-                <p>No forecasts to display</p>
+                <p className={styles.message}>No forecasts to display</p>
             )}
         </div>
         </>
