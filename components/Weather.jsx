@@ -1,12 +1,11 @@
 import styles from '../styles/Weather.module.css';
 import {
     Actions, ExtraInfo, CurrentData,
-    WeeklyForecast, HourlyForecast,
+    Forecasts,
 } from './WeatherParts';
 
 
 function Weather(props) {
-    const isWeeklyForecastDisplayed = props.weatherData.forecast_type == "weekly";
 
     return (
         <>
@@ -17,13 +16,7 @@ function Weather(props) {
                     <div className={styles.today}>
                         <ExtraInfo styles={styles} {...props} />
                         <CurrentData styles={styles} {...props} />
-                        <div className={`${styles.forecasts} ${isWeeklyForecastDisplayed ? styles.weekly : ''}`}>
-                            {isWeeklyForecastDisplayed ? (
-                                <WeeklyForecast styles={styles} {...props} />
-                            ) : (
-                                <HourlyForecast styles={styles} {...props} />
-                            )}
-                        </div>
+                        <Forecasts styles={styles} {...props} />
                     </div>
                 </div>
             </div>
@@ -32,4 +25,4 @@ function Weather(props) {
     );
   }
 
-  export default Weather;
+export default Weather;
