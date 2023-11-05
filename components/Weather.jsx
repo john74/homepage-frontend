@@ -1,17 +1,11 @@
 import styles from '../styles/Weather.module.css';
 import {
-    Actions, ExtraInfo,
+    Actions, ExtraInfo, CurrentData,
 } from './WeatherParts';
 
 
 function Weather(props) {
     const weatherData = props.weatherData;
-
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const currentTime = `${hours}:${minutes}`;
-
     const isWeeklyForecastDisplayed = props.weatherData.forecast_type == "weekly";
 
     return (
@@ -22,31 +16,7 @@ function Weather(props) {
                 <div className={styles.weatherData}>
                     <div className={styles.today}>
                         <ExtraInfo styles={styles} {...props} />
-                        <div className={styles.currentData}>
-
-                            <div className={`${styles.group} ${styles.date}`}>
-                                <span className={styles.weekDay}>{weatherData.current.week_day}</span>
-                                <span className={styles.monthDay}>{weatherData.current.month_day}</span>
-                                <span className={styles.month}>{weatherData.current.month}</span>
-                                <span className={styles.year}>{weatherData.current.year}</span>
-                            </div>
-
-                            <div className={`${styles.group} ${styles.time}`}>
-                                <span className={styles.hour}>{currentTime}</span>
-                            </div>
-
-                            <div className={`${styles.group} ${styles.location}`}>
-                                <span className={styles.city}>{weatherData.current.city_name}</span>
-                                <span className={styles.countryCode}>{weatherData.current.country_code}</span>
-                            </div>
-
-                            <div className={`${styles.group} ${styles.temperature}`}>
-                                <span className={styles.degrees}>{weatherData.current.temp}</span>
-                                <span className={styles.unit}>{weatherData.units.temperature_symbol}</span>
-                                <span className={styles.description}>{weatherData.current.description}</span>
-                            </div>
-
-                        </div>
+                        <CurrentData styles={styles} {...props} />
 
                         <div className={`${styles.forecasts} ${isWeeklyForecastDisplayed ? styles.weekly : ''}`}>
 
