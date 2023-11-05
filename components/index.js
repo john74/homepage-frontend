@@ -20,3 +20,4 @@ export { default as Weather } from './Weather';
 export { default as WeatherActions } from './WeatherParts/Actions'
 export { default as WeatherExtraInfo } from './WeatherParts/ExtraInfo'
 export { default as WeatherCurrentData } from './WeatherParts/CurrentData'
+export { default as WeeklyForecast } from './WeatherParts/WeeklyForecast'
