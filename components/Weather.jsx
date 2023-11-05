@@ -1,55 +1,11 @@
 import styles from '../styles/Weather.module.css';
+import {
+    Actions,
+} from './WeatherParts';
 
 
 function Weather(props) {
     const weatherData = props.weatherData;
-
-    const refreshWeatherData = async (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const initOptions = {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            cache: 'no-store'
-        }
-
-        const response = await fetch('http://localhost:3000/api/frontend/weather/', initOptions);
-        if (response.ok) {
-            const response_data = await response.json();
-            props.setWeatherData(response_data);
-        }
-    };
-
-    const updateForecastType = async (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const typeSwitch = {
-            "hourly": "weekly",
-            "weekly": "hourly"
-        }
-
-        const newDefaultType = typeSwitch[props.weatherData.forecast_type];
-        const initOptions = {
-            method: "PUT",
-            cache: 'no-store',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({"forecast_type": newDefaultType}),
-        }
-
-        const response = await fetch('http://localhost:3000/api/settings/update/', initOptions);
-        if (response.ok) {
-            const responseJSON = await response.json();
-            const settings = responseJSON.settings;
-            const updatedWeatherData = { ...props.weatherData, forecast_type: settings.forecast_type };
-            props.setWeatherData(updatedWeatherData);
-        }
-    };
 
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, '0');
@@ -61,13 +17,8 @@ function Weather(props) {
     return (
         <>
         <div className={styles.weather}>
-
             <div className={styles.wrapper}>
-
-                <div className={styles.actions}>
-                    <span className={styles.action} onClick={(event) => refreshWeatherData(event)}>Refresh data</span>
-                    <span className={styles.action} onClick={(event) => updateForecastType(event)}>{isWeeklyForecastDisplayed ? 'Hourly forecast' : 'Weekly forecast'}</span>
-                </div>
+                <Actions styles={styles} {...props} />
 
                 <div className={styles.weatherData}>
 
