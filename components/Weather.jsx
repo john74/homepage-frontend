@@ -1,6 +1,6 @@
 import styles from '../styles/Weather.module.css';
 import {
-    Actions,
+    Actions, ExtraInfo,
 } from './WeatherParts';
 
 
@@ -19,53 +19,9 @@ function Weather(props) {
         <div className={styles.weather}>
             <div className={styles.wrapper}>
                 <Actions styles={styles} {...props} />
-
                 <div className={styles.weatherData}>
-
                     <div className={styles.today}>
-
-                        <div className={styles.extraInfo}>
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Feels like:</span>
-                                    <span className={styles.value}>{weatherData.extra_info.feels_like_temperature}</span>
-                                    <span className={styles.unit}>{weatherData.units.temperature_symbol}</span>
-                                </div>
-
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Min:</span>
-                                    <span className={styles.value}>{weatherData.extra_info.minimum_temperature}</span>
-                                    <span className={styles.unit}>{weatherData.units.temperature_symbol}</span>
-                                </div>
-
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Max:</span>
-                                    <span className={styles.value}>{weatherData.extra_info.maximum_temperature}</span>
-                                    <span className={styles.unit}>{weatherData.units.temperature_symbol}</span>
-                                </div>
-
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Wind:</span>
-                                    <span className={styles.value}>{weatherData.extra_info.wind_speed}</span>
-                                    <span className={styles.unit}>{weatherData.units.speed}</span>
-                                </div>
-
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Humidity:</span>
-                                    <span className={styles.value}>{weatherData.extra_info.humidity_percentage}</span>
-                                    <span className={styles.unit}>{weatherData.units.humidity}</span>
-                                </div>
-
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Sunrise:</span>
-                                    <span className={styles.value}>{weatherData.extra_info.sunrise_time.hour}:{weatherData.extra_info.sunrise_time.minutes}</span>
-                                </div>
-
-                                <div className={styles.info}>
-                                    <span className={styles.label}>Sunset:</span>
-                                    <span className={styles.value}>{weatherData.extra_info.sunset_time.hour}:{weatherData.extra_info.sunset_time.minutes}</span>
-                                </div>
-                        </div>
-
+                        <ExtraInfo styles={styles} {...props} />
                         <div className={styles.currentData}>
 
                             <div className={`${styles.group} ${styles.date}`}>

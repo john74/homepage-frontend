@@ -18,3 +18,4 @@ export { default as EditSearchEngineForm } from './EditSearchEngineForm';
 export { default as FormsContainer } from './FormsContainer';
 export { default as Weather } from './Weather';
 export { default as WeatherActions } from './WeatherParts/Actions'
+export { default as WeatherExtraInfo } from './WeatherParts/ExtraInfo'
