@@ -24,12 +24,13 @@ const HomePageContainer = (props) => {
     const toggleMenuHook = useToggleMenu();
     const formVisibilityHook = useFormVisibility();
     const selectSearchEngineHook = useSelectSearchEngine();
+    const currentDate = props.currentDate;
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
         setWeatherData, bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
         toggleMenuHook, markForDeletionHook, formVisibilityHook,
-        selectSearchEngineHook, weatherData,
+        selectSearchEngineHook, weatherData, currentDate,
     }
 
     return (

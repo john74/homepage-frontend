@@ -6,7 +6,6 @@ import {
 
 
 function Weather(props) {
-
     return (
         <>
         <div className={styles.weather}>

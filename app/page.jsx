@@ -13,6 +13,13 @@ const HomePage = async () => {
     const bookmarks = homePageData.bookmarks;
     const searchEngines = homePageData.search_engines;
     const weatherData = homePageData.weather;
+    /*
+        To prevent the text content mismatch warning between server-side and client-side rendering,
+        obtain the current date on the server side.
+        This ensures consistency when using the date across the application,
+        such as in the Weather component, during the initial page render.
+    */
+    const currentDate = new Date();
 
     const props = {
         shortcuts,
@@ -20,6 +27,7 @@ const HomePage = async () => {
         bookmarkCategoryGroups,
         bookmarks,
         weatherData,
+        currentDate,
     };
 
     return (
