@@ -73,6 +73,11 @@
     gap: 5px;
 }
 
+.currentData > .time {
+    min-width: 50px;
+    justify-content: center;
+}
+
 .currentData .weekDay,
 .currentData .hour,
 .currentData .degrees {
