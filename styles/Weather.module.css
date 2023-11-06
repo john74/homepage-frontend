@@ -62,7 +62,9 @@
 .currentData {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
+    min-width: 550px;
 }
 
 .currentData > .group {
