@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 
 import styles from '../styles/WebSearch.module.css';
 import Svg from './Svg';
+import {
+    SearchBar,
+} from './WebSearchParts';
 
 
 function WebSearch(props) {
@@ -144,10 +147,7 @@ function WebSearch(props) {
                     ))}
                     </ul>
                 </div>
-                <input type="search" name={defaultEngine.name_attribute} id={defaultEngine.id} />
-                <span className={styles.addEngine} title="Add search engine" onClick={(event) => addSearchEngine(event)}>
-                    <Svg content={<><path d="M5 12h14"/><path d="M12 5v14"/></>}/>
-                </span>
+                <SearchBar styles={styles} defaultEngine={defaultEngine} {...props} />
             </form>
         </div>
         </>
