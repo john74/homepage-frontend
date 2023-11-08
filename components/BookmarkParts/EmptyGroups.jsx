@@ -1,7 +1,6 @@
-import styles from '../styles/EmptyBookmarkCategories.module.css';
+function EmptyGroups(props) {
+    const styles = props.styles;
 
-
-function EmptyBookmarkCategories(props) {
     return (
         <>
         <p className={styles.message}>
@@ -11,4 +10,4 @@ function EmptyBookmarkCategories(props) {
     );
   }
 
-  export default EmptyBookmarkCategories;
+  export default EmptyGroups;

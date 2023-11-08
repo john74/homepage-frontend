@@ -9,8 +9,7 @@ import {
 
 import {
     LeftSidebar, WebSearch, GeneralMenu, FormsContainer,
-    BookmarkCategoryGroups, EmptyBookmarkCategories,
-    Weather,
+    BookmarkCategoryGroups, Weather,
 } from "@components";
 
 
@@ -44,7 +43,7 @@ const HomePageContainer = (props) => {
             <div id="right">
                 <Weather {...props} />
                 <WebSearch {...props} />
-                {bookmarkCategoryGroups.length ? <BookmarkCategoryGroups {...props} /> : <EmptyBookmarkCategories {...props} />}
+                <BookmarkCategoryGroups {...props} />
             </div>
         </div>
         </>
