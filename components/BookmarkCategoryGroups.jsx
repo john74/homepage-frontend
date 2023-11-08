@@ -1,18 +1,17 @@
 import styles from '../styles/BookmarkCategoryGroups.module.css';
 import {
-    BookmarkCategoryGroup,
-} from '@components';
-
-
-
+    CategoriesGroup
+} from './BookmarkParts';
 
 function BookmarkCategoryGroups(props) {
+    const groups = props.bookmarkCategoryGroups;
+
     return (
         <>
         <div className={styles.bookmarkCategoryGroups}>
             <div className={styles.wrapper}>
-            {props.bookmarkCategoryGroups.map((categoryGroup, index) => (
-                <BookmarkCategoryGroup key={`bookmark-category-group-${index}`} categoryGroup={categoryGroup} {...props} />
+            {groups.map((group, index) => (
+                <CategoriesGroup key={`bookmark-category-group-${index}`} styles={styles} group={group} {...props} />
             ))}
             </div>
         </div>
