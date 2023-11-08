@@ -61,6 +61,14 @@
     margin-left: 3%;
 }
 
+/* ======== Category ======== */
+.bookmarkCategory {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 14.2%;
+}
+
 /* ======== Category Head ======== */
 .head {
     position: relative;
