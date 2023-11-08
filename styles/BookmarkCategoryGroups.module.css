@@ -109,10 +109,6 @@
     background-color: #f9f9f9;
 }
 
-.bookmarks > :nth-child(even) {
-    background-color: #fcfcfc;
-}
-
 .bookmark {
     position: relative;
     display: flex;
@@ -160,73 +156,83 @@
     background-color: #2E3440;
   }
 
-  .bookmark:not(:hover) > .actions {
-    display: none;
-  }
-  .bookmark:hover > .actions {
-    opacity: .2;
-  }
-
-  .bookmark > .actions:hover {
-    opacity: 1;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  }
-
-  .bookmark > .actions {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    right: 0;
-    width: 35px;
-    justify-content: space-between;
-    padding: 5px;
-    opacity: 1;
-    z-index: 9;
-    background-color: #efefef;
-    border-radius: 5px;
+.bookmark {
+    position: relative;
 }
 
-.bookmark > .actions > span {
+.bookmark > .name {
+    padding: 2px 0;
+    background-color: #f9f9f9;
+    width: 88%;
+    z-index: 2;
+}
+
+.bookmark > .actions {
+    background-color: #f9f9f9;
+    position: absolute;
     display: flex;
+    align-items: center;
+    width: 100%;
+    z-index: 1;
+    opacity: 0;
     cursor: pointer;
 }
 
-.bookmark > .actions svg {
+.bookmark:hover > .actions {
+    opacity: 1;
+}
+
+.bookmark > .actions:hover {
+    z-index: 3;
+}
+
+.bookmark > .actions > .buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 83%;
+}
+
+.bookmark > .actions > .buttons > span {
+    padding: 2px 9px;
+    border-radius: 5px;
+    flex: 1;
+    text-align: center;
+    font-size: 11px;
+}
+
+.bookmark .editButton {
+    background-color: #2ac885;
+}
+
+.bookmark .deleteButton {
+    background-color: #FFA07A;
+}
+
+.bookmark > .actions > .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17%;
+}
+
+.bookmark > .actions > .icon > svg {
     width: 13px;
     height: 13px;
 }
 
-.marked > svg {
-    animation: unmark 5s linear;
-}
-
-@keyframes unmark {
-    0% {
-        stroke: #ff1212;
-    }
-    20% {
-        stroke: #ff8000;
-    }
-    40% {
-        stroke: #ffbf00;
-    }
-    60% {
-        stroke: #ffc83d;
-    }
-    80% {
-        stroke: #ffd17a;
-    }
-    100% {
-        stroke: #2E3440;
-    }
+.bookmark .confirmButton {
+    background-color: #ff8000;
+    animation: countdown 5s linear;
 }
 
 /* ======== Category Menu ======== */
-.actions:not(.open) {
+.bookmarkCategory > .actions:not(.open) {
     display: none;
 }
 
-.actions {
+.bookmarkCategory > .actions {
+    z-index: 2;
     background-color: #efefef;
     position: absolute;
     top: 13%;
@@ -238,7 +244,7 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.action {
+.bookmarkCategory > .actions > .action {
     display: flex;
     align-items: center;
     font-size: 13px;
@@ -247,11 +253,11 @@
     cursor: pointer;
 }
 
-.action:hover {
+.bookmarkCategory > .actions > .action:hover {
     color: #2ac885;
 }
 
-.action > svg {
+.bookmarkCategory > .actions > .action > svg {
     height: 100%;
     width: 15px;
 }
