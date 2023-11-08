@@ -5,7 +5,12 @@ import {
 
 
 function WebSearch(props) {
-    const defaultEngine = props.searchEngines.default;
+    const {
+        selectedEngine,
+        selectSearchEngine
+    } = props.selectSearchEngineHook;
+
+    const defaultEngine = selectedEngine ?? props.searchEngines.default;
 
     return (
         <>

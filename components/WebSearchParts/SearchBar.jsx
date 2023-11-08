@@ -41,7 +41,7 @@ function SearchBar(props) {
     return (
         <>
         <div className={styles.searchBar}>
-            <input type="search" name={defaultEngine.name_attribute} id={defaultEngine.id} />
+            <input type="search" name={defaultEngine.name_attribute}/>
             <span className={styles.addEngine} title="Add search engine" onClick={(event) => addSearchEngine(event)}>
                 <Svg content={<><path d="M5 12h14"/><path d="M12 5v14"/></>}/>
             </span>
