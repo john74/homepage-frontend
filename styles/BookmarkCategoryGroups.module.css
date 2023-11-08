@@ -248,6 +248,23 @@
     width: 15px;
 }
 
+/* ======== Empty Groups ======== */
+.message {
+    height: 270px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    color: #2e34402e;
+}
+
+.message > span {
+    color: #2ac885;
+    margin: 0 7px;
+    display: inline-flex;
+}
+
 /* ======== Animations ======== */
 
 @keyframes fillAnimation {
