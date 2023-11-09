@@ -8,8 +8,8 @@ export async function PUT(request) {
 
     const body = await request.json();
     const initOptions = {
-        method: "PUT",
         cache: "no-store",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
             authorization: `JWT ${accessToken}`,

@@ -31,6 +31,7 @@ function EditBookmarkCategoryForm(props) {
         event.stopPropagation();
 
         const initOptions = {
+            cache: 'no-store',
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

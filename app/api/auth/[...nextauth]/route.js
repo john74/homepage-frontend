@@ -9,6 +9,7 @@ export const authOptions = {
             async authorize(credentials, req) {
                 const { email, password } = credentials;
                 const signInResponse = await fetch(process.env.BACKEND_SIGN_IN_URL, {
+                    cache: 'no-store',
                     method: "POST",
                     credentials: "include",
                     headers: {
@@ -59,6 +60,7 @@ export const authOptions = {
             const refreshToken = cookies().get('refreshToken')?.value;
             if (!refreshToken) return;
             const initOptions = {
+                cache: 'no-store',
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({"refresh": refreshToken})

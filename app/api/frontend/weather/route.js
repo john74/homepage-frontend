@@ -8,12 +8,12 @@ export async function GET(request) {
     }
 
     const initOptions = {
+        cache: 'no-store',
         method: "GET",
         headers: {
             "Content-Type": "application/json",
             authorization: `JWT ${accessToken}`,
         },
-        cache: 'no-store'
     };
 
     let response = await fetch(process.env.BACKEND_FRONTEND_WEATHER_URL, initOptions);

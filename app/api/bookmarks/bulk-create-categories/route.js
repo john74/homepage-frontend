@@ -10,6 +10,7 @@ export async function POST(request) {
 
     const body = await request.json();
     const initOptions = {
+        cache: 'no-store',
         method: "POST",
         headers: {
             "Content-Type": "application/json",

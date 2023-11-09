@@ -18,6 +18,7 @@ function Actions(props) {
 
         unmark();
         const initOptions = {
+            cache: 'no-store',
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

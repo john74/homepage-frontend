@@ -19,6 +19,7 @@ function GeneralMenu(props) {
         }];
 
         const initOptions = {
+            cache: 'no-store',
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -4,11 +4,11 @@ function Actions(props) {
         event.stopPropagation();
 
         const initOptions = {
+            cache: 'no-store',
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
-            cache: 'no-store'
         }
 
         const response = await fetch('http://localhost:3000/api/frontend/weather/', initOptions);
@@ -30,8 +30,8 @@ function Actions(props) {
 
         const newDefaultType = forecastTypeSwitch[forecastType];
         const initOptions = {
-            method: "PUT",
             cache: 'no-store',
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },

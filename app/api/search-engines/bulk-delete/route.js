@@ -9,6 +9,7 @@ export async function DELETE(request) {
 
     const data = await request.json();
     const initOptions = {
+        cache: 'no-store',
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",

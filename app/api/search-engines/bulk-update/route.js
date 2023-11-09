@@ -9,6 +9,7 @@ export async function PUT(request) {
 
     const data = await request.json();
     const initOptions = {
+        cache: 'no-store',
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
