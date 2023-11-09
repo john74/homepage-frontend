@@ -8,7 +8,7 @@ function CategoryBody(props) {
     const category = props.category;
     const bookmarks = props.bookmarks[category.id];
 
-    if (!bookmarks.length) {
+    if (!bookmarks?.length) {
         return <NoBookmarks styles={styles} {...props} />;
     }
 

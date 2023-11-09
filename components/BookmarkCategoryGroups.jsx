@@ -7,7 +7,7 @@ import {
 function BookmarkCategoryGroups(props) {
     const groups = props.bookmarkCategoryGroups;
 
-    if (!groups.length) {
+    if (!groups?.length) {
         return <EmptyGroups styles={styles} {...props} />;
     }
 
