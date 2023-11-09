@@ -44,18 +44,26 @@ function AddBookmarkForm(props) {
             body: JSON.stringify([formData])
         }
 
-        const response = await fetch(
-            'http://localhost:3000/api/bookmarks/bulk-create',
-            initOptions
-          )
+        try {
+            const response = await fetch(
+                'http://localhost:3000/api/bookmarks/bulk-create',
+                initOptions
+              );
 
-        if (response.ok) {
-            const response_data = await response.json();
-            const bookmarks = response_data.bookmarks;
-            const shortcuts = response_data.shortcuts;
-            props.setBookmarks({ ...bookmarks });
-            props.setShortcuts(shortcuts);
+            if (response.ok) {
+                const response_data = await response.json();
+                const bookmarks = response_data.bookmarks;
+                const shortcuts = response_data.shortcuts;
+                props.setBookmarks({ ...bookmarks });
+                props.setShortcuts(shortcuts);
+            } else {
+                console.error('Error creating bookmark');
+            }
+
+        } catch (error) {
+            console.error('Fetch error:', error);
         }
+
         closeForm();
     };
 
