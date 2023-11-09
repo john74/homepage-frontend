@@ -1,3 +1,4 @@
+import styles from '../styles/Forms.module.css';
 import {
     AddBookmarkForm, EditBookmarkCategoryForm,
     EditBookmarkForm, EditSearchEngineForm,
@@ -10,10 +11,12 @@ const FormsContainer = (props) => {
 
     return (
         <>
-        {formName == "addBookmarkForm" && ( <AddBookmarkForm {...props} /> )}
-        {formName == "editBookmarkCategoryForm" && ( <EditBookmarkCategoryForm {...props} /> )}
-        {formName == "editBookmarkForm" && ( <EditBookmarkForm {...props} /> )}
-        {formName == "editSearchEngineForm" && ( <EditSearchEngineForm {...props} /> )}
+        <div className={styles.formContainer}>
+        {formName == "addBookmarkForm" && ( <AddBookmarkForm styles={styles} {...props} /> )}
+        {formName == "editBookmarkCategoryForm" && ( <EditBookmarkCategoryForm styles={styles} {...props} /> )}
+        {formName == "editBookmarkForm" && ( <EditBookmarkForm styles={styles} {...props} /> )}
+        {formName == "editSearchEngineForm" && ( <EditSearchEngineForm styles={styles} {...props} /> )}
+        </div>
         </>
     )
 }

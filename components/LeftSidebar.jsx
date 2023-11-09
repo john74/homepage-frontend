@@ -10,7 +10,7 @@ function LeftSidebar(props) {
 
     return (
         <ul className={styles.leftSidebar}>
-        {shortcuts.map(shortcut => (
+        {shortcuts?.map(shortcut => (
             <li key={shortcut.id} className={styles.shortcut}>
                 <a className={styles.link} href={shortcut.url} title={shortcut.name} target="_blank">
                     <img className={styles.image} src={shortcut.icon_url} alt={shortcut.name} />

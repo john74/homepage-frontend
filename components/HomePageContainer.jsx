@@ -24,6 +24,9 @@ const HomePageContainer = (props) => {
     const formVisibilityHook = useFormVisibility();
     const selectSearchEngineHook = useSelectSearchEngine();
     const currentDate = props.currentDate;
+    const {
+        formName
+    } = formVisibilityHook;
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
@@ -35,7 +38,7 @@ const HomePageContainer = (props) => {
     return (
         <>
         <div id="home">
-            <FormsContainer {...props} />
+            {formName && <FormsContainer {...props} />}
             <GeneralMenu {...props} />
             <div id="left">
                 <LeftSidebar {...props} />

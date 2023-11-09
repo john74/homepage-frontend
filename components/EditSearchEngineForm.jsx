@@ -1,10 +1,13 @@
 "use client";
 
-import styles from '../styles/EditBookmarkForm.module.css';
 import { useState } from 'react';
+import {
+    Button, Svg,
+} from '@components';
 
 
 function EditSearchEngineForm(props) {
+    const styles = props.styles;
     const {
         setSelectedEngine
     } = props.selectSearchEngineHook;
@@ -56,26 +59,29 @@ function EditSearchEngineForm(props) {
     };
 
     return (
-        <form className={styles.AddBookmarkForm} onSubmit={editSearchEngine}>
-            <div className={styles.wrapper}>
-                <h1>Edit Search engine</h1>
+        <form className={styles.form} onSubmit={editSearchEngine}>
+            <Button className={styles.closeButton} title="Close" onClick={() => closeForm()}>
+                <Svg content={<><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></>}/>
+            </Button>
+            <h1 className={styles.title}>Edit Search engine</h1>
+            <div className={styles.fields}>
                 <div className={styles.field}>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" name="name" value={name} onChange={onChange} required />
+                    <label className={styles.label} htmlFor="name">Name:</label>
+                    <input className={styles.input} type="text" id="name" name="name" value={name} onChange={onChange} required />
                 </div>
                 <div className={styles.field}>
-                    <label htmlFor="url">Url:</label>
-                    <input type="text" id="url" name="url" value={url} onChange={onChange} required />
+                    <label className={styles.label} htmlFor="url">Url:</label>
+                    <input className={styles.input} type="text" id="url" name="url" value={url} onChange={onChange} required />
                 </div>
                 <div className={styles.field}>
-                    <label htmlFor="method">Method:</label>
-                    <input type="text" id="method" name="method" value={method} onChange={onChange} required />
+                    <label className={styles.label} htmlFor="method">Method:</label>
+                    <input className={styles.input} type="text" id="method" name="method" value={method} onChange={onChange} required />
                 </div>
                 <div className={styles.field}>
-                    <label htmlFor="name_attribute">Name attribute:</label>
-                    <input type="text" id="name_attribute" name="name_attribute" value={name_attribute} onChange={onChange} required />
+                    <label className={styles.label} htmlFor="name_attribute">Name attribute:</label>
+                    <input className={styles.input} type="text" id="name_attribute" name="name_attribute" value={name_attribute} onChange={onChange} required />
                 </div>
-                <input type="submit" value="Save" />
+                <input className={styles.input} type="submit" value="Save" />
             </div>
         </form>
     )

@@ -1,11 +1,13 @@
 "use client";
 
-import styles from '../styles/EditBookmarkForm.module.css';
 import { useEffect, useRef, useState } from 'react';
-import Svg from './Svg';
+import {
+    Button, Svg,
+} from '@components';
 
 
 function EditBookmarkForm(props) {
+    const styles = props.styles;
     const [isRestCategoriesVisible, setIsRestCategoriesVisible] = useState(false);
     const menuRef = useRef(null);
 
@@ -91,16 +93,19 @@ function EditBookmarkForm(props) {
     const restCategories = Object.entries(bookmarkCategories).filter(([id, _]) => id != category);
 
     return (
-        <form className={styles.AddBookmarkForm} onSubmit={editBookmark}>
-            <div className={styles.wrapper}>
-                <h1>Edit bookmark</h1>
+        <form className={styles.form} onSubmit={editBookmark}>
+            <Button className={styles.closeButton} title="Close" onClick={() => closeForm()}>
+                <Svg content={<><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></>}/>
+            </Button>
+            <h1 className={styles.title}>Edit bookmark</h1>
+            <div className={styles.fields}>
                 <div className={styles.field} ref={menuRef}>
-                    <div className={styles.currentCategory} onClick={toggleRestCategories}>
-                        <p>{bookmarkCategories[category]}</p>
+                    <div className={styles.dropdown} onClick={toggleRestCategories}>
+                        <p className={styles.title}>{bookmarkCategories[category]}</p>
                         <Svg content={<><path d="m6 9 6 6 6-6"/></>}/>
                     </div>
                     {isRestCategoriesVisible && (
-                        <ul className={styles.restCategories}>
+                        <ul className={styles.menu}>
                         {restCategories.map(([id, name]) => (
                             <li key={id+name} onClick={() => handleCategoryClick(id)}>{name}</li>
                         ))}
@@ -108,22 +113,22 @@ function EditBookmarkForm(props) {
                     )}
                 </div>
                 <div className={styles.field}>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" name="name" value={name} onChange={onChange} required />
+                    <label className={styles.label} htmlFor="name">Name:</label>
+                    <input className={styles.input} type="text" id="name" name="name" value={name} onChange={onChange} required />
                 </div>
                 <div className={styles.field}>
-                    <label htmlFor="url">Url:</label>
-                    <input type="text" id="url" name="url" value={url} onChange={onChange} required />
+                    <label className={styles.label} htmlFor="url">Url:</label>
+                    <input className={styles.input} type="text" id="url" name="url" value={url} onChange={onChange} required />
                 </div>
                 <div className={styles.field}>
-                    <label htmlFor="icon_url">Icon url:</label>
-                    <input type="text" id="icon_url" name="icon_url" value={icon_url} onChange={onChange} required />
+                    <label className={styles.label} htmlFor="icon_url">Icon url:</label>
+                    <input className={styles.input} type="text" id="icon_url" name="icon_url" value={icon_url} onChange={onChange} required />
                 </div>
                 <div className={`${styles.field} ${styles.row}`}>
-                    <label htmlFor="is_shortcut">Is shortcut:</label>
-                    <input type="checkbox" id="is_shortcut" name="is_shortcut" checked={is_shortcut} onChange={onChange} />
+                    <label className={styles.label} htmlFor="is_shortcut">Is shortcut:</label>
+                    <input className={styles.input} type="checkbox" id="is_shortcut" name="is_shortcut" checked={is_shortcut} onChange={onChange} />
                 </div>
-                <input type="submit" value="Save" />
+                <input className={styles.input} type="submit" value="Save" />
             </div>
         </form>
     )

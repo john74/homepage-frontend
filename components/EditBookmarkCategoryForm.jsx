@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from 'react';
+import {
+    Button, Svg,
+} from '@components';
 
 
 function EditBookmarkCategoryForm(props) {
-
+    const styles = props.styles;
     const {
         selectedItem,
         closeForm
@@ -52,18 +55,21 @@ function EditBookmarkCategoryForm(props) {
     };
 
     return (
-        <form className="" onSubmit={editCategory}>
-            <div className="">
-                <h1>Edit category</h1>
-                <div className="">
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" name="name" value={name} onChange={onChange} />
+        <form className={styles.form} onSubmit={editCategory}>
+            <Button className={styles.closeButton} title="Close" onClick={() => closeForm()}>
+                <Svg content={<><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></>}/>
+            </Button>
+            <h1 className={styles.title}>Edit category</h1>
+            <div className={styles.fields}>
+                <div className={styles.field}>
+                    <label className={styles.label} htmlFor="name">Name:</label>
+                    <input className={styles.input} type="text" id="name" name="name" value={name} onChange={onChange} />
                 </div>
-                <div className="">
-                    <label htmlFor="color">Color:</label>
-                    <input type="text" id="color" name="color" value={color} onChange={onChange} />
+                <div className={styles.field}>
+                    <label className={styles.label} htmlFor="color">Color:</label>
+                    <input className={styles.input} type="text" id="color" name="color" value={color} onChange={onChange} />
                 </div>
-                <input type="submit" value="Save" />
+                <input className={styles.input} type="submit" value="Save" />
             </div>
         </form>
     )
