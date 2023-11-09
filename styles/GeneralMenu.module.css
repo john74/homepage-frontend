@@ -3,7 +3,7 @@
     display: flex;
     right: -12%;
     top: 30%;
-    z-index: 1000000;
+    z-index: 1000;
     transition: right .2s ease-in;
 }
 
