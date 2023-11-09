@@ -217,6 +217,10 @@
     background-color: #E74C3C;
 }
 
+.bookmark .confirmButton {
+    background-color: #ff8000;
+}
+
 .bookmark > .actions > .icon {
     display: flex;
     align-items: center;
@@ -227,11 +231,6 @@
 .bookmark > .actions > .icon > svg {
     width: 13px;
     height: 13px;
-}
-
-.bookmark .confirmButton {
-    background-color: #ff8000;
-    animation: countdown 5s linear;
 }
 
 /* ======== Category Menu ======== */
