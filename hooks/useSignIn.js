@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { toast } from 'react-hot-toast';
 
 
 export default function useSignIn() {
@@ -17,17 +18,25 @@ export default function useSignIn() {
         setFormData({ ...formData, [name]:value })
     }
 
+    const [signInSuccess, setSignInSuccess] = useState(false);
     const onSubmit = async () => {
-        await signIn("credentials", {
+        const response = await signIn("credentials", {
             email: email,
             password: password,
-            redirect: true,
+            redirect: false,
             callbackUrl: "/"
         });
+
+        if (response.error) {
+            toast.error(response.error);
+        } else {
+            setSignInSuccess(true);
+            toast.success("Login successful");
+        }
     };
 
     return {
-        email, password, onChange,
-        onSubmit
+        email, password, signInSuccess,
+        onChange, onSubmit
     }
 }

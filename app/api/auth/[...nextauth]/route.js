@@ -21,10 +21,19 @@ export const authOptions = {
                     }),
                 })
                 .catch(error => {
-                    console.log("AUTH OPTIONS ERROR");
+                    return { error: error };
                 })
 
                 const response = await signInResponse;
+
+                if (response?.error || response?.status == 500) {
+                    return {error: "It appears that our system is currently unresponsive. Please try again later."}
+                }
+
+                if (response?.status == 401) {
+                    return { error: "Invalid credentials. Please check your username and password and try again." };
+                }
+
                 const setCookieValue = response.headers.get('set-cookie');
 
                 const accessTokenMatch = setCookieValue.match(/accessToken=([^;]+)/);
@@ -56,6 +65,13 @@ export const authOptions = {
     ],
 
     callbacks: {
+        async signIn({ user }) {
+            if (user?.error) {
+                throw new Error(user.error);
+            }
+            return user;
+         },
+
         async refreshAccessToken() {
             const refreshToken = cookies().get('refreshToken')?.value;
             if (!refreshToken) return;

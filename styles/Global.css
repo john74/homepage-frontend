@@ -65,6 +65,9 @@ input:-internal-autofill-selected {
     outline-color: var(--green-1);
 }
 
+.toastContainer {
+    z-index: 100000!important;
+}
 /* ===== Home ===== */
 #home {
     display: flex;
