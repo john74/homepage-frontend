@@ -1,11 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from 'next/navigation';
+import { toast } from "react-hot-toast";
 
 
 export default function useSignUp() {
-    const router = useRouter();
     const [formData, setFormData] = useState({
         email: '',
         username: '',
@@ -19,25 +18,32 @@ export default function useSignUp() {
         setFormData({ ...formData, [name]:value })
     }
 
+    const [signUpSuccess, setSignUpSuccess] = useState(false);
     const onSubmit = async (event) => {
         event.preventDefault();
-        fetch('http://127.0.0.1:8000/api/users/sign-up/', {
+        const initOptions = {
+            cache: "no-store",
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, username, password})
-        })
-        .then(response => {
-            if (response.ok) {
-                router.push("/sign-in");
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        })
+        }
+        let response = await fetch(
+            'http://localhost:3000/api/users/sign-up/',
+            initOptions
+        )
+
+        const responseJSON = await response.json();
+
+        if (responseJSON?.error) {
+            toast.error(responseJSON.error);
+        } else {
+            setSignUpSuccess(true);
+            toast.success(responseJSON.message);
+        }
     };
 
     return {
-        email, username, password,
+        email, username, password, signUpSuccess,
         onChange, onSubmit
     }
 }
