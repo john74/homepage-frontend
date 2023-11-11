@@ -30,8 +30,9 @@ export const authOptions = {
                     return {error: "It appears that our system is currently unresponsive. Please try again later."}
                 }
 
+                const responseJSON = await response?.json();
                 if (response?.status == 401) {
-                    return { error: "Invalid credentials. Please check your username and password and try again." };
+                    return { error: responseJSON.error };
                 }
 
                 const setCookieValue = response.headers.get('set-cookie');
@@ -58,7 +59,7 @@ export const authOptions = {
                     })
                 }
 
-                const user = response.json();
+                const user = responseJSON;
                 return response.ok && user ? user : null;
             }
         })

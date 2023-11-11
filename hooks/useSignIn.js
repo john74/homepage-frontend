@@ -27,11 +27,11 @@ export default function useSignIn() {
             callbackUrl: "/"
         });
 
-        if (response.error) {
+        if (response?.error) {
             toast.error(response.error);
         } else {
             setSignInSuccess(true);
-            toast.success("Login successful");
+            toast.success("Login successful.");
         }
     };
 

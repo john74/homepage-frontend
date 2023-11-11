@@ -17,14 +17,13 @@ export async function POST(request) {
         return {error: error}
     })
 
-    const responseJSON = await response.json();
-
-    if (response?.status == 400) {
-        return Response.json({error: responseJSON.error});
+    if (response?.error || response?.status == 500) {
+        return Response.json({error: "It appears that our system is currently unresponsive. Please try again later."});
     }
 
-    if (responseJSON?.error || response?.status == 500) {
-        return Response.json({error: "It appears that our system is currently unresponsive. Please try again later."});
+    const responseJSON = await response.json();
+    if (response?.status == 400) {
+        return Response.json({error: responseJSON.error});
     }
 
     return Response.json(responseJSON);
