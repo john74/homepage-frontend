@@ -2,13 +2,19 @@
 import styles from '../../styles/Forms.module.css';
 import Link from 'next/link';
 import { useSignUp } from "@hooks";
+import { redirect } from 'next/navigation';
 
 
 const SignUpPage = () => {
     const {
-        email, username, password,
-        onChange, onSubmit,
+        email, username, password, signUpSuccess,
+        onChange, onSubmit
     } = useSignUp();
+
+    if (signUpSuccess) {
+        redirect('/sign-in/');
+    }
+
     return (
         <div className={styles.formContainer}>
             <div className={styles.form}>
