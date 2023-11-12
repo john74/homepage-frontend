@@ -1,5 +1,5 @@
 import { refreshAccessToken } from "@lib";
-import { NextResponse } from 'next/server'
+
 
 export async function PUT(request) {
     let accessToken = request.cookies.get("accessToken")?.value;
@@ -19,6 +19,22 @@ export async function PUT(request) {
         body: JSON.stringify(body)
     };
 
-    let response = await fetch('http://127.0.0.1:8000/api/bookmarks/bulk-update/', initOptions);
-    return NextResponse.json(await response.json());
+    let response = await fetch(
+        'http://127.0.0.1:8000/api/bookmarks/bulk-update/',
+        initOptions,
+    )
+    .catch(error => {
+        return {error: error}
+    })
+
+    if (response?.error || response?.status == 500) {
+        return Response.json({error: "It appears that our system is currently unresponsive. Please try again later."});
+    }
+
+    const responseJSON = await response.json();
+    if (response?.status != 200) {
+        return Response.json({error: responseJSON.error});
+    }
+
+    return Response.json(responseJSON);
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
+import { toast } from "react-hot-toast";
 import {
     Button, Svg,
 } from '@components';
@@ -74,15 +75,29 @@ function EditBookmarkForm(props) {
             'http://localhost:3000/api/bookmarks/bulk-update/',
             initOptions
           )
+          .catch(error => {
+            return {error: error}
+          })
 
-        if (response.ok) {
-            const response_data = await response.json();
-            const bookmarks = response_data.bookmarks;
-            const shortcuts = response_data.shortcuts;
+        if (response?.error || response?.status == 500) {
+            toast.error("It appears that our system is currently unresponsive. Please try again later.");
+            closeForm();
+            return;
+        }
+
+        const responseJSON = await response.json();
+
+        if (responseJSON?.error) {
+            toast.error(responseJSON.error);
+            return;
+        } else {
+            toast.success(responseJSON.message);
+            const bookmarks = responseJSON.bookmarks;
+            const shortcuts = responseJSON.shortcuts;
             props.setBookmarks({ ...bookmarks });
             props.setShortcuts(shortcuts);
+            closeForm();
         }
-        closeForm();
     };
 
     const bookmarkCategories = {};
