@@ -65,12 +65,12 @@ function AddBookmarkForm(props) {
             toast.error(responseJSON.error);
             return;
         } else {
-            closeForm();
             toast.success(responseJSON.message);
             const bookmarks = responseJSON.bookmarks;
             const shortcuts = responseJSON.shortcuts;
             props.setBookmarks({ ...bookmarks });
             props.setShortcuts(shortcuts);
+            closeForm();
         }
     };
 
