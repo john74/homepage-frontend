@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { toast } from "react-hot-toast";
 import {
     Button, Svg,
 } from '@components';
@@ -44,27 +45,33 @@ function AddBookmarkForm(props) {
             body: JSON.stringify([formData])
         }
 
-        try {
-            const response = await fetch(
-                'http://localhost:3000/api/bookmarks/bulk-create',
-                initOptions
-              );
+        const response = await fetch(
+            'http://localhost:3000/api/bookmarks/bulk-create',
+            initOptions
+          )
+          .catch(error => {
+            return {error: error}
+          })
 
-            if (response.ok) {
-                const response_data = await response.json();
-                const bookmarks = response_data.bookmarks;
-                const shortcuts = response_data.shortcuts;
-                props.setBookmarks({ ...bookmarks });
-                props.setShortcuts(shortcuts);
-            } else {
-                console.error('Error creating bookmark');
-            }
-
-        } catch (error) {
-            console.error('Fetch error:', error);
+        if (response?.error || response?.status == 500) {
+            toast.error("It appears that our system is currently unresponsive. Please try again later.");
+            closeForm();
+            return;
         }
 
-        closeForm();
+        const responseJSON = await response.json();
+
+        if (responseJSON?.error) {
+            toast.error(responseJSON.error);
+            return;
+        } else {
+            closeForm();
+            toast.success(responseJSON.message);
+            const bookmarks = responseJSON.bookmarks;
+            const shortcuts = responseJSON.shortcuts;
+            props.setBookmarks({ ...bookmarks });
+            props.setShortcuts(shortcuts);
+        }
     };
 
     return (
