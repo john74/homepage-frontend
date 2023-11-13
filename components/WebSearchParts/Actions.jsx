@@ -1,6 +1,7 @@
 "use client";
 
 import Svg from '../Svg';
+import { toast } from "react-hot-toast";
 import {
     Button,
 } from '@components';
@@ -38,10 +39,23 @@ function Actions(props) {
             'http://localhost:3000/api/search-engines/bulk-delete/',
             initOptions
           )
+          .catch(error => {
+            return {error: error}
+          })
 
-        if (response.ok) {
-            const searchEngines = await response.json();
-            props.setSearchEngines(searchEngines);
+        if (response?.error || response?.status == 500) {
+            toast.error("It appears that our system is currently unresponsive. Please try again later.");
+            return;
+        }
+
+        const responseJSON = await response.json();
+
+        if (responseJSON?.error) {
+            toast.error(responseJSON.error);
+            return;
+        } else {
+            toast.success(responseJSON.message);
+            props.setSearchEngines(responseJSON);
         }
     }
 
