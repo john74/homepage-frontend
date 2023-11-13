@@ -1,5 +1,6 @@
 import styles from '../styles/GeneralMenu.module.css';
 import Svg from './Svg';
+import { toast } from "react-hot-toast";
 
 
 function GeneralMenu(props) {
@@ -31,12 +32,26 @@ function GeneralMenu(props) {
             'http://localhost:3000/api/bookmarks/bulk-create-categories/',
             initOptions
           )
+          .catch(error => {
+            return {error: error}
+          })
 
-        if (response.ok) {
-            const response_data = await response.json();
-            const categories = response_data.categories;
+        if (response?.error || response?.status == 500) {
+            toast.error("It appears that our system is currently unresponsive. Please try again later.");
+            return;
+        }
+
+        const responseJSON = await response.json();
+
+        if (responseJSON?.error) {
+            toast.error(responseJSON.error);
+            return;
+        } else {
+            toast.success(responseJSON.message);
+            const categories = responseJSON.categories;
             props.setBookmarkCategoryGroups(categories);
         }
+
         setOpenMenuId(false);
     };
 
