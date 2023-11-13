@@ -10,7 +10,7 @@ function WebSearch(props) {
         selectSearchEngine
     } = props.selectSearchEngineHook;
 
-    const defaultEngine = selectedEngine ?? props.searchEngines.default;
+    const defaultEngine = props.searchEngines.default;
 
     return (
         <>

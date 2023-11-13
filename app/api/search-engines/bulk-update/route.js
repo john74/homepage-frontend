@@ -18,7 +18,22 @@ export async function PUT(request) {
         body: JSON.stringify(data)
     };
 
-    let response = await fetch(process.env.BACKEND_SEARCH_ENGINES_UPDATE_URL, initOptions);
+    let response = await fetch(
+        process.env.BACKEND_SEARCH_ENGINES_UPDATE_URL,
+        initOptions,
+    )
+    .catch(error => {
+        return {error: error}
+    })
 
-    return Response.json(await response.json());
+    if (response?.error || response?.status == 500) {
+        return Response.json({error: "It appears that our system is currently unresponsive. Please try again later."});
+    }
+
+    const responseJSON = await response.json();
+    if (response?.status != 200) {
+        return Response.json({error: responseJSON.error});
+    }
+
+    return Response.json(responseJSON);
 }

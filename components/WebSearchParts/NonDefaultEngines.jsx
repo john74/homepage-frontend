@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
+import { toast } from "react-hot-toast";
 import {
     Button,
 } from '@components';
@@ -41,10 +42,27 @@ function NonDefaultEngines(props) {
             body: JSON.stringify(data)
         }
 
-        const response = await fetch('http://localhost:3000/api/search-engines/bulk-update', initOptions);
-        if (response.ok) {
-            const searchEngines = await response.json();
-            props.setSearchEngines(searchEngines);
+        const response = await fetch(
+            'http://localhost:3000/api/search-engines/bulk-update',
+            initOptions,
+        )
+        .catch(error => {
+            return {error: error}
+          })
+
+        if (response?.error || response?.status == 500) {
+            toast.error("It appears that our system is currently unresponsive. Please try again later.");
+            return;
+        }
+
+        const responseJSON = await response.json();
+
+        if (responseJSON?.error) {
+            toast.error(responseJSON.error);
+            return;
+        } else {
+            toast.success(responseJSON.message);
+            props.setSearchEngines(responseJSON);
         }
     };
 
