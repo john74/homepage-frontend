@@ -1,3 +1,6 @@
+import { toast } from "react-hot-toast";
+
+
 function Actions(props) {
     const refreshWeatherData = async (event) => {
         event.preventDefault();
@@ -11,10 +14,27 @@ function Actions(props) {
             },
         }
 
-        const response = await fetch('http://localhost:3000/api/frontend/weather/', initOptions);
-        if (response.ok) {
-            const response_data = await response.json();
-            props.setWeatherData(response_data);
+        const response = await fetch(
+            'http://localhost:3000/api/frontend/weather/',
+            initOptions
+        )
+        .catch(error => {
+            return {error: error}
+        })
+
+        if (response?.error || response?.status == 500) {
+            toast.error("It appears that our system is currently unresponsive. Please try again later.");
+            return;
+        }
+
+        const responseJSON = await response.json();
+
+        if (responseJSON?.error) {
+            toast.error(responseJSON.error);
+            return;
+        } else {
+            toast.success(responseJSON.message);
+            props.setWeatherData(responseJSON);
         }
     };
 
