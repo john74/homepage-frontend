@@ -1,7 +1,10 @@
-import { toast } from "react-hot-toast";
 import {
     Button, Svg,
 } from '@components';
+
+import {
+    useHandleProxyRequest,
+} from '@hooks';
 
 
 function Actions(props) {
@@ -13,45 +16,24 @@ function Actions(props) {
         unmark
     } = props.markForDeletionHook;
 
+
     const confirmShortcutDeletion = async (event, shortcutId) => {
         event.preventDefault();
         event.stopPropagation();
 
         unmark();
-        const initOptions = {
-            cache: "no-store",
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({"ids": [shortcutId]})
-        }
-
-        const response = await fetch(
+        const responseJSON = await useHandleProxyRequest(
             'http://localhost:3000/api/bookmarks/bulk-delete-shortcuts/',
-            initOptions
-          )
-          .catch(error => {
-            return {error: error}
-          })
+            "DELETE",
+            {"ids": [shortcutId]}
+        );
 
-        if (response?.error || response?.status == 500) {
-            toast.error("It appears that our system is currently unresponsive. Please try again later.");
-            return;
-        }
+        if (!responseJSON) return;
 
-        const responseJSON = await response.json();
-
-        if (responseJSON?.error) {
-            toast.error(responseJSON.error);
-            return;
-        } else {
-            toast.success(responseJSON.message);
-            const bookmarks = responseJSON.bookmarks;
-            const shortcuts = responseJSON.shortcuts;
-            props.setBookmarks(bookmarks);
-            props.setShortcuts(shortcuts);
-        }
+        const bookmarks = responseJSON.bookmarks;
+        const shortcuts = responseJSON.shortcuts;
+        props.setBookmarks(bookmarks);
+        props.setShortcuts(shortcuts);
     }
 
     return (
