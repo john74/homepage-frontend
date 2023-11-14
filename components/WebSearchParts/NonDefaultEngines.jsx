@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
-import { toast } from "react-hot-toast";
+
 import {
     Button,
 } from '@components';
@@ -9,6 +9,10 @@ import {
 import {
     Actions,
 } from '.';
+
+import {
+    useHandleProxyRequest,
+} from '@hooks';
 
 
 function NonDefaultEngines(props) {
@@ -28,42 +32,17 @@ function NonDefaultEngines(props) {
     let nonDefaultEngines = props.searchEngines.nonDefault;
 
     const updateDefaultSearchEngine = async () => {
-        const data = [{
+        const url = 'http://localhost:3000/api/search-engines/bulk-update';
+        const method = "PUT";
+        const body = [{
             "id": selectedEngine.id,
             "is_default":true
         }];
 
-        const initOptions = {
-            cache: 'no-store',
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data)
-        }
+        const responseJSON = await useHandleProxyRequest(url, method, body,);
+        if (!responseJSON) return;
 
-        const response = await fetch(
-            'http://localhost:3000/api/search-engines/bulk-update',
-            initOptions,
-        )
-        .catch(error => {
-            return {error: error}
-          })
-
-        if (response?.error || response?.status == 500) {
-            toast.error("It appears that our system is currently unresponsive. Please try again later.");
-            return;
-        }
-
-        const responseJSON = await response.json();
-
-        if (responseJSON?.error) {
-            toast.error(responseJSON.error);
-            return;
-        } else {
-            toast.success(responseJSON.message);
-            props.setSearchEngines(responseJSON);
-        }
+        props.setSearchEngines(responseJSON);
     };
 
     useEffect(() => {
