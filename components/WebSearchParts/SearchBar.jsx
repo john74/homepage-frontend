@@ -1,5 +1,8 @@
 import Svg from '../Svg';
-import { toast } from "react-hot-toast";
+
+import {
+    useHandleProxyRequest,
+} from '@hooks';
 
 
 function SearchBar(props) {
@@ -15,42 +18,17 @@ function SearchBar(props) {
         event.preventDefault();
         event.stopPropagation();
 
+        const url = 'http://localhost:3000/api/search-engines/bulk-create/';
+        const method = "POST";
         const body = [{
             "name": "New Engine"
         }];
 
-        const initOptions = {
-            cache: 'no-store',
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body)
-        }
+        const responseJSON = await useHandleProxyRequest(url, method, body,);
+        if (!responseJSON) return;
 
-        const response = await fetch(
-            'http://localhost:3000/api/search-engines/bulk-create/',
-            initOptions
-          )
-          .catch(error => {
-            return {error: error}
-          })
-
-        if (response?.error || response?.status == 500) {
-            toast.error("It appears that our system is currently unresponsive. Please try again later.");
-            return;
-        }
-
-        const responseJSON = await response.json();
-
-        if (responseJSON?.error) {
-            toast.error(responseJSON.error);
-            return;
-        } else {
-            toast.success(responseJSON.message);
-            props.setSearchEngines(responseJSON);
-            setOpenMenuId("webSearchMenu");
-        }
+        props.setSearchEngines(responseJSON);
+        setOpenMenuId("webSearchMenu");
     }
 
     return (
