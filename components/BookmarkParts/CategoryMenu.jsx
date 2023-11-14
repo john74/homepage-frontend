@@ -1,5 +1,8 @@
 import Svg from '../Svg';
-import { toast } from "react-hot-toast";
+
+import {
+    useHandleProxyRequest,
+} from '@hooks';
 
 
 function CategoryMenu(props) {
@@ -25,40 +28,17 @@ function CategoryMenu(props) {
         event.stopPropagation();
 
         unmark();
-        const initOptions = {
-            cache: 'no-store',
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({"ids": [category.id]})
-        }
+        const url = 'http://localhost:3000/api/bookmarks/bulk-delete-categories/';
+        const method = "DELETE";
+        const body = {"ids": [category.id]};
 
-        const response = await fetch(
-            'http://localhost:3000/api/bookmarks/bulk-delete-categories/',
-            initOptions
-          )
-          .catch(error => {
-            return {error: error}
-          })
+        const responseJSON = await useHandleProxyRequest(url, method, body,);
+        if (!responseJSON) return;
 
-        if (response?.error || response?.status == 500) {
-            toast.error("It appears that our system is currently unresponsive. Please try again later.");
-            return;
-        }
-
-        const responseJSON = await response.json();
-
-        if (responseJSON?.error) {
-            toast.error(responseJSON.error);
-            return;
-        } else {
-            toast.success(responseJSON.message);
-            const categories = responseJSON.categories;
-            const shortcuts = responseJSON.shortcuts;
-            props.setBookmarkCategoryGroups(categories);
-            props.setShortcuts(shortcuts);
-        }
+        const categories = responseJSON.categories;
+        const shortcuts = responseJSON.shortcuts;
+        props.setBookmarkCategoryGroups(categories);
+        props.setShortcuts(shortcuts);
     }
 
     return (
