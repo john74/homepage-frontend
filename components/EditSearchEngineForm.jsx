@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from 'react';
-import { toast } from "react-hot-toast";
+
 import {
     Button, Svg,
 } from '@components';
+
+import {
+    useHandleProxyRequest,
+} from '@hooks';
 
 
 function EditSearchEngineForm(props) {
@@ -37,38 +41,14 @@ function EditSearchEngineForm(props) {
         event.preventDefault();
         event.stopPropagation();
 
-        const initOptions = {
-            cache: 'no-store',
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify([formData])
-        }
+        const url = 'http://localhost:3000/api/search-engines/bulk-update';
+        const method = "PUT";
+        const body = [formData];
 
-        const response = await fetch(
-            'http://localhost:3000/api/search-engines/bulk-update',
-            initOptions
-          )
-          .catch(error => {
-            return {error: error}
-          })
+        const responseJSON = await useHandleProxyRequest(url, method, body,);
+        if (!responseJSON) return;
 
-        if (response?.error || response?.status == 500) {
-            toast.error("It appears that our system is currently unresponsive. Please try again later.");
-            return;
-        }
-
-        const responseJSON = await response.json();
-
-        if (responseJSON?.error) {
-            toast.error(responseJSON.error);
-            return;
-        } else {
-            toast.success(responseJSON.message);
-            props.setSearchEngines(responseJSON);
-        }
-
+        props.setSearchEngines(responseJSON);
         setSelectedEngine(null);
         closeForm();
     };
