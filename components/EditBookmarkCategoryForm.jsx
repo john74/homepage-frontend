@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from 'react';
-import { toast } from "react-hot-toast";
+
 import {
     Button, Svg,
 } from '@components';
+
+import {
+    useHandleProxyRequest,
+} from '@hooks';
 
 
 function EditBookmarkCategoryForm(props) {
@@ -34,40 +38,16 @@ function EditBookmarkCategoryForm(props) {
         event.preventDefault();
         event.stopPropagation();
 
-        const initOptions = {
-            cache: 'no-store',
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify([formData])
-        }
+        const url = 'http://localhost:3000/api/bookmarks/bulk-update-categories/';
+        const method = "PUT";
+        const body = [formData];
 
-        const response = await fetch(
-            'http://localhost:3000/api/bookmarks/bulk-update-categories/',
-            initOptions
-          )
-          .catch(error => {
-            return {error: error}
-          })
+        const responseJSON = await useHandleProxyRequest(url, method, body,);
+        if (!responseJSON) return;
 
-        if (response?.error || response?.status == 500) {
-            toast.error("It appears that our system is currently unresponsive. Please try again later.");
-            closeForm();
-            return;
-        }
-
-        const responseJSON = await response.json();
-
-        if (responseJSON?.error) {
-            toast.error(responseJSON.error);
-            return;
-        } else {
-            toast.success(responseJSON.message);
-            const grouped_categories = responseJSON.categories;
-            props.setBookmarkCategoryGroups(grouped_categories);
-            closeForm();
-        }
+        const grouped_categories = responseJSON.categories;
+        props.setBookmarkCategoryGroups(grouped_categories);
+        closeForm();
     };
 
     return (
