@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from 'react';
-import { toast } from "react-hot-toast";
+
 import {
     Button, Svg,
 } from '@components';
+
+import {
+    useHandleProxyRequest,
+} from '@hooks';
 
 
 function AddBookmarkForm(props) {
@@ -36,42 +40,18 @@ function AddBookmarkForm(props) {
         event.preventDefault();
         event.stopPropagation();
 
-        const initOptions = {
-            cache: 'no-store',
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify([formData])
-        }
+        const url = 'http://localhost:3000/api/bookmarks/bulk-create';
+        const method = "POST";
+        const body = [formData];
 
-        const response = await fetch(
-            'http://localhost:3000/api/bookmarks/bulk-create',
-            initOptions
-          )
-          .catch(error => {
-            return {error: error}
-          })
+        const responseJSON = await useHandleProxyRequest(url, method, body,);
+        if (!responseJSON) return;
 
-        if (response?.error || response?.status == 500) {
-            toast.error("It appears that our system is currently unresponsive. Please try again later.");
-            closeForm();
-            return;
-        }
-
-        const responseJSON = await response.json();
-
-        if (responseJSON?.error) {
-            toast.error(responseJSON.error);
-            return;
-        } else {
-            toast.success(responseJSON.message);
-            const bookmarks = responseJSON.bookmarks;
-            const shortcuts = responseJSON.shortcuts;
-            props.setBookmarks({ ...bookmarks });
-            props.setShortcuts(shortcuts);
-            closeForm();
-        }
+        closeForm();
+        const bookmarks = responseJSON.bookmarks;
+        const shortcuts = responseJSON.shortcuts;
+        props.setBookmarks({ ...bookmarks });
+        props.setShortcuts(shortcuts);
     };
 
     return (
