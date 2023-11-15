@@ -41,8 +41,9 @@ function EditSearchEngineForm(props) {
         event.preventDefault();
         event.stopPropagation();
 
-        const url = 'http://localhost:3000/api/search-engines/bulk-update';
         const method = "PUT";
+        const targetEndpoint = "api/search-engines/bulk-update/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = [formData];
 
         const responseJSON = await useHandleProxyRequest(url, method, body,);
