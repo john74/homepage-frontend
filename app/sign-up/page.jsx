@@ -2,6 +2,7 @@
 
 import styles from '../../styles/Forms.module.css';
 import Link from 'next/link';
+
 import { useState } from "react";
 import { redirect } from 'next/navigation';
 
@@ -30,8 +31,10 @@ const SignUpPage = () => {
         event.preventDefault();
         event.stopPropagation();
 
-        const url = 'http://localhost:3000/api/users/sign-up/';
+        const baseUrl = globalThis?.window?.location.origin;
         const method = "POST";
+        const targetEndpoint = "api/users/sign-up/";
+        const url = `${baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = {email, username, password};
 
         const responseJSON = await useHandleProxyRequest(url, method, body,);
