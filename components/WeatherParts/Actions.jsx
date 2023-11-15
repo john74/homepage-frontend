@@ -1,4 +1,6 @@
-import { toast } from "react-hot-toast";
+import {
+    useHandleProxyRequest,
+} from '@hooks';
 
 
 function Actions(props) {
@@ -6,36 +8,14 @@ function Actions(props) {
         event.preventDefault();
         event.stopPropagation();
 
-        const initOptions = {
-            cache: 'no-store',
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }
+        const method = "GET";
+        const targetEndpoint = "api/frontend/weather/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
 
-        const response = await fetch(
-            'http://localhost:3000/api/frontend/weather/',
-            initOptions
-        )
-        .catch(error => {
-            return {error: error}
-        })
+        const responseJSON = await useHandleProxyRequest(url, method);
+        if (!responseJSON) return;
 
-        if (response?.error || response?.status == 500) {
-            toast.error("It appears that our system is currently unresponsive. Please try again later.");
-            return;
-        }
-
-        const responseJSON = await response.json();
-
-        if (responseJSON?.error) {
-            toast.error(responseJSON.error);
-            return;
-        } else {
-            toast.success(responseJSON.message);
-            props.setWeatherData(responseJSON);
-        }
+        props.setWeatherData(responseJSON);
     };
 
     const forecastType = props.weatherData.forecast_type;
@@ -49,22 +29,18 @@ function Actions(props) {
         }
 
         const newDefaultType = forecastTypeSwitch[forecastType];
-        const initOptions = {
-            cache: 'no-store',
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({"forecast_type": newDefaultType}),
-        }
 
-        const response = await fetch('http://localhost:3000/api/settings/update/', initOptions);
-        if (response.ok) {
-            const responseJSON = await response.json();
-            const settings = responseJSON.settings;
-            const updatedWeatherData = { ...props.weatherData, forecast_type: settings.forecast_type };
-            props.setWeatherData(updatedWeatherData);
-        }
+        const method = "PUT";
+        const targetEndpoint = "api/settings/update/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
+        const body = {"forecast_type": newDefaultType};
+
+        const responseJSON = await useHandleProxyRequest(url, method, body);
+        if (!responseJSON) return;
+
+        const settings = responseJSON.settings;
+        const updatedWeatherData = { ...props.weatherData, forecast_type: settings.forecast_type };
+        props.setWeatherData(updatedWeatherData);
     };
 
     const forecastActionTexts = {
