@@ -18,8 +18,9 @@ function GeneralMenu(props) {
         event.preventDefault();
         event.stopPropagation();
 
-        const url = 'http://localhost:3000/api/bookmarks/bulk-create-categories/';
         const method = "POST";
+        const targetEndpoint = "api/bookmarks/bulk-create-categories/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = [{
             "name": "New Category",
             "color": "#fff"
