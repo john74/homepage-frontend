@@ -40,8 +40,9 @@ function AddBookmarkForm(props) {
         event.preventDefault();
         event.stopPropagation();
 
-        const url = 'http://localhost:3000/api/bookmarks/bulk-create';
         const method = "POST";
+        const targetEndpoint = "api/bookmarks/bulk-create/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = [formData];
 
         const responseJSON = await useHandleProxyRequest(url, method, body,);
