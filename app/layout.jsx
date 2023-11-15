@@ -9,7 +9,7 @@ const poppins = Poppins({
 });
 
 
-const RootLayout = ({ children}) => {
+const RootLayout = ({ children }) => {
     return (
         <html lang="en">
             <body className={poppins.className} suppressHydrationWarning={true}>
