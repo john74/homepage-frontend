@@ -24,15 +24,14 @@ const HomePageContainer = (props) => {
     const formVisibilityHook = useFormVisibility();
     const selectSearchEngineHook = useSelectSearchEngine();
     const currentDate = props.currentDate;
-    const {
-        formName
-    } = formVisibilityHook;
+    const { formName } = formVisibilityHook;
+    const baseUrl = globalThis?.window?.location.origin;
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
         setWeatherData, bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
         toggleMenuHook, markForDeletionHook, formVisibilityHook,
-        selectSearchEngineHook, weatherData, currentDate,
+        selectSearchEngineHook, weatherData, currentDate, baseUrl,
     }
 
     return (
