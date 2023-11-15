@@ -22,11 +22,12 @@ function Actions(props) {
         event.stopPropagation();
 
         unmark();
-        const url = 'http://localhost:3000/api/bookmarks/bulk-delete-shortcuts/';
         const method = "DELETE";
+        const targetEndpoint = "api/bookmarks/bulk-delete-shortcuts/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = {"ids": [shortcutId]};
 
-        const responseJSON = await useHandleProxyRequest(url, method, body,);
+        const responseJSON = await useHandleProxyRequest(url, method, body);
         if (!responseJSON) return;
 
         const bookmarks = responseJSON.bookmarks;
