@@ -1,15 +1,44 @@
 "use client";
+
 import styles from '../../styles/Forms.module.css';
 import Link from 'next/link';
-import { useSignUp } from "@hooks";
+import { useState } from "react";
 import { redirect } from 'next/navigation';
+
+import {
+    useHandleProxyRequest,
+} from '@hooks';
 
 
 const SignUpPage = () => {
-    const {
-        email, username, password, signUpSuccess,
-        onChange, onSubmit
-    } = useSignUp();
+    const [formData, setFormData] = useState({
+        email: '',
+        username: '',
+        password: ''
+    })
+
+    const { email, username, password } = formData;
+
+    const onChange = event => {
+        const {name, value} = event.target;
+        setFormData({ ...formData, [name]:value })
+    }
+
+    const [signUpSuccess, setSignUpSuccess] = useState(false);
+
+    const signUp = async (event)  => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const url = 'http://localhost:3000/api/users/sign-up/';
+        const method = "POST";
+        const body = {email, username, password};
+
+        const responseJSON = await useHandleProxyRequest(url, method, body,);
+        if (!responseJSON) return;
+
+        setSignUpSuccess(true);
+    }
 
     if (signUpSuccess) {
         redirect('/sign-in/');
@@ -32,7 +61,7 @@ const SignUpPage = () => {
                         <label className={styles.label} htmlFor="password">Password:</label>
                         <input className={styles.input} type="password" id="password" name="password" onChange={onChange}/>
                     </div>
-                    <input className={styles.input} type="submit" value="Sign up" onClick={onSubmit}/>
+                    <input className={styles.input} type="submit" value="Sign up" onClick={signUp}/>
                     <div className={styles.authOptions}>
                         <span className={styles.text}>Already have an account?</span>
                         <Link className={styles.link} href="/sign-in/">Sign in</Link>
