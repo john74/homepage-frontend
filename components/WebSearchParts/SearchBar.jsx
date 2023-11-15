@@ -18,8 +18,9 @@ function SearchBar(props) {
         event.preventDefault();
         event.stopPropagation();
 
-        const url = 'http://localhost:3000/api/search-engines/bulk-create/';
         const method = "POST";
+        const targetEndpoint = "api/search-engines/bulk-create/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = [{
             "name": "New Engine"
         }];
