@@ -28,8 +28,9 @@ function CategoryMenu(props) {
         event.stopPropagation();
 
         unmark();
-        const url = 'http://localhost:3000/api/bookmarks/bulk-delete-categories/';
         const method = "DELETE";
+        const targetEndpoint = "api/bookmarks/bulk-delete-categories/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = {"ids": [category.id]};
 
         const responseJSON = await useHandleProxyRequest(url, method, body,);
