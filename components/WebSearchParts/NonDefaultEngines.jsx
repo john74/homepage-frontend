@@ -32,8 +32,9 @@ function NonDefaultEngines(props) {
     let nonDefaultEngines = props.searchEngines.nonDefault;
 
     const updateDefaultSearchEngine = async () => {
-        const url = 'http://localhost:3000/api/search-engines/bulk-update';
         const method = "PUT";
+        const targetEndpoint = "api/search-engines/bulk-update/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = [{
             "id": selectedEngine.id,
             "is_default":true
