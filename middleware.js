@@ -21,32 +21,6 @@ export async function middleware(request, event) {
         });
         return response;
     }
-
-    // If no accessToken exists (indicating expiration), obtain a new one using the refreshToken,
-    // set the new accessToken in the header to fulfill the incoming request,
-    // and replace the expired accessToken with the valid one.
-    const accessToken = request.cookies.get('accessToken')?.value;
-    if (!accessToken) {
-        const res = NextResponse.redirect(new URL(path, request.url));
-        await fetch(process.env.BACKEND_REFRESH_TOKEN_URL, {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({"refresh":refreshToken})
-        })
-        .then(response => response.json())
-        .then(data => {
-            request.headers.set("accessToken", data.access);
-            res.cookies.set({
-                name: "accessToken",
-                value: data.access,
-                maxAge: parseInt(process.env.ACCESS_TOKEN_LIFETIME), // seconds
-                httpOnly: true,
-                path: "/"
-            });
-        })
-        return res;
-    }
-
 }
 
 
