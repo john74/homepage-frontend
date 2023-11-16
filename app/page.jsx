@@ -1,13 +1,9 @@
-import { getServerSession } from "next-auth";
-
-import { authOptions } from "./api/auth/[...nextauth]/route";
-import { getData } from "@lib";
+import { getPageData } from "@lib";
 import { HomePageContainer } from "@components";
 
 
 const HomePage = async () => {
-    let session = await getServerSession(authOptions);
-    const homePageData = await getData(process.env.BACKEND_HOME_URL, session);
+    const homePageData = await getPageData('home');
     const shortcuts = homePageData.shortcuts;
     const bookmarkCategoryGroups = homePageData.categories;
     const bookmarks = homePageData.bookmarks;
