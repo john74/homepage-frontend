@@ -25,7 +25,9 @@ const HomePageContainer = (props) => {
     const selectSearchEngineHook = useSelectSearchEngine();
     const currentDate = props.currentDate;
     const { formName } = formVisibilityHook;
+
     const baseUrl = globalThis?.window?.location.origin;
+    const hasWeatherData = Boolean(Object.keys(weatherData).length);
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
@@ -43,7 +45,7 @@ const HomePageContainer = (props) => {
                 <LeftSidebar {...props} />
             </div>
             <div id="right">
-                <Weather {...props} />
+                {hasWeatherData && <Weather {...props} /> }
                 <WebSearch {...props} />
                 <BookmarkCategoryGroups {...props} />
             </div>
