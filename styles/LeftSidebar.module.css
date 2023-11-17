@@ -25,7 +25,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: 20px;
     width: 100%;
 }
 
@@ -43,8 +44,8 @@
     position: absolute;
     cursor: pointer;
     opacity: 0;
-    right: 0;
-    top: -12px;
+    right: 9px;
+    top: -5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,16 +55,23 @@
     opacity: 1;
 }
 
+.shortcut .actions > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .shortcut .actions svg {
-    width: 18px;
-    height: 18px;
-    stroke: #2E3440;
+    width: 17px;
+    height: 17px;
+    fill: #E74C3C;
+    stroke: #efefef;
+    transition: all .1s ease;
 }
 
 .shortcut .confirmButton > svg {
+    width: 20px;
+    height: 20px;
     fill: #ff8000;
-}
-.shortcut .deleteButton > svg {
-    fill: #E74C3C;
-    stroke: #efefef;
+    stroke: #2E3440;
 }
