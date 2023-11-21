@@ -39,7 +39,7 @@ function EditBookmarkCategoryForm(props) {
         event.stopPropagation();
 
         const method = "PUT";
-        const targetEndpoint = "api/bookmarks/bulk-update-categories/";
+        const targetEndpoint = "api/categories/bulk-update/";
         const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = [formData];
 

@@ -23,7 +23,7 @@ function Actions(props) {
 
         unmark();
         const method = "DELETE";
-        const targetEndpoint = "api/bookmarks/bulk-delete-shortcuts/";
+        const targetEndpoint = "api/shortcuts/bulk-delete/";
         const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = {"ids": [shortcutId]};
 

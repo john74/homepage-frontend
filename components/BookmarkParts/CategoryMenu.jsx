@@ -29,7 +29,7 @@ function CategoryMenu(props) {
 
         unmark();
         const method = "DELETE";
-        const targetEndpoint = "api/bookmarks/bulk-delete-categories/";
+        const targetEndpoint = "api/categories/bulk-delete/";
         const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = {"ids": [category.id]};
 
