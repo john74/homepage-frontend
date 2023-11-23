@@ -1,9 +1,7 @@
-import { redirect } from 'next/navigation';
-
-
 function User(props) {
 
     const styles = props.styles;
+    const user = props.user;
     const {
         toggleMenu,
         openMenuId,
@@ -11,15 +9,30 @@ function User(props) {
     } = props.toggleMenuHook;
 
     const signOut = async () => {
-        console.log("sign out");
+        const initOptions = {
+            cache: "no-store",
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+
+        const response = await fetch(
+            "http://localhost:3000/api/sign-out/",
+            initOptions
+          )
+
+        const signOutSuccess = await response.redirected;
+        if (signOutSuccess) {
+            window.location.replace(response.url);
+        }
     }
 
     return (
         <>
         <div className={styles.user}>
-            <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397_640.png" alt="Profile image" onClick={(event) => toggleMenu(event, "userMenu")} />
+            <img src={user.image} alt="Profile image" onClick={(event) => toggleMenu(event, "userMenu")} />
             <ul className={`${styles.options} ${openMenuId === "userMenu" ? styles.open : ''}`} >
-                <li className={styles.option}>Settings</li>
                 <li className={styles.option} onClick={signOut}>Sign out</li>
             </ul>
         </div>
