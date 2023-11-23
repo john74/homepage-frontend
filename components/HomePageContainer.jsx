@@ -9,9 +9,8 @@ import {
 
 import {
     LeftSidebar, WebSearch, GeneralMenu, FormsContainer,
-    BookmarkCategoryGroups, Weather,
+    BookmarkCategoryGroups, Weather, NavBar
 } from "@components";
-
 
 const HomePageContainer = (props) => {
     const [bookmarks, setBookmarks] = useState(props.bookmarks);
@@ -40,14 +39,18 @@ const HomePageContainer = (props) => {
         <>
         <div id="home">
             {formName && <FormsContainer {...props} />}
-            <GeneralMenu {...props} />
-            <div id="left">
-                <LeftSidebar {...props} />
+            <div id="top">
+                <NavBar {...props} />
             </div>
-            <div id="right">
-                {hasWeatherData && <Weather {...props} /> }
-                <WebSearch {...props} />
-                <BookmarkCategoryGroups {...props} />
+            <div id="bottom">
+                <div id="left">
+                    <LeftSidebar {...props} />
+                </div>
+                <div id="right">
+                    {hasWeatherData && <Weather {...props} /> }
+                    <WebSearch {...props} />
+                    <BookmarkCategoryGroups {...props} />
+                </div>
             </div>
         </div>
         </>

@@ -19,3 +19,6 @@ export { default as WeeklyForecast } from './WeatherParts/WeeklyForecast'
 export { default as HourlyForecast } from './WeatherParts/HourlyForecast'
 export { default as WebSearchBar } from './WebSearchParts/SearchBar'
 export { default as WebSearchEngines } from './WebSearchParts/SearchEngines'
+export { default as NavBar } from './NavBar';
+export { default as NavLinks } from './NavBarParts/NavLinks';
+export { default as NavMenu } from './NavBarParts/NavMenu';
