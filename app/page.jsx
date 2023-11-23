@@ -4,6 +4,7 @@ import { HomePageContainer } from "@components";
 
 const HomePage = async () => {
     const homePageData = await getPageData('home');
+    const user = homePageData.user;
     const shortcuts = homePageData.shortcuts;
     const bookmarkCategoryGroups = homePageData.categories;
     const bookmarks = homePageData.bookmarks;
@@ -18,6 +19,7 @@ const HomePage = async () => {
     const currentDate = new Date();
 
     const props = {
+        user,
         shortcuts,
         searchEngines,
         bookmarkCategoryGroups,

@@ -18,11 +18,12 @@ const HomePageContainer = (props) => {
     const [shortcuts, setShortcuts] = useState(props.shortcuts);
     const [searchEngines, setSearchEngines] = useState(props.searchEngines);
     const [weatherData, setWeatherData] = useState(props.weatherData);
+    const currentDate = props.currentDate;
+    const user = props.user;
     const markForDeletionHook = useMarkForDeletion();
     const toggleMenuHook = useToggleMenu();
     const formVisibilityHook = useFormVisibility();
     const selectSearchEngineHook = useSelectSearchEngine();
-    const currentDate = props.currentDate;
     const { formName } = formVisibilityHook;
 
     const baseUrl = globalThis?.window?.location.origin;
@@ -31,8 +32,8 @@ const HomePageContainer = (props) => {
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
         setWeatherData, bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
-        toggleMenuHook, markForDeletionHook, formVisibilityHook,
-        selectSearchEngineHook, weatherData, currentDate, baseUrl,
+        toggleMenuHook, markForDeletionHook, formVisibilityHook, selectSearchEngineHook,
+        weatherData, currentDate, baseUrl, user,
     }
 
     return (
