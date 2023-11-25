@@ -1,27 +1,30 @@
 import {
-    NoBookmarks, BookmarkActions,
+    NoBookmarks, SubCategory, Bookmark,
 } from '.';
 
 
 function CategoryBody(props) {
     const styles = props.styles;
     const category = props.category;
-    const bookmarks = props.bookmarks[category.id];
+    const showSubCategories = props.settings.show_bookmark_sub_categories;
+    const subCategories = props.bookmarkSubCategoryGroups[category.id];
 
+    if (showSubCategories) {
+        return (
+            <>
+            {subCategories.map((subCategory, index) => (
+                <SubCategory key={`${category.id}+${index}`} styles={styles} subCategory={subCategory} {...props} />
+            ))}
+            </>
+        );
+    }
+
+    const bookmarks = props.bookmarks[category.id];
     if (!bookmarks?.length) {
         return <NoBookmarks styles={styles} {...props} />;
     }
 
-    return (
-        <div className={styles.bookmarks}>
-            {bookmarks.map(bookmark => (
-                <div className={styles.bookmark} key={bookmark.id}>
-                    <a className={styles.name} href={bookmark.url} target="_blank" rel="noopener noreferrer">{bookmark.name}</a>
-                    <BookmarkActions styles={styles} bookmark={bookmark} {...props} />
-                </div>
-            ))}
-        </div>
-    );
+    return <Bookmark styles={styles} bookmarksArray={bookmarks} {...props} />
 }
 
 export default CategoryBody;
