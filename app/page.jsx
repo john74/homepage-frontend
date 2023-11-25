@@ -8,6 +8,7 @@ const HomePage = async () => {
     const settings = homePageData.settings;
     const shortcuts = homePageData.shortcuts;
     const bookmarkCategoryGroups = homePageData.categories;
+    const bookmarkSubCategoryGroups = homePageData.sub_categories;
     const bookmarks = homePageData.bookmarks;
     const searchEngines = homePageData.search_engines;
     const weatherData = homePageData.weather;
@@ -25,6 +26,7 @@ const HomePage = async () => {
         shortcuts,
         searchEngines,
         bookmarkCategoryGroups,
+        bookmarkSubCategoryGroups,
         bookmarks,
         weatherData,
         currentDate,

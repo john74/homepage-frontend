@@ -15,6 +15,7 @@ import {
 const HomePageContainer = (props) => {
     const [bookmarks, setBookmarks] = useState(props.bookmarks);
     const [bookmarkCategoryGroups, setBookmarkCategoryGroups] = useState(props.bookmarkCategoryGroups);
+    const [bookmarkSubCategoryGroups, setBookmarkSubCategoryGroups] = useState(props.bookmarkSubCategoryGroups);
     const [shortcuts, setShortcuts] = useState(props.shortcuts);
     const [searchEngines, setSearchEngines] = useState(props.searchEngines);
     const [weatherData, setWeatherData] = useState(props.weatherData);
@@ -32,9 +33,9 @@ const HomePageContainer = (props) => {
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
-        setWeatherData, bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
+        setWeatherData, setBookmarkSubCategoryGroups, bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
         toggleMenuHook, markForDeletionHook, formVisibilityHook, selectSearchEngineHook,
-        weatherData, currentDate, baseUrl, user, settings,
+        weatherData, currentDate, baseUrl, user, settings, bookmarkSubCategoryGroups,
     }
 
     return (
