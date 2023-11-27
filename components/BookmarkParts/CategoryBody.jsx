@@ -12,9 +12,11 @@ function CategoryBody(props) {
     if (showSubCategories) {
         return (
             <>
-            {subCategories.map((subCategory, index) => (
-                <SubCategory key={`${category.id}+${index}`} styles={styles} subCategory={subCategory} {...props} />
-            ))}
+            <div className={styles.bookmarkSubCategories}>
+                {subCategories.map((subCategory, index) => (
+                    <SubCategory key={`${category.id}+${index}`} styles={styles} subCategory={subCategory} {...props} />
+                ))}
+            </div>
             </>
         );
     }
