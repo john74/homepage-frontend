@@ -8,10 +8,7 @@ function NavLinks(props) {
     return (
         <>
         <div className={styles.links}>
-            <Link className={styles.link} href="http://localhost:3000/">Home</Link>
-            <Link className={styles.link} href="http://localhost:3000/">News</Link>
-            <Link className={styles.link} href="http://localhost:3000/">Sports</Link>
-            <Link className={styles.link} href="http://localhost:3000/">Prices</Link>
+            <Link className={styles.link} href="#">Home</Link>
         </div>
         </>
     )
