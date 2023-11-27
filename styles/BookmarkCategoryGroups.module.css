@@ -66,6 +66,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    row-gap: 5px;
     width: 14.2%;
 }
 
@@ -232,6 +233,146 @@
     width: 13px;
     height: 13px;
 }
+
+/* ======== Subcategories ======== */
+.bookmarkSubCategories {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    max-height: 181px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.bookmarkSubCategory > .top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 88.6%;
+}
+
+.bookmarkSubCategory > .bookmarks {
+    position: absolute;
+    z-index: 3;
+    height: fit-content;
+    width: 86%;
+    border-radius: 5px;
+    background-color: #efefef;
+}
+
+.bookmarkSubCategory .bookmark > .name {
+    background-color: #efefef;
+}
+
+.bookmarkSubCategory .bookmark > .actions {
+    background-color: #efefef;
+    width: 98%;
+}
+
+.bookmarkSubCategory .subCategoryName {
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    font-size: 13px;
+    width: 92%;
+    background-color: #f9f9f9;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.bookmarkSubCategory .subCategoryName:hover {
+    color: #2ac885;
+}
+
+.bookmarkSubCategory .actions {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    z-index: 1;
+    background-color: #f9f9f9;
+}
+
+.bookmarkSubCategory .actions:hover {
+    z-index: 3;
+}
+
+.bookmarkSubCategory .actions > .icon {
+    cursor: pointer;
+    opacity: 0;
+}
+
+.bookmarkSubCategory .bookmark:hover .actions > .icon,
+.bookmarkSubCategory .top:hover .actions > .icon {
+    opacity: 1;
+}
+
+.bookmarkSubCategory .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 94%;
+}
+
+.bookmarkSubCategory .buttons > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 2px 9px;
+    border-radius: 5px;
+    flex: 0;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.bookmarkSubCategory .editButton {
+    background-color: #2ac885;
+}
+
+.bookmarkSubCategory .deleteButton {
+    background-color: #E74C3C;
+}
+
+.bookmarkSubCategory .confirmButton {
+    background-color: #ff8000;
+}
+
+.bookmarkSubCategory  svg {
+    width: 13px;
+    height: 13px;
+}
+
+/* Firefox */
+.bookmarkSubCategories:hover {
+    scrollbar-width: thin;
+    scrollbar-color: #efefef;
+  }
+
+  /* Chrome, Edge and Safari */
+  .bookmarkSubCategories::-webkit-scrollbar {
+    height: 10px;
+    width: 2px;
+  }
+
+  .bookmarkSubCategories::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: transparent;
+  }
+
+  .bookmarkSubCategories:hover::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #efefef;
+  }
+
+  .bookmarkSubCategories::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+  }
+
+  .bookmarkSubCategories:hover::-webkit-scrollbar-thumb {
+    background-color: #2E3440;
+  }
 
 /* ======== Category Menu ======== */
 .bookmarkCategory > .actions:not(.open) {
