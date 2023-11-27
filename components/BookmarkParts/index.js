@@ -8,3 +8,4 @@ export { default as NoBookmarks } from './NoBookmarks';
 export { default as BookmarkActions } from './BookmarkActions';
 export { default as SubCategory } from './SubCategory';
 export { default as Bookmark } from './Bookmark';
+export { default as SubCategoryActions } from './SubCategoryActions';
