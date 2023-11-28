@@ -1,5 +1,8 @@
 import { getPageData } from "@lib";
 import { HomePageContainer } from "@components";
+import {
+    headers
+} from "next/headers";
 
 
 const HomePage = async () => {
@@ -19,6 +22,9 @@ const HomePage = async () => {
         such as in the Weather component, during the initial page render.
     */
     const currentDate = new Date();
+    const domain = headers()?.get("x-forwarded-host");
+    const protocol = headers()?.get("x-forwarded-proto");
+    const baseUrl = `${protocol}://${domain}`;
 
     const props = {
         user,
@@ -30,6 +36,7 @@ const HomePage = async () => {
         bookmarks,
         weatherData,
         currentDate,
+        baseUrl,
     };
 
     return (

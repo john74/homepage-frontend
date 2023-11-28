@@ -28,7 +28,7 @@ const HomePageContainer = (props) => {
     const selectSearchEngineHook = useSelectSearchEngine();
     const { formName } = formVisibilityHook;
 
-    const baseUrl = globalThis?.window?.location.origin;
+    const baseUrl = props.baseUrl;
     const hasWeatherData = Boolean(Object.keys(weatherData).length);
 
     props = {
