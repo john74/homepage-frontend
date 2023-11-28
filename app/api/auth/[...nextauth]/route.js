@@ -8,7 +8,7 @@ export const authOptions = {
         CredentialsProvider({
             async authorize(credentials, req) {
                 const { email, password } = credentials;
-                const signInResponse = await fetch(process.env.BACKEND_SIGN_IN_URL, {
+                const signInResponse = await fetch(`${process.env.BACKEND_URL}/api/users/sign-in/`, {
                     cache: 'no-store',
                     method: "POST",
                     credentials: "include",
@@ -38,23 +38,25 @@ export const authOptions = {
                 const setCookieValue = response.headers.get('set-cookie');
 
                 const accessTokenMatch = setCookieValue.match(/accessToken=([^;]+)/);
+                const accessTokenLifetime = responseJSON["access_token_lifetime"];
                 if (accessTokenMatch && accessTokenMatch[1]) {
                     cookies().set({
                         name: "accessToken",
                         value: accessTokenMatch[1],
                         httpOnly: true,
-                        maxAge: parseInt(process.env.ACCESS_TOKEN_LIFETIME), // seconds
+                        maxAge: accessTokenLifetime, // seconds
                         path: "/"
                     })
                 }
 
                 const refreshTokenMatch = setCookieValue.match(/refreshToken=([^;]+)/);
+                const refreshTokenLifetime = responseJSON["refresh_token_lifetime"];
                 if (refreshTokenMatch && refreshTokenMatch[1]) {
                     cookies().set({
                         name: "refreshToken",
                         value: refreshTokenMatch[1],
                         httpOnly: true,
-                        maxAge: parseInt(process.env.REFRESH_TOKEN_LIFETIME), // seconds
+                        maxAge: refreshTokenLifetime, // seconds
                         path: "/"
                     })
                 }
