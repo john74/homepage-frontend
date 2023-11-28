@@ -18,6 +18,16 @@
     padding: 2%;
 }
 
+.wrapper > p {
+    text-align: right;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.wrapper > p:hover {
+    color: #2ac885;
+}
+
 /* Firefox */
 .wrapper:hover {
     scrollbar-width: thin;
@@ -104,7 +114,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 5px;
-    height: 100%;
+    height: 75%;
     padding: 4px;
     overflow-x: hidden;
     background-color: #f9f9f9;
@@ -417,7 +427,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 25px;
+    font-size: 21px;
     color: #2e34402e;
 }
 
