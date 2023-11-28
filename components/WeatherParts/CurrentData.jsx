@@ -7,18 +7,40 @@ function CurrentData(props) {
     const currentData = props.weatherData.current;
     const units = props.weatherData.units;
 
-    function getCurrentTime() {
+    function getCurrentDateTime() {
         const now = new Date();
+        const weekDay = now.toLocaleString('en-US', { weekday: 'long' });
+        const monthDay = now.getDate();
+        const month = now.toLocaleString('en-US', { month: 'long' });
+        const year = now.getFullYear();
         const hours = now.getHours().toString().padStart(2, '0');
         const minutes = now.getMinutes().toString().padStart(2, '0');
-        return `${hours}:${minutes}`;
+        return {
+            "weekDay": weekDay,
+            "monthDay": monthDay,
+            "month": month,
+            "year": year,
+            "hours": hours,
+            "minutes": minutes,
+        }
       }
 
     const currentDate = props.currentDate;
+    const weekDay = currentDate.toLocaleString('en-US', { weekday: 'long' });
+    const monthDay = currentDate.getDate();
+    const month = currentDate.toLocaleString('en-US', { month: 'long' });
+    const year = currentDate.getFullYear();
     const hours = currentDate.getHours().toString().padStart(2, '0');
     const minutes = currentDate.getMinutes().toString().padStart(2, '0');
 
-    const [currentTime, setCurrentTime] = useState(`${hours}:${minutes}`);
+    const [currentDateTime, setCurrentDateTime] = useState({
+        "weekDay": weekDay,
+        "monthDay": monthDay,
+        "month": month,
+        "year": year,
+        "hours": hours,
+        "minutes": minutes,
+    });
 
     useEffect(() => {
         /*
@@ -29,24 +51,24 @@ function CurrentData(props) {
         */
         const interval = 60000 - new Date().getSeconds() * 1000;
         const intervalId = setInterval(() => {
-            setCurrentTime(getCurrentTime());
+            setCurrentDateTime(getCurrentDateTime());
         }, interval);
 
         return () => clearInterval(intervalId);
-    }, [currentTime]);
+    }, [currentDateTime]);
 
     return (
         <>
         <div className={styles.currentData}>
             <div className={`${styles.group} ${styles.date}`}>
-                <span className={styles.weekDay}>{currentData.week_day}</span>
-                <span className={styles.monthDay}>{currentData.month_day}</span>
-                <span className={styles.month}>{currentData.month}</span>
-                <span className={styles.year}>{currentData.year}</span>
+                <span className={styles.weekDay}>{currentDateTime.weekDay}</span>
+                <span className={styles.monthDay}>{currentDateTime.monthDay}</span>
+                <span className={styles.month}>{currentDateTime.month}</span>
+                <span className={styles.year}>{currentDateTime.year}</span>
             </div>
 
             <div className={`${styles.group} ${styles.time}`}>
-                <span className={styles.hour}>{currentTime}</span>
+                <span className={styles.hour}>{`${currentDateTime.hours}:${currentDateTime.minutes}`}</span>
             </div>
 
             <div className={`${styles.group} ${styles.location}`}>
