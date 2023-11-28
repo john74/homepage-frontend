@@ -8,7 +8,7 @@ import {
 } from '@hooks';
 
 import {
-    LeftSidebar, WebSearch, GeneralMenu, FormsContainer,
+    LeftSidebar, WebSearch, FormsContainer,
     BookmarkCategoryGroups, Weather, NavBar
 } from "@components";
 
