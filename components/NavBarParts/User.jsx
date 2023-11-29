@@ -28,10 +28,13 @@ function User(props) {
         }
     }
 
+    const userImage = user.image;
+
     return (
         <>
         <div className={styles.user}>
-            <img src={user.image} alt="Profile image" onClick={(event) => toggleMenu(event, "userMenu")} />
+            {userImage && <img src={user.image} alt="Profile image" onClick={(event) => toggleMenu(event, "userMenu")} />}
+            {!userImage && <p title="Profile image" onClick={(event) => toggleMenu(event, "userMenu")}>{user.initial_letter}</p>}
             <ul className={`${styles.options} ${openMenuId === "userMenu" ? styles.open : ''}`} >
                 <li className={styles.option} onClick={signOut}>Sign out</li>
             </ul>

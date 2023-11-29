@@ -46,6 +46,20 @@
     height: 35px;
     width: 35px;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.user > p {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: #2ac885;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .user > .options {
