@@ -68,7 +68,7 @@ function CurrentData(props) {
             </div>
 
             <div className={`${styles.group} ${styles.time}`}>
-                <span className={styles.hour}>{`${currentDateTime.hours}:${currentDateTime.minutes}`}</span>
+                <span className={styles.hour} suppressHydrationWarning={true}>{`${currentDateTime.hours}:${currentDateTime.minutes}`}</span>
             </div>
 
             <div className={`${styles.group} ${styles.location}`}>
