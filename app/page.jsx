@@ -21,7 +21,10 @@ const HomePage = async () => {
         This ensures consistency when using the date across the application,
         such as in the Weather component, during the initial page render.
     */
-    const currentDate = new Date();
+
+    const timeOffset = new Date().getTime() + 60 * 60 * 1000;
+    const currentDate = new Date(timeOffset);
+
     const domain = headers()?.get("x-forwarded-host");
     const protocol = headers()?.get("x-forwarded-proto");
     const baseUrl = `${protocol}://${domain}`;
