@@ -18,13 +18,17 @@
     padding: 2%;
 }
 
-.wrapper > p {
-    text-align: right;
+.wrapper > .menu {
+    display: flex;
+    justify-content: flex-end;
     font-size: 11px;
+}
+
+.wrapper > .menu > span {
     cursor: pointer;
 }
 
-.wrapper > p:hover {
+.wrapper > .menu > span:hover {
     color: #2ac885;
 }
 

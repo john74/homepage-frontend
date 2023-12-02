@@ -37,7 +37,9 @@ function BookmarkCategoryGroups(props) {
         <>
         <div className={styles.bookmarkCategoryGroups}>
             <div className={styles.wrapper}>
-                <p onClick={createBookmarkCategory}>Add new category</p>
+                <div className={styles.menu}>
+                    <span onClick={createBookmarkCategory}>Add new category</span>
+                </div>
                 {groups.map((group, index) => (
                     <CategoriesGroup key={`bookmark-category-group-${index}`} styles={styles} group={group} {...props} />
                 ))}
