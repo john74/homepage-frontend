@@ -9,7 +9,7 @@ function CategoryBody(props) {
     const showSubCategories = props.settings.show_bookmark_sub_categories;
     const subCategories = props.bookmarkSubCategoryGroups[category.id];
 
-    if (showSubCategories) {
+    if (showSubCategories && subCategories) {
         return (
             <>
             <div className={styles.bookmarkSubCategories}>
