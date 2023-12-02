@@ -5,7 +5,7 @@ Welcome to the frontend repository of the Personal Homepage project. This reposi
 ## Project Overview
 
 The Personal Homepage allows users to:
-- Organize bookmarks into categories and subcategories.
+- Organize bookmarks into categories.
 - Create shortcuts for quick access to bookmarks.
 - Access current weather data and forecasts.
 
