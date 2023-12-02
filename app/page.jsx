@@ -23,7 +23,7 @@ const HomePage = async () => {
     */
 
     const timeOffset = new Date().getTime() + 60 * 60 * 1000;
-    const currentDate = new Date(timeOffset);
+    const currentDate = new Date();
 
     const domain = headers()?.get("x-forwarded-host");
     const protocol = headers()?.get("x-forwarded-proto");
