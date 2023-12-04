@@ -5,6 +5,7 @@ Welcome to the frontend repository of the Personal Homepage project. This reposi
 ## Project Overview
 
 The Personal Homepage allows users to:
+- Search the web using predefined search engines or add new search engines.
 - Organize bookmarks into categories.
 - Create shortcuts for quick access to bookmarks.
 - Access current weather data and forecasts.
