@@ -1,6 +1,6 @@
 # Thikee Frontend
 
-Welcome to the frontend repository of Thikee. This repository contains the Next.js-based frontend code responsible for creating a personalized homepage with bookmark management and weather data integration.
+Welcome to the frontend repository of Thikee. This repository, currently a work-in-progress (WIP) project, contains the Next.js-based frontend code responsible for creating a personalized homepage with bookmark management and weather data integration.
 
 ## Project Overview
 
@@ -15,3 +15,12 @@ Thikee allows users to:
 1. Refactor the codebase for better maintainability.
 2. Integrate a UI library for a modern and responsive design.
 3. Implement the ability for users to add bookmark subcategories.
+
+## How to Run
+
+1. Install dependencies:
+   ```bash
+   npm install
+2. Run the development server:
+   ```bash
+   npm run dev
