@@ -21,6 +21,11 @@ Thikee allows users to:
 1. Install dependencies:
    ```bash
    npm install
-2. Run the development server:
+
+2. Rename environment file
+   ```bash
+   mv .env.local.example .env.local
+
+3. Run the development server:
    ```bash
    npm run dev
