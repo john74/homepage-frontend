@@ -20,17 +20,19 @@ Thikee allows users to:
 
 ## How to Run
 
-1. **Install dependencies:**
+1. **Clone the repository:**
+   ```bash
+   git clone git@github.com:john74/thikee-frontend.git ; cd thikee-frontend
+
+2. **Install dependencies:**
    ```bash
    npm install
 
-2. **Rename environment file**
+3. **Rename environment file**
    ```bash
    mv .env.local.example .env.local
-
-3. **Generate keys for environment variables:**
-   ```bash
-   openssl rand -base64 32
+- Generate new keys using openssl rand -base64 32.
+- Replace the existing values of the environment variables in the .env file or use the predefined values.
 
 4. **Run the development server:**
    ```bash
