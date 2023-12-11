@@ -20,15 +20,19 @@ Thikee allows users to:
 
 ## How to Run
 
-1. Install dependencies:
+1. **Install dependencies:**
    ```bash
    npm install
 
-2. Rename environment file
+2. **Rename environment file**
    ```bash
    mv .env.local.example .env.local
 
-3. Run the development server:
+3. **Generate keys for environment variables:**
+   ```bash
+   openssl rand -base64 32
+
+4. **Run the development server:**
    ```bash
    npm run dev
 
