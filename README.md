@@ -29,3 +29,5 @@ Thikee allows users to:
 3. Run the development server:
    ```bash
    npm run dev
+
+Open your web browser and navigate to http://localhost:3000/ to access the application.
