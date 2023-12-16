@@ -9,7 +9,7 @@ function Actions(props) {
         event.stopPropagation();
 
         const method = "GET";
-        const targetEndpoint = "api/frontend/weather/";
+        const targetEndpoint = "api/weather/";
         const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
 
         const responseJSON = await useHandleProxyRequest(url, method);
