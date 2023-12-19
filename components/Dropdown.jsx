@@ -3,20 +3,23 @@ function Dropdown(props) {
     const options = props.options;
 
     const {
-        selectedItem,
         setSelectedItem,
     } = props.selectItemHook;
 
     const {
         openMenuId,
-        setOpenMenuId,
     } = props.toggleMenuHook;
+
+
+    const handleClick = (event, option) => {
+        option?.onClick ? option.onClick(event) : setSelectedItem(option);
+      };
 
     return (
         <>
         <ul className={`${styles.dropdown} ${openMenuId === props.id ? styles.open : ''}`}>
             {options.map((option, index) => (
-                <li key={option.id} className={styles.option} onClick={(event) => setSelectedItem(option)}>
+                <li key={option?.id + option?.name + index} className={styles.option} onClick={(event) => handleClick(event, option)}>
                 {option.name}
                 </li>
             ))}
