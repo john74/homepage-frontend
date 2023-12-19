@@ -24,4 +24,6 @@ export { default as NavMenu } from './NavBarParts/NavMenu';
 export { default as Dropdown } from './Dropdown';
 export { default as Select } from './Select';
 export { default as Input } from './Input';
-export { DropdownArrow } from './SvgN';
+export { default as Menu } from './Menu';
+export { DropdownArrow } from './Icons';
+export { MenuIcon } from './Icons';
