@@ -5,6 +5,7 @@ import { useState } from 'react';
 import {
     useMarkForDeletion, useToggleMenu,
     useFormVisibility, useSelectSearchEngine,
+    useSelectItem,
 } from '@hooks';
 
 import {
@@ -26,6 +27,7 @@ const HomePageContainer = (props) => {
     const toggleMenuHook = useToggleMenu();
     const formVisibilityHook = useFormVisibility();
     const selectSearchEngineHook = useSelectSearchEngine();
+    const selectItemHook = useSelectItem();
     const { formName } = formVisibilityHook;
 
     const baseUrl = props.baseUrl;
@@ -33,7 +35,7 @@ const HomePageContainer = (props) => {
 
     props = {
         setSearchEngines, setBookmarks, setBookmarkCategoryGroups, setShortcuts,
-        setWeatherData, setBookmarkSubCategoryGroups, bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
+        setWeatherData, setBookmarkSubCategoryGroups, selectItemHook, bookmarkCategoryGroups, bookmarks, shortcuts, searchEngines,
         toggleMenuHook, markForDeletionHook, formVisibilityHook, selectSearchEngineHook,
         weatherData, currentDate, baseUrl, user, settings, bookmarkSubCategoryGroups,
     }

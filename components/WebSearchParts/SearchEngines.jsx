@@ -1,6 +1,7 @@
 import {
-    DefaultEngine, NonDefaultEngines
+NonDefaultEngines
 } from './';
+
 
 function SearchEngines(props) {
     const styles = props.styles;
@@ -14,7 +15,6 @@ function SearchEngines(props) {
     return (
         <>
         <div className={styles.searchEngines} onClick={(event) => toggleMenu(event, "webSearchMenu")}>
-            <DefaultEngine styles={styles} {...props} />
             <NonDefaultEngines styles={styles} {...props} />
         </div>
         </>

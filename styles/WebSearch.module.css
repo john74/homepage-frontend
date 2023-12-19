@@ -53,13 +53,6 @@
     margin-left: 3px;
 }
 
-.webSearch form {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 40%;
-}
-
 
 
 /* NEW */
@@ -198,4 +191,79 @@
 .confirmButton {
     background-color: #ff8000;
     animation: countdown 5s linear;
+}
+
+/* ======= NEW ========= */
+.webSearch form {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 40%;
+    padding: 12px;
+    background-color: #efefef;
+    border-radius: 5px;
+    height: 20px;
+}
+
+.webSearch [type="search"] {
+    width: 100%;
+    font-size: 15px;
+    letter-spacing: .4px;
+}
+
+.webSearch [type="search"]:focus-visible {
+    outline: none;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ff8000;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.select > .dropdown {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    row-gap: 10px;
+    text-align: left;
+    background-color: #2ac885;
+    top: 40px;
+    min-width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.select > .dropdown.open {
+    display: flex;
+}
+
+.select > .dropdown > .option {
+    cursor: pointer;
+}
+
+.select > .default {
+    display: flex;
+    align-items: center;
+    min-width: 100px;
+    justify-content: space-between;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.select > .default > .name {
+    width: 100%;
+    text-align: center;
+}
+
+.select > .default > .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 13px;
+    cursor: pointer;
 }
