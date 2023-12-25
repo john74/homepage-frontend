@@ -25,5 +25,7 @@ export { default as Dropdown } from './Dropdown';
 export { default as Select } from './Select';
 export { default as Input } from './Input';
 export { default as Menu } from './Menu';
+export { default as Actions } from './Actions';
+export { default as Buttonn } from './Buttonn';
 export { DropdownArrow } from './Icons';
 export { MenuIcon } from './Icons';

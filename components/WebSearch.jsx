@@ -71,9 +71,25 @@ function WebSearch(props) {
         <>
         <div className={styles.webSearch}>
             <form className={styles.form} action={defaultEngine.url} method={defaultEngine.method}>
-                <Select styles={styles} defaultValue={defaultEngine.name} options={nonDefaultEngines} id="searchEnginesMenu" {...props}/>
-                <Input styles={styles} type="search" name={defaultEngine.name_attribute} {...props} />
-                <Menu styles={styles} options={menuOptions} id="webSearchMenu" {...props} />
+                <Select
+                    styles={styles}
+                    defaultValue={defaultEngine.name}
+                    options={nonDefaultEngines}
+                    id="searchEnginesMenu"
+                    {...props}
+                />
+                <Input
+                    styles={styles}
+                    type="search"
+                    name={defaultEngine.name_attribute}
+                    {...props}
+                />
+                <Menu
+                    styles={styles}
+                    options={menuOptions}
+                    id="webSearchMenu"
+                    {...props}
+                />
             </form>
         </div>
         </>

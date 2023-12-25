@@ -239,6 +239,10 @@
     padding: 10px;
 }
 
+.select > .dropdown {
+    width: 150px;
+}
+
 .menu > .dropdown.open,
 .select > .dropdown.open {
     display: flex;
@@ -246,6 +250,9 @@
 
 .menu > .dropdown > .option,
 .select > .dropdown > .option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     cursor: pointer;
 }
 

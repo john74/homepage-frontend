@@ -20,7 +20,7 @@ function Dropdown(props) {
         <ul className={`${styles.dropdown} ${openMenuId === props.id ? styles.open : ''}`}>
             {options.map((option, index) => (
                 <li key={option?.id + option?.name + index} className={styles.option} onClick={(event) => handleClick(event, option)}>
-                {option.name}
+                    <span>{option.name}</span>
                 </li>
             ))}
         </ul>
