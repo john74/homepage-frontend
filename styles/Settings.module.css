@@ -1,0 +1,58 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 20px;
+}
+
+.section > .title {
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #00000040;
+    padding: 10px 0;
+}
+
+.section > .actionButtons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.actionButtons > button {
+    padding: 5px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.actionButtons > .deleteButton {
+    background-color: #ff0000b8;
+}
+
+.actionButtons > .editButton {
+    background-color: #0000ff69;
+}
+
+.actionButtons > .createButton {
+    background-color: #2ac885;
+}
+
+.categories {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category > .label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}

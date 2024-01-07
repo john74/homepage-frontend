@@ -1,3 +1,6 @@
+import Link from 'next/link';
+
+
 function User(props) {
 
     const styles = props.styles;
@@ -37,6 +40,7 @@ function User(props) {
             {!userImage && <p title="Profile image" onClick={(event) => toggleMenu(event, "userMenu")}>{user.initial_letter}</p>}
             <ul className={`${styles.options} ${openMenuId === "userMenu" ? styles.open : ''}`} >
                 <li className={styles.option} onClick={signOut}>Sign out</li>
+                <Link className={styles.link} href="/settings/">Settings</Link>
             </ul>
         </div>
         </>
