@@ -12,9 +12,9 @@ function BookmarkCategories(props) {
         openForm
     } = props.formVisibilityHook;
 
-    const handleCategoryIds = (categoryId) => {
-        const isSelected = selectedCategories.includes(categoryId);
-        let updatedCategoryIds = isSelected ? selectedCategories.filter(id => id != categoryId) : [...selectedCategories, categoryId];
+    const handleCategories = (clickedCategory) => {
+        const isSelected = selectedCategories.includes(clickedCategory);
+        let updatedCategoryIds = isSelected ? selectedCategories.filter(category => category != clickedCategory) : [...selectedCategories, clickedCategory];
         setSelectedCategories(updatedCategoryIds);
     }
 
@@ -66,7 +66,7 @@ function BookmarkCategories(props) {
                 {categories.map(category => (
                     <li className={styles.category} key={category.id}>
                         <label className={styles.label}>
-                            <input className={styles.checkbox} type="checkbox" value={category} checked={selectedCategories.includes(category)} onChange={() => handleCategoryIds(category)}/>
+                            <input className={styles.checkbox} type="checkbox" value={category} checked={selectedCategories.includes(category)} onChange={() => handleCategories(category)}/>
                             <span className={styles.name}>{category.name}</span>
                         </label>
                     </li>
