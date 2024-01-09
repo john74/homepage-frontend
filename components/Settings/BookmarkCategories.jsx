@@ -31,17 +31,32 @@ function BookmarkCategories(props) {
 
         const groupedCategories = responseJSON.categories;
         const categories = groupedCategories.flat();
+        setSelectedCategories([]);
         props.setBookmarkCategories(categories);
     }
 
     const handleEdit = async () => {
         if (selectedCategories.length != 1) return;
         const category = selectedCategories[0];
+        setSelectedCategories([]);
         openForm("editBookmarkCategoryForm", category);
     }
 
     const handleCreate = async () => {
-        console.log("CREATE CATS");
+        const method = "POST";
+        const targetEndpoint = "api/categories/bulk-create/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
+        const body = [{
+            "name": "New Category",
+            "color": "#fff"
+        }];
+
+        const responseJSON = await useHandleProxyRequest(url, method, body,);
+        if (!responseJSON) return;
+
+        const groupedCategories = responseJSON.categories;
+        const categories = groupedCategories.flat();
+        props.setBookmarkCategories(categories);
     }
 
 
