@@ -18,12 +18,8 @@ function EditBookmarkCategoryForm(props) {
         closeForm
     } = props.formVisibilityHook;
 
-    const {
-        lastSelectedId
-    } = props.toggleMenuHook;
-
     const [formData, setFormData] = useState({
-        id: lastSelectedId,
+        id: selectedItem.id,
         name: selectedItem.name,
         color: selectedItem.color
       });
@@ -46,8 +42,9 @@ function EditBookmarkCategoryForm(props) {
         const responseJSON = await useHandleProxyRequest(url, method, body,);
         if (!responseJSON) return;
 
-        const grouped_categories = responseJSON.categories;
-        props.setBookmarkCategoryGroups(grouped_categories);
+        const groupedCategories = responseJSON.categories;
+        const categories = groupedCategories.flat();
+        props.setBookmarkCategories(categories);
         closeForm();
     };
 

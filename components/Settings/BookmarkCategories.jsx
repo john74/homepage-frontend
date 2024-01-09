@@ -8,6 +8,9 @@ function BookmarkCategories(props) {
     const styles = props.styles;
     const categories = props.bookmarkCategories;
     const [selectedCategories, setSelectedCategories] = useState([]);
+    const {
+        openForm
+    } = props.formVisibilityHook;
 
     const handleCategoryIds = (categoryId) => {
         const isSelected = selectedCategories.includes(categoryId);
@@ -21,7 +24,7 @@ function BookmarkCategories(props) {
         const method = "DELETE";
         const targetEndpoint = "api/categories/bulk-delete/";
         const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
-        const body = {"ids": selectedCategories};
+        const body = {"ids": selectedCategories.map(category => category.id)};
 
         const responseJSON = await useHandleProxyRequest(url, method, body,);
         if (!responseJSON) return;
@@ -32,8 +35,9 @@ function BookmarkCategories(props) {
     }
 
     const handleEdit = async () => {
-        if (!selectedCategories.length) return;
-        console.log("EDIT CATS");
+        if (selectedCategories.length != 1) return;
+        const category = selectedCategories[0];
+        openForm("editBookmarkCategoryForm", category);
     }
 
     const handleCreate = async () => {
@@ -62,7 +66,7 @@ function BookmarkCategories(props) {
                 {categories.map(category => (
                     <li className={styles.category} key={category.id}>
                         <label className={styles.label}>
-                            <input className={styles.checkbox} type="checkbox" value={category} onChange={() => handleCategoryIds(category.id)}/>
+                            <input className={styles.checkbox} type="checkbox" value={category} checked={selectedCategories.includes(category)} onChange={() => handleCategoryIds(category)}/>
                             <span className={styles.name}>{category.name}</span>
                         </label>
                     </li>
