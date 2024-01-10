@@ -6,16 +6,22 @@ import {
 
 function BookmarkSubCategories(props) {
     const styles = props.styles;
+    const categories = props.bookmarkCategories;
     const subCategories = props.bookmarkSubCategories;
     const [selectedSubCategories, setSelectedSubCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState([]);
     const {
         openForm
     } = props.formVisibilityHook;
 
-    const handleSubCategories = (clickedSubCategory) => {
-        const isSelected = selectedSubCategories.includes(clickedSubCategory);
-        let updatedCategoryIds = isSelected ? selectedSubCategories.filter(category => category != clickedSubCategory) : [...selectedSubCategories, clickedSubCategory];
-        setSelectedSubCategories(updatedCategoryIds);
+    const handleSelectedCategory = (category) => {
+        setSelectedCategory(category);
+    }
+
+    const handleSelectedSubCategories = (selectedSubCategory) => {
+        const isSelected = selectedSubCategories.includes(selectedSubCategory);
+        let updatedSubCategoryIds = isSelected ? selectedSubCategories.filter(subCategory => subCategory != selectedSubCategory) : [...selectedSubCategories, selectedSubCategory];
+        setSelectedSubCategories(updatedSubCategoryIds);
     }
 
     const handleDelete = async (event) => {
@@ -42,7 +48,10 @@ function BookmarkSubCategories(props) {
     }
 
     const handleEdit = async () => {
-        console.log("SUB EDIT");
+        if (selectedSubCategories.length != 1) return;
+        const subCategory = selectedSubCategories[0];
+        setSelectedSubCategories([]);
+        openForm("editBookmarkSubCategoryForm", subCategory);
     }
 
     const handleCreate = async () => {
@@ -50,7 +59,7 @@ function BookmarkSubCategories(props) {
         const targetEndpoint = "api/sub-categories/bulk-create/";
         const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
         const body = [{
-            "category": "5ec20d70-3737-407e-9a8b-1042b4b58c90",
+            "category": selectedCategory?.id,
             "name": "New Sub Category for Communities"
         }];
 
@@ -87,10 +96,17 @@ function BookmarkSubCategories(props) {
                 )}
             </div>
             <ul className={styles.categories}>
+                {categories.map(category => (
+                    <li className={styles.category} key={category.id}>
+                        <span onClick={() => handleSelectedCategory(category)}>{category.name}</span>
+                    </li>
+                ))}
+            </ul>
+            <ul className={styles.categories}>
                 {subCategories.map(subCategory => (
                     <li className={styles.category} key={subCategory.id}>
                         <label className={styles.label}>
-                            <input className={styles.checkbox} type="checkbox" checked={selectedSubCategories.includes(subCategory)} onChange={() => handleSubCategories(subCategory)}/>
+                            <input className={styles.checkbox} type="checkbox" checked={selectedSubCategories.includes(subCategory)} onChange={() => handleSelectedSubCategories(subCategory)}/>
                             <span className={styles.name}>{subCategory.name}</span>
                         </label>
                     </li>
