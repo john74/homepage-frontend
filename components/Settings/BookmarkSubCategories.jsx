@@ -29,9 +29,9 @@ function BookmarkSubCategories(props) {
         const responseJSON = await useHandleProxyRequest(url, method, body,);
         if (!responseJSON) return;
 
-        const groupedCategories = responseJSON.sub_categories;
+        const groupedSubCategories = responseJSON.sub_categories;
         let subCategories = [];
-        Object.values(groupedCategories).forEach(group => {
+        Object.values(groupedSubCategories).forEach(group => {
             group.forEach(subCategory => {
                 subCategories.push(subCategory);
             });
@@ -46,7 +46,27 @@ function BookmarkSubCategories(props) {
     }
 
     const handleCreate = async () => {
-        console.log("SUB CREATE");
+        const method = "POST";
+        const targetEndpoint = "api/sub-categories/bulk-create/";
+        const url = `${props.baseUrl}/api/${method.toLowerCase()}/?targetEndpoint=${targetEndpoint}`;
+        const body = [{
+            "category": "5ec20d70-3737-407e-9a8b-1042b4b58c90",
+            "name": "New Sub Category for Communities"
+        }];
+
+        const responseJSON = await useHandleProxyRequest(url, method, body,);
+        if (!responseJSON) return;
+
+        const groupedSubCategories = responseJSON.sub_categories;
+        let subCategories = [];
+        Object.values(groupedSubCategories).forEach(group => {
+            group.forEach(subCategory => {
+                subCategories.push(subCategory);
+            });
+        });
+
+        setSelectedSubCategories([]);
+        props.setBookmarkSubCategories(subCategories);
     }
 
     return (
