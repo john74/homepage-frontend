@@ -8,7 +8,7 @@ import {
     FormsContainer,
 } from "@components";
 import {
-    BookmarkCategories, BookmarkSubCategories,
+    BookmarkCategories, BookmarkSubCategories, Bookmarks
 } from '@components/Settings';
 import {
     useFormVisibility,
@@ -18,14 +18,15 @@ import {
 const SettingsPageContainer = (props) => {
     const [bookmarkCategories, setBookmarkCategories] = useState(props.bookmarkCategories);
     const [bookmarkSubCategories, setBookmarkSubCategories] = useState(props.bookmarkSubCategories);
-    const formVisibilityHook = useFormVisibility();
+    const [bookmarks, setBookmarks] = useState(props.bookmarks);
     const baseUrl = props.baseUrl;
+    const formVisibilityHook = useFormVisibility();
     const { formName } = formVisibilityHook;
 
     props = {
         styles, bookmarkCategories, setBookmarkCategories,
         bookmarkSubCategories, setBookmarkSubCategories,
-        baseUrl, formVisibilityHook,
+        baseUrl, formVisibilityHook, bookmarks, setBookmarks,
     }
 
     return (
@@ -34,6 +35,7 @@ const SettingsPageContainer = (props) => {
             {formName && <FormsContainer {...props} />}
             <BookmarkCategories {...props} />
             <BookmarkSubCategories {...props} />
+            <Bookmarks {...props} />
         </div>
         </>
     )
