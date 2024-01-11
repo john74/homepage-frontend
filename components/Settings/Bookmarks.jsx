@@ -14,7 +14,8 @@ function BookmarkSubCategories(props) {
         openForm
     } = props.formVisibilityHook;
 
-    const handleselectedSubCategory = (category) => {
+    const handleselectedSubCategory = (subCategory) => {
+        setSelectedSubCategory(subCategory);
     }
 
     const handleselectedBookmarks = (selectedBookmark) => {
@@ -47,9 +48,11 @@ function BookmarkSubCategories(props) {
     }
 
     const handleEdit = async () => {
+        // TODO
     }
 
     const handleCreate = async () => {
+        // TODO
     }
 
     return (
