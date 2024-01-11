@@ -12,6 +12,7 @@ const SettingsPage = async () => {
     const bookmarkSubCategories = pageData.sub_categories;
     const bookmarks = pageData.bookmarks;
     const shortcuts = pageData.shortcuts;
+    const searchEngines = pageData.search_engines;
 
     const domain = headers()?.get("x-forwarded-host");
     const protocol = headers()?.get("x-forwarded-proto");
@@ -23,6 +24,7 @@ const SettingsPage = async () => {
         bookmarkSubCategories,
         bookmarks,
         shortcuts,
+        searchEngines,
     };
 
     return (
