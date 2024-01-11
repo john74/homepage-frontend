@@ -8,7 +8,8 @@ import {
     FormsContainer,
 } from "@components";
 import {
-    BookmarkCategories, BookmarkSubCategories, Bookmarks
+    BookmarkCategories, BookmarkSubCategories,
+    Bookmarks, Shortcuts,
 } from '@components/Settings';
 import {
     useFormVisibility,
@@ -19,6 +20,7 @@ const SettingsPageContainer = (props) => {
     const [bookmarkCategories, setBookmarkCategories] = useState(props.bookmarkCategories);
     const [bookmarkSubCategories, setBookmarkSubCategories] = useState(props.bookmarkSubCategories);
     const [bookmarks, setBookmarks] = useState(props.bookmarks);
+    const [shortcuts, setShortcuts] = useState(props.shortcuts);
     const baseUrl = props.baseUrl;
     const formVisibilityHook = useFormVisibility();
     const { formName } = formVisibilityHook;
@@ -27,6 +29,7 @@ const SettingsPageContainer = (props) => {
         styles, bookmarkCategories, setBookmarkCategories,
         bookmarkSubCategories, setBookmarkSubCategories,
         baseUrl, formVisibilityHook, bookmarks, setBookmarks,
+        shortcuts, setShortcuts,
     }
 
     return (
@@ -36,6 +39,7 @@ const SettingsPageContainer = (props) => {
             <BookmarkCategories {...props} />
             <BookmarkSubCategories {...props} />
             <Bookmarks {...props} />
+            <Shortcuts {...props} />
         </div>
         </>
     )
