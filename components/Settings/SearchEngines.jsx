@@ -36,7 +36,7 @@ function SearchEngines(props) {
     return (
         <>
         <div className={styles.section}>
-            <h3 className={styles.title}>Shortcuts</h3>
+            <h3 className={styles.title}>Search engines</h3>
             <div className={styles.actionButtons}>
                 <button className={styles.createButton} onClick={handleCreate}>Create</button>
                 {selectedSearchEngines.length === 1 && (
